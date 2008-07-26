@@ -1,0 +1,13 @@
+A JUnit-based UI-testing framework for testing Eclipse/RCP, SWT and Swing applications.
+
+= Introduction =
+
+[http://www.instantiations.com/windowtester/ WindowTester] is a commercial UI-testing tool available from Instantiations.  Free licenses for open source committers are also [http://www.instantiations.com/company/opensource.html available]. 
+
+= Resources =
+
+For more information, see these resources:
+
+  * [http://www.instantiations.com/windowtester/ Product Page] .
+  * [http://downloads.instantiations.com/WindowTesterDoc/integration/latest/docs/html/toc.html Product Documentation].
+  * [http://www.instantiations.com/forum/viewforum.php?f=5 Product Forum].
