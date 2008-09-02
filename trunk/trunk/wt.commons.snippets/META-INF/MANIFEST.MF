@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: WT Commons Snippets Plug-in
+Bundle-SymbolicName: wt.commons.snippets
+Bundle-Version: 0.0.0.qualifier
+Bundle-Vendor: WT Commons
+Require-Bundle: com.windowtester.swt.runtime,
+ org.eclipse.swt
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
