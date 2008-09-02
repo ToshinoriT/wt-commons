@@ -11,3 +11,9 @@ To run a snippet, create a new plug-in project with the the WT libraries in its 
 
 
 To contribute a new snippet, create a snippet contribution report in our issue tracking system by sending a mail to [mailto:wintest-support@instantiations.com WT Support]. Thanks in advance for your input and contributions!
+
+----
+
+==Eclipse==
+
+  * [http://code.google.com/p/wt-commons/source/browse/trunk/trunk/wt.commons.snippets/src/wt/commons/snippets/eclipse/Snippet001CollectProblems.java Collecting and accessing problems in the Eclipse Problems View]
