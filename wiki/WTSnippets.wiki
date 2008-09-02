@@ -1,0 +1,13 @@
+#summary A collection of stand-alone WindowTester code samples
+#labels Featured
+
+= WT Snippets =
+
+In the spirit of the [http://www.eclipse.org/swt/snippets/ SWT Snippets], the WT Snippets are minimal (and mostly) stand-alone tests (or drivers) that demonstrate specific techniques or functionality. Often a small example is the easiest way to understand how to use a particular feature.  For the most part, these are not _tests_ in the strictest sense since they often will not seek to verify anything.  Instead, these are building blocks for helper functions and tests.
+
+Snippets also help isolate problems and limitations in the current window tester API. The best way to report a bug is to write your own snippet showing the problem and paste it into a bug report sent to [mailto:wintest-support@instantiations.com WT Support].  Snippets should strive to be as stand-alone as possible.  If the need arises we will factor out a small set of snippet-building helpers.
+
+To run a snippet, create a new plug-in project with the the WT libraries in its dependencies, copy the desired snippet to the clipboard, and paste it into a new snippet class.   (Alternatively, just check out the entire snippets project from [http://code.google.com/p/wt-commons/source/checkout SVN]).  Run by selecting the class and then selecting "Run > Run As > JUnit Plug-in Test".
+
+
+To contribute a new snippet, create a snippet contribution report in our issue tracking system by sending a mail to [mailto:wintest-support@instantiations.com WT Support]. Thanks in advance for your input and contributions!
