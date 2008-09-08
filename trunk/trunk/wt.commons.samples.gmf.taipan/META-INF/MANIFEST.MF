@@ -1,0 +1,20 @@
+Bundle-Name: WindowTester Plug-in
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: wt.commons.samples.gmf.taipan
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: com.windowtester.runtime,
+ com.windowtester.swt.runtime,
+ com.windowtester.swt.runtime.gef,
+ org.junit,
+ com.windowtester.swing.runtime,
+ com.instantiations.eclipse.debug,
+ org.eclipse.jface,
+ com.instantiations.common.core,
+ org.eclipse.core.runtime,
+ com.instantiations.eclipse.util,
+ org.eclipse.swt,
+ org.eclipse.draw2d,
+ org.eclipse.gef,
+ org.eclipse.gmf.runtime.draw2d.ui;bundle-version="1.1.0"
