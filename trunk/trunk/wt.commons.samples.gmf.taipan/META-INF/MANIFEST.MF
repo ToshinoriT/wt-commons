@@ -1,4 +1,4 @@
-Bundle-Name: WindowTester Plug-in
+Bundle-Name: WT GMF Taipan Sample
 Bundle-Version: 1.0.0
 Bundle-SymbolicName: wt.commons.samples.gmf.taipan
 Manifest-Version: 1.0
@@ -18,3 +18,4 @@ Require-Bundle: com.windowtester.runtime,
  org.eclipse.draw2d,
  org.eclipse.gef,
  org.eclipse.gmf.runtime.draw2d.ui
+Bundle-Vendor: WT Commons
