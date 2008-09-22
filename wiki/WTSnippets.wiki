@@ -25,3 +25,5 @@ To contribute a new snippet, create a snippet contribution report in our issue t
   * [http://code.google.com/p/wt-commons/source/browse/trunk/trunk/wt.commons.snippets/src/wt/commons/snippets/eclipse/Snippet001CollectProblems.java Collecting and accessing problems in the Eclipse Problems View]
 
    * [http://code.google.com/p/wt-commons/source/browse/trunk/trunk/wt.commons.snippets/src/wt/commons/snippets/eclipse/Snippet002OLE.java Interacting (dumbly) with an Excel spreadsheet embedded in an OLEFrame (win32)]
+
+   * [http://code.google.com/p/wt-commons/source/browse/trunk/trunk/wt.commons.snippets/src/wt/commons/snippets/eclipse/Snippets003PreferencePageAsserts.java Verifying workbench settings in the Eclipse preference page.]
