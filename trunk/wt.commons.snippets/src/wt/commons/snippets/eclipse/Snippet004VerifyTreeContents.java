@@ -45,6 +45,13 @@ public class Snippet004VerifyTreeContents extends UITestCaseSWT {
 	
 	private static abstract class EqualsCondition implements ICondition {
 
+		private Object expected;
+
+		public EqualsCondition is(Object expected) {
+			this.expected = expected;
+			return this;
+		}
+		
 		/* (non-Javadoc)
 		 * @see com.windowtester.runtime.condition.ICondition#test()
 		 */
@@ -59,8 +66,11 @@ public class Snippet004VerifyTreeContents extends UITestCaseSWT {
 				return false;
 			return getExpected().equals(actual);
 		}
-
-		protected abstract Object getExpected();
+		
+		protected Object getExpected() {
+			return expected;
+		}
+		
 		protected abstract Object getActual() throws Exception;
 			
 		/* (non-Javadoc)
@@ -78,38 +88,14 @@ public class Snippet004VerifyTreeContents extends UITestCaseSWT {
 	
 	
 	private final class NumberOfClasses extends EqualsCondition {
-		
-		public EqualsCondition is(Object expected) {
-			this.expected = expected;
-			return this;
-		}
-
-		private Object expected;
-		
 		protected Object getActual() throws WidgetSearchException {
 			return getAllClasses().length;
-		}
-
-		protected Object getExpected() {
-			return expected;
 		}
 	} 
 	
 	private final class NumberOfSources extends EqualsCondition {
-		
-		public EqualsCondition is(Object expected) {
-			this.expected = expected;
-			return this;
-		}
-
-		private Object expected;
-		
 		protected Object getActual() throws WidgetSearchException {
 			return getAllSources().length;
-		}
-
-		protected Object getExpected() {
-			return expected;
 		}
 	} 
 	
