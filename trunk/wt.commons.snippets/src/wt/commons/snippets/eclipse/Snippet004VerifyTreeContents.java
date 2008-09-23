@@ -220,11 +220,11 @@ public class Snippet004VerifyTreeContents extends UITestCaseSWT {
 		IWidgetReference root = (IWidgetReference) ui.click(new TreeItemLocator(getProjectName() + "/src/").in(view("Navigator")));
 		expand(root);
 		IWidgetLocator[] classes = ui.findAll(new TreeItemLocator(getProjectName() + "/src/.*"));
-		String[] classNames = new String[classes.length];
-		for (int i = 0; i < classNames.length; i++) {
-			classNames[i] = getText((TreeItem)(((IWidgetReference)classes[i]).getWidget()));
+		String[] sourceNames = new String[classes.length];
+		for (int i = 0; i < sourceNames.length; i++) {
+			sourceNames[i] = getText((TreeItem)(((IWidgetReference)classes[i]).getWidget()));
 		}
-		return classNames;
+		return sourceNames;
 	}
 	
 	private void expand(final IWidgetReference treeNode) throws WidgetSearchException {
