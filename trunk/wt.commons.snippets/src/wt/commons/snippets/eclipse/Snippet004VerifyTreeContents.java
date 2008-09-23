@@ -87,7 +87,7 @@ public class Snippet004VerifyTreeContents extends UITestCaseSWT {
 		private Object expected;
 		
 		protected Object getActual() throws WidgetSearchException {
-			return getAllSources().length;
+			return getAllClasses().length;
 		}
 
 		protected Object getExpected() {
