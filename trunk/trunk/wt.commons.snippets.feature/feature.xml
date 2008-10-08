@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="wt.commons.snippets.feature"
+      label="WT Snippets"
+      version="0.0.0.qualifier"
+      provider-name="WT Commons">
+
+   <description url="http://code.google.com/p/wt-commons/">
+      WT Snippets
+   </description>
+
+   <license url="license.html">
+      ""
+   </license>
+
+   <plugin
+         id="wt.commons.snippets"
+         download-size="0"
+         install-size="0"
+         version="0.0.0.qualifier"
+         unpack="false"/>
+
+</feature>
