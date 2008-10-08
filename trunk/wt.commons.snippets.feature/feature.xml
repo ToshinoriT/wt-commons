@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="wt.commons.snippets.feature"
+      id="wt.commons.feature.snippets"
       label="WT Snippets"
       version="0.0.0.qualifier"
       provider-name="WT Commons">
@@ -10,7 +10,7 @@
    </description>
 
    <license url="license.html">
-      ""
+      &quot;&quot;
    </license>
 
    <plugin
