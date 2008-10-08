@@ -33,6 +33,20 @@
           target: additionalCode                      
          - - - - - - - - - - - - - - - - - -->
     <target name="additionalCode">
+    	<get_product_info product="Shared" />
+    	<pathconvert property="shared.34.zip">
+    		<fileset dir="${Shared.install-image}/.." id="shared.zip">
+    			<include name="Shared_v*_for_*3.4*.zip"/>
+			</fileset>
+    	</pathconvert>
+    	<addPdeFeatureToEclipse pluginzip="${shared.34.zip}" archiveprefix="" />
+    	<get_product_info product="WindowTester" />
+    	<pathconvert property="windowtester.34.zip">
+    		<fileset dir="${WindowTester.install-image}/.." id="windowtester.zip">
+    			<include name="WindowTester_v*_for_*3.4*.zip"/>
+			</fileset>
+    	</pathconvert>
+    	<addPdeFeatureToEclipse pluginzip="${windowtester.34.zip}" archiveprefix="" />
     </target>
 
     <!-- - - - - - - - - - - - - - - - - - 
