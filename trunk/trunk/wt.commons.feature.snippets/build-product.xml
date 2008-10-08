@@ -48,6 +48,7 @@
     	</pathconvert>
     	<addPdeFeatureToEclipse pluginzip="${windowtester.34.zip}" archiveprefix="" />
     	<addPdeFeatureToEclipse pluginzip="/opt/plugins/gef/GEF-SDK-3.4.0.zip" archiveprefix="eclipse" />
+    	<addPdeFeatureToEclipse pluginzip="/opt/eclipses/eclipse-test-framework-3.4.zip" archiveprefix="eclipse" />
     </target>
 
     <!-- - - - - - - - - - - - - - - - - - 
