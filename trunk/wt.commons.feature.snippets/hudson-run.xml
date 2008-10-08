@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="run-cc">
+	<import file="../com.instantiations.eclipse.shared_hudson/hudson-macros.xml" />
+	<import file="../com.instantiations.eclipse.shared_build/build-macros.xml" />
+
+	<!-- ================================================= -->
+	<target name="run-cc">
+		<hudson_init />
+		<hudson_setup />
+		
+		<!-- Build -->
+		
+		<ant antfile="build-product.xml" />
+	</target>
+
+</project>

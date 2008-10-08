@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Oct 3, 2008 5:42:08 PM                                                        
+
+     buildSharedPDE    
+     Runthe shared build under PDE and hudson
+                   
+     markr                                                                
+     ====================================================================== -->
+<project name="buildSharedPDE" default="runBuild">
+	<import file="../com.instantiations.eclipse.shared_hudson/hudson-macros.xml"/>
+	<import file="../com.instantiations.eclipse.shared_pde/build-pde-macros.xml"/>
+    <description>
+            Runthe shared build under PDE and hudson
+    </description>
+
+    <!-- ================================= 
+          target: init              
+         ================================= -->
+    <target name="runBuild"
+    		depends="build"
+    		description="Run the shared build under PDE and hudson">
+        <echo message="ran" />
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: localInit                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="localInit">
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: additionalCode                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="additionalCode">
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: copy                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="copy">
+        <copyCode dir="${build.directory}" type="plugins">
+        	<fileset dir="..">
+        		<include name="wt.commons.snippets*/**" />
+        		<include name="wt.commons.samples.gmf.taipan*/**" />
+        		<exclude name="*feature*/**" />
+        	</fileset>
+        </copyCode>
+    	<copyCode dir="${build.directory}" type="features">
+	    	<fileset dir="..">
+	    		<include name="wt.commons.feature.snippet*/**" />
+	    		<exclude name="**/build-settings/**" />
+	    		<exclude name="**/PDEBuild/**" />
+	    	</fileset>
+    	</copyCode>
+    </target>
+	
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: postBuild                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="postBuild">
+    	<property name="results.dir" location="${build.temp}/build-results" />
+    	<mkdir dir="${results.dir}"/>
+    	<copy todir="${results.dir}">
+    		<fileset dir="${build.directory}/${buildLabel}">
+    			<include name="wt.commons.feature.snippet_*.zip" />
+    		</fileset>
+    		<mapper type="merge" 
+    				to="wt.commons.feature.snippet.zip" />
+    	</copy>
+    </target>
+</project>
