@@ -13,7 +13,7 @@
 	<!-- ${pluginPath} locations.												-->
  	<!-- ===================================================================== 	-->
  	<target name="allElementsDelegator">
- 		<echo>genericTargets=${genericTargets}</echo>
+ 		<echo>genericTargets=${genericTargets} target=${target}</echo>
  		<echo>topLevelElementType=${topLevelElementType}</echo>
  		<echo>topLevelElementId=${topLevelElementId}</echo>
  		<ant antfile="${genericTargets}" target="${target}">
