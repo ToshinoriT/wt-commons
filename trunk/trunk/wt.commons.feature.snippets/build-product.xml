@@ -11,7 +11,7 @@
 	<import file="../com.instantiations.eclipse.shared_hudson/hudson-macros.xml"/>
 	<import file="../com.instantiations.eclipse.shared_pde/build-pde-macros.xml"/>
     <description>
-            Runthe shared build under PDE and hudson
+            Run the WindowTester Commons build under PDE and hudson
     </description>
 
     <!-- ================================= 
@@ -52,6 +52,7 @@
     	<addPdeFeatureToEclipse pluginzip="/opt/plugins/gef/GEF-SDK-3.4.0.zip" archiveprefix="eclipse" />
     	<addPdeFeatureToEclipse pluginzip="/opt/eclipses/eclipse-test-framework-3.4.zip" archiveprefix="eclipse" />
     	<addPdeFeatureToEclipse pluginzip="/opt/plugins/gmf/gmf-runtime-2.1.2.zip" archiveprefix="eclipse" />
+    	<addPdeFeatureToEclipse pluginzip="${eclipse.deltapack.dir}/${eclipse.deltapack.file}" archiveprefix="eclipse" />
     </target>
 
     <!-- - - - - - - - - - - - - - - - - - 
