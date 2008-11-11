@@ -1,0 +1,403 @@
+<?xml version="1.0"?>
+<project name="common" default="no_default_target">
+	<description>
+        Common targets and macros for running windowtester tests
+    </description>
+
+
+	<!-- NOTE: the value of shared is passed down from the main test script -->
+	<property file="${shared}/browser.properties"/>
+
+	<property name="wt-deps" location="${shared}/wt-runtime-deps"/>
+	<property name="WindowTester-url" value="http://download.instantiations.com/WindowTester/integration/latest" />
+	
+	<!-- ================================= 
+          target: no_default_target              
+         ================================= -->
+	<target name="no_default_target" description="--> Common targets and macros for running windowtester tests">
+		<fail message="there is no default target for this ant script as it only contains macro building blocks" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: set_os                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="set_os">
+		<condition property="os.windows">
+			<os family="windows" />
+		</condition>
+		<condition property="os.unix">
+			<os family="unix" />
+		</condition>
+		<condition property="os.mac">
+			<os family="mac" />
+		</condition>
+		<echo>Windows: ${os.windows}</echo>
+		<echo>Unix: ${os.unix}</echo>
+		<echo>Mac: ${os.mac}</echo>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: check-user-properties
+          check if user properties exist
+         - - - - - - - - - - - - - - - - - -->
+	<target name="check-user-properties">
+		<available file="test-settings/${user.name}.properties" property="user-properties-exist" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init-user-properties
+          read user properties from test-settings/${user.name}.properties if it exists
+          
+          test-settings/${user.name}.properties should include:
+	          show-summary-ie=true
+          or
+    	      show-summary-ff=true
+    	  so that a browser is opened to display the result
+         - - - - - - - - - - - - - - - - - -->
+	<target name="init-user-properties" depends="check-user-properties" if="user-properties-exist">
+		<property file="test-settings/${user.name}.properties" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init-nouser-properties
+          if test-settings/${user.name}.properties does not exist then define some properties
+         - - - - - - - - - - - - - - - - - -->
+	<target name="init-nouser-properties"
+	        depends="check-user-properties"
+	        unless="user-properties-exist">
+		<property file="${shared}/default-user.properties"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init-test
+          initialize and setup of the tests
+         - - - - - - - - - - - - - - - - - -->
+	<target name="init-test" depends="init-user-properties, init-nouser-properties">
+		<property name="test" location=".." />
+		<property name="test-properties-file" value="test.properties" />
+		<echo>test root = ${test}</echo>
+		<property file="${test-properties-file}" />
+
+		<mkdir dir="${test}" />
+		<mkdir dir="${download}" />
+
+		<delete dir="${scratch-root}" />
+		<delete dir="${output-root}" />
+
+		<mkdir dir="${scratch-root}" />
+		<mkdir dir="${output-root}" />
+
+		<property name="recorder.level" value="verbose" />
+		<property name="recorder.file" location="${scratch-root}/testAnt.log" />
+		<record name="${recorder.file}" loglevel="${recorder.level}" />
+
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: run-tests
+	          Launch the application and run the tests
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="run-tests" depends="install-application, install-tests, install-wt-runtime">
+		<launch-test testname="${apptests-name}" testplugin="${apptests-id}" testclass="${apptests-class}" />
+		<!-- call launch-test again here to execute other test suites -->
+		<generate-summary />
+	</target>
+ 
+
+	<target name="install-application">
+		<fail message="install-application target must be overriden in master build file"/>
+	</target>	
+		
+	<target name="install-tests">
+		<fail message="install-tests target must be overriden in master build file"/>
+	</target>		
+	
+		
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: check-file
+          Check to make sure a file exists
+          
+          attributes:
+          file(required) - the name of the to test for existance
+          message - the message to display if the file does not exist
+          			default: Cannot find file: @{file}
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="check-file">
+		<attribute name="file" />
+		<attribute name="message" default="Cannot find file: @{file}" />
+		<sequential>
+
+			<!-- Assert that the file exists -->
+			<fail message="@{message}">
+				<condition>
+					<not>
+						<available file="@{file}" />
+					</not>
+				</condition>
+			</fail>
+
+		</sequential>
+	</macrodef>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: check-dir
+          Check to make sure a dir exists
+          
+          attributes:
+          dir(required) - the name of the dir to test for existance
+          message - the message to display if the dir does not exist
+          			default: Cannot find dir: @{file}
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="check-dir">
+		<attribute name="dir" />
+		<attribute name="message" default="Cannot find dir: @{dir}" />
+		<sequential>
+
+			<!-- Assert that the file exists -->
+			<fail message="@{message}">
+				<condition>
+					<not>
+						<available file="@{dir}" type="dir" />
+					</not>
+				</condition>
+			</fail>
+
+		</sequential>
+	</macrodef>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: link-plugins-zip
+          Link the given plugins to the given application
+          
+          attributes:
+          application(required) - the application under test
+          plugins(required) - the plugins to be linked to the application under test
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="link-plugins-zip">
+		<attribute name="plugins" />
+		<sequential>
+			<echo>Linking ${@{plugins}-home} to ${application-home}</echo>
+			<check-dir dir="${application-home}" />
+			<check-dir dir="${@{plugins}-home}" />
+			<mkdir dir="${application-home}/links" />
+			<echo file="${application-home}/links/@{plugins}.link">path=${@{plugins}-home}
+</echo>
+			<replace file="${application-home}/links/@{plugins}.link">
+				<replacetoken>\</replacetoken>
+				<replacevalue>/</replacevalue>
+			</replace>
+		</sequential>
+	</macrodef>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: deleteAllLinks
+          remove all links from all installed applications
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="deleteAllLinks">
+		<sequential>
+			<delete failonerror="false">
+				<fileset dir="${application-home}/links">
+					<include name="*.link" />
+				</fileset>
+			</delete>
+		</sequential>
+	</macrodef>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: generate-summary
+          generate the summary of the junit tests
+          
+          attributes:
+          outputRoot - the root of the output
+          				Default: ${output-root}
+          junitReportSummary - the name of the file to hold the raw xml  for the junit run
+          						default: test-summary.xml
+          junitReportSummaryHtml - the name of the html file to store the formated xml in
+          							default: test-summary.html
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="generate-summary">
+		<attribute name="outputRoot" default="${output-root}" />
+		<attribute name="junitReportSummary" default="test-summary.xml" />
+		<attribute name="junitReportSummaryHtml" default="test-summary.html" />
+		<sequential>
+			<junitreport todir="@{outputRoot}" tofile="@{junitReportSummary}">
+				<fileset dir="@{outputRoot}">
+					<include name="*/test-result.xml" />
+				</fileset>
+				<report format="noframes" todir="@{outputRoot}" />
+			</junitreport>
+			<move file="@{outputRoot}/junit-noframes.html" tofile="@{outputRoot}/@{junitReportSummaryHtml}">
+			</move>
+		</sequential>
+	</macrodef>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: launch-test
+          launch the application using the WindowTester runtime framework to execute tests
+          
+          attributes:
+          testname(required) - the name of the test run
+          testplugin(required) - the name of the plugin that the test cases live in
+          testclass(required) - test case to run
+          scratch - the scratch directory tstore temp files
+          				Default: ${scratch-root}/@{testname}-@{target}
+          output - the place to put the generated output
+          			Default: ${output-root}/@{testname}-@{target}
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="launch-test">
+		<attribute name="testname" />
+		<attribute name="testplugin" />
+		<attribute name="testclass" />
+		<attribute name="scratch" default="${scratch-root}/@{testname}" />
+		<attribute name="output" default="${output-root}/@{testname}" />
+		<sequential>
+			<condition property="testapp-option" value="-testApplication ${application-id}">
+				<length string="${application-id}" when="greater" length="0" />
+			</condition>
+			<property name="testapp-option" value="" />
+
+			<delete dir="@{scratch}" />
+			<mkdir dir="@{scratch}" />
+			<mkdir dir="@{output}" />
+
+			<!-- Copy links to the output directory so we know what they were -->
+			<copy todir="@{output}/links-used" failonerror="false">
+				<fileset dir="${application-home}/links" />
+			</copy>
+
+			<!-- Build a file so that this workspace can be manually launched later -->
+			<property name="application.loc" location="${application-home}" />
+			<property name="output.@{testname}.loc" location="@{output}" />
+			<property name="scratch.@{testname}.loc" location="@{scratch}" />
+			<echo file="@{scratch}/launch-app.bat">cd ${application.loc}
+del /Q links
+copy ${output.@{testname}.loc}\links-used\*.link links
+eclipse.exe -configuration ${scratch.@{testname}.loc}/configuration -data ${scratch.@{testname}.loc}/workspace
+pause</echo>
+
+			<!-- determine if this is 3.3 or 3.2 and set the startup jar file -->
+			<fileset dir="${application-home}/plugins" id="equinox.jar.fs"
+		    			includes="org.eclipse.equinox.launcher_*.jar"/>
+			<pathconvert property="equinox.jar" refid="equinox.jar.fs" setonempty="false"/>
+			<available file="${application-home}/startup.jar" type="file"
+						property="eclipse.startup"
+						value="${application-home}/startup.jar"/>
+			<property name="eclipse.startup" value="${equinox.jar}" />
+
+			<echo message="Running eclipse using eclipse startup ${eclipse.startup}" />
+			<!-- Launch application and run the tests -->
+			<echo message="running eclipse redirecting output to @{output}/test-out.txt" />
+			<exec os="Windows XP,Windows Vista,Windows 2003,Linux" executable="java" output="@{output}/test-out.txt">
+				<arg value="-Xms64M" />
+				<arg value="-Xmx256M" />
+				<arg value="-cp" />
+				<arg value="${eclipse.startup}" />
+				<arg value="org.eclipse.core.launcher.Main" />
+				<arg value="-clean" />
+				<arg value="-noupdate" />
+				<arg value="-configuration" />
+				<arg value="@{scratch}/configuration" />
+				<arg value="-dev" />
+				<arg value="bin" />
+				<arg value="-data" />
+				<arg value="@{scratch}/workspace" />
+				<arg value="formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,@{output}/test-result.xml" />
+				<arg value="-application" />
+				<arg value="com.windowtester.runner.application" />
+				<arg value="-testPluginName" />
+				<arg value="@{testplugin}" />
+				<arg value="-classname" />
+				<arg value="@{testclass}" />
+				<arg value="-verbose" />
+				<arg value="-consolelog" />
+				<arg line="${testapp-option}" />
+			</exec>
+
+			<!-- Move screen captures (if any) to the output directory -->
+			<move todir="@{output}/screen-captures" failonerror="false">
+				<fileset dir="wintest" />
+			</move>
+		</sequential>
+	</macrodef>
+
+
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: show-summary
+          show the results of the junit run in the system browser
+         - - - - - - - - - - - - - - - - - -->
+	<target name="show-summary" if="show-summary">
+		<exec executable="${browser}" spawn="true">
+			<arg value="file://${output-root}/test-summary.html" />
+		</exec>
+	</target>
+		
+		<!-- ================================================
+				WindowTesterRuntime download and install
+			=================================================-->
+		<!-- - - - - - - - - - - - - - - - - - 
+	          target: download-wintest-runtime
+	          read the download information from the server
+	          then download the appropriate windowtester runtime framework
+	         - - - - - - - - - - - - - - - - - -->
+		<target name="download-wt-runtime" depends="ensure-download-dir-exists">
+			<download-wt-runtime eclipsetarget="${eclipse-version}" />
+		</target>
+		
+		<target name="ensure-download-dir-exists">
+			<mkdir dir="${download}" />
+		</target>
+		
+		<!-- - - - - - - - - - - - - - - - - - 
+	          target: install-wintest-runtime
+	          install the WindowTester runtime
+	         - - - - - - - - - - - - - - - - - -->
+		<target name="install-wt-runtime" depends="unzip-wt-runtime, copy-wt-runtime-deps">
+			<property name="WindowTesterRuntime-home" location="${test}/WindowTesterRuntime" />
+			<link-plugins-zip plugins="WindowTesterRuntime" />
+		</target>
+
+		<!-- - - - - - - - - - - - - - - - - - 
+		      target: unzip-wintest-runtime
+		          unzip the WindowTester runtime
+		  - - - - - - - - - - - - - - - - - -->
+		<target name="unzip-wt-runtime" depends="download-wt-runtime">
+			<echo>installing ${WindowTesterRuntime-zip} to ${test}/WindowTesterRuntime</echo>
+			<mkdir dir="${test}/WindowTesterRuntime/eclipse" />
+			<unzip src="${download}/${WindowTesterRuntime-zip}"
+				       dest="${test}/WindowTesterRuntime/eclipse" />
+		</target>
+
+		<target name="copy-wt-runtime-deps">
+			<property name="plugin.dir" location="${test}/WindowTesterRuntime/eclipse/"/>
+			<echo>copying runtime dependencies to ${plugin.dir}</echo>
+			<copy todir="${plugin.dir}">
+				<fileset dir="${wt-deps}">
+					<include name="**/*"/>
+				</fileset>
+			</copy>
+		</target>
+
+		<!-- - - - - - - - - - - - - - - - - - 
+	          macro: download-wt-runtime
+	          get the WindowTester runtime
+	         - - - - - - - - - - - - - - - - - -->
+		<macrodef name="download-wt-runtime">
+			<attribute name="eclipseTarget" />
+			<attribute name="url" default="${WindowTester-url}" />
+			<attribute name="zip" default="${WindowTesterRuntime-Eclipse@{eclipseTarget}}" />
+			<attribute name="dest" default="${download}" />
+			<attribute name="verbose" default="${verbose-download}" />
+			<sequential>
+				<property url="@{url}/download.properties" />
+				<property name="WindowTesterRuntime-zip" value="@{zip}" />
+				<echo>downloading @{url}/@{zip} to @{dest}</echo>
+				<get src="@{url}/@{zip}"
+				     dest="@{dest}/@{zip}"
+				     usetimestamp="true"
+				     verbose="@{verbose}" />
+			</sequential>
+		</macrodef>
+
+
+</project>

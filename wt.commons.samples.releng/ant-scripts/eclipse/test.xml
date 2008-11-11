@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+	 WindowTester Ant Example
+	 
+	 Download, install and execute Eclipse 3.2 and the WindowTester Example Test
+	 
+	 This script will:
+	 1) Read properties from the test.properties file
+     ====================================================================== -->
+<project name="Run WindowTester Example Test" default="main">
+
+	<!-- import the required macros -->
+	<import file="test-macros.xml" />
+
+	<description>
+        This ant script will download, install and execute 
+    	Eclipse 3.2 and the WindowTester Example Test
+    </description>
+
+	<!-- ================================= 
+          target: main
+          Primary target to download, install and execute 
+          Eclipse 3.2 and the WindowTester Example Test
+          and then display the results
+         ================================= -->
+	<target name="main" depends="set_os, run-tests, show-summary-ie, show-summary-ff">
+		<!-- all of the real work is done in the depends targets -->
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: run-tests
+          Download, install and execute 
+          Eclipse and the WindowTester Example Test
+         - - - - - - - - - - - - - - - - - -->
+	<target name="run-tests"
+	        depends="install-Eclipse, install-windowtester, install-test">
+		<launch-eclipse target="${eclipse.target}"
+		                testname="WindowTesterExample"
+		                testplugin="com.windowtester.test_example"
+		                testclass="com.windowtester.test.standalone.ExampleTest" />
+		<generate-summary />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: check-user-properties
+          check if user properties exist
+         - - - - - - - - - - - - - - - - - -->
+	<target name="check-user-properties">
+		<available file="${user.name}.properties"
+		           property="user-properties-exist" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init-user-properties
+          read user properties from ${user.name}.properties if it exists
+          
+          ${user.name}.properties should include:
+	          show-summary-ie=true
+          or
+    	      show-summary-ff=true
+    	  so that a browser is opened to display the result
+         - - - - - - - - - - - - - - - - - -->
+	<target name="init-user-properties"
+	        depends="check-user-properties"
+	        if="user-properties-exist">
+		<property file="${user.name}.properties"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init-user-properties
+          if ${user.name}.properties does not exist then define some properties
+         - - - - - - - - - - - - - - - - - -->
+	<target name="init-nouser-properties"
+	        depends="check-user-properties"
+	        unless="user-properties-exist">
+		<property name="show-summary-ie" value="true"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: load-product-info
+          
+         - - - - - - - - - - - - - - - - - -->
+	<target name="load-product-info" depends="init-user-properties, init-nouser-properties">
+		<property name="test" location=".." />
+		<echo>test root = ${test}</echo>
+
+		<property file="test.properties" />
+	</target>
+		
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init-test
+          initialize and setup of the tests
+         - - - - - - - - - - - - - - - - - -->
+	<target name="init-test"
+	        depends="init-user-properties, init-nouser-properties">
+		<mkdir dir="${test}" />
+		<mkdir dir="${eclipses}" />
+
+		<delete dir="${product-root}" />
+		<delete dir="${scratch-root}" />
+		<delete dir="${output-root}" />
+
+		<mkdir dir="${product-root}" />
+		<mkdir dir="${scratch-root}" />
+		<mkdir dir="${output-root}" />
+
+		<property name="recorder.level" value="verbose" />
+		<property name="recorder.file" location="${scratch-root}/testAnt.log" />
+		<record name="${recorder.file}" loglevel="${recorder.level}" />
+
+		<check-eclipse target="${eclipse.target}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: show-summary-ie
+          show the ie browser with the results of the junit run
+         - - - - - - - - - - - - - - - - - -->
+	<target name="show-summary-ie" if="show-summary-ie">
+		<exec executable="C:/Program Files/Internet Explorer/iexplore.exe"
+		      spawn="true">
+			<arg value="file://${output-root}/test-summary.html" />
+		</exec>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: show-summary-ff
+          show the firefox browser with the results of the junit run
+         - - - - - - - - - - - - - - - - - -->
+	<target name="show-summary-ff" if="show-summary-ff">
+		<property name="ff-executable" value="C:/Program Files/Mozilla Firefox/firefox.exe" />
+		<echo message="ff-executable = ${ff-executable}" /> 
+		<exec executable="${ff-executable}"
+		      spawn="true">
+			<arg value="file://${output-root}/test-summary.html" />
+		</exec>
+	</target>
+
+	<!-- =================================================
+			Eclipse setup targets
+		================================================= -->
+	<!-- - - - - - - - - - - - - - - - - - - - - 
+		target: download-Eclipse-
+		download the selected eclipse archive 
+		 - - - - - - - - - - - - - - - - - - - - -->
+	<target name="download-Eclipse"
+	        depends="init-test"
+	        unless="eclipse-is-downloaded">
+		<download-eclipse target="${eclipse.target}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - - - - 
+		target: download-Eclipse-test
+		download the eclipse test plugin 
+		 - - - - - - - - - - - - - - - - - - - - -->
+	<target name="download-Eclipse-test"
+	        depends="init-test"
+	        unless="eclipse-test-is-downloaded">
+		<download-eclipse target="${eclipse.target}" zipname="Eclipse-test-zip" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - - - - 
+		target: install-Eclipse-zip
+		Install eclipse from a downloaded zip file 
+		 - - - - - - - - - - - - - - - - - - - - -->
+	<target name="install-Eclipse-zip"
+	        depends="download-Eclipse, download-Eclipse-test"
+	        if="eclipse-zip-not-installed">
+		<install-eclipse-zip target="${eclipse.target}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - - - - 
+		target: install-Eclipse-tar
+		Install eclipse from a downloaded tar file 
+		 - - - - - - - - - - - - - - - - - - - - -->
+	<target name="install-Eclipse-tar"
+	        depends="download-Eclipse, download-Eclipse-test"
+	        if="eclipse-tar-not-installed">
+		<install-eclipse-tar target="${eclipse.target}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - - - - 
+		target: install-Eclipse
+		Install the downloaded eclipse 
+		 - - - - - - - - - - - - - - - - - - - - -->
+	<target name="install-Eclipse"
+	        depends="init-Eclipse, install-Eclipse-zip, install-Eclipse-tar">
+		<!-- all work in done in dependancies -->
+	</target>
+
+
+	<!-- - - - - - - - - - - - - - - - - - - - - 
+		target: init-Eclipse
+		Determin the version and os for eclipse 
+		 - - - - - - - - - - - - - - - - - - - - -->
+	<target name="init-Eclipse" depends="load-product-info">
+		<!-- needs to determin version of eclipse -->
+		<property name="eclipse.target" value="Eclipse" />
+		<condition property="Eclipse-archive" value="${Eclipse-zip-win}">
+			<isset property="os.windows"/>
+		</condition>
+		<condition property="Eclipse-archive" value="${Eclipse-zip-linux}">
+			<isset property="os.unix"/>
+		</condition>
+		<fail message="Mac OS not supported">
+			<condition>
+				<isset property="os.mac" />
+			</condition>
+		</fail>
+	</target>
+
+	<!-- ================================================
+			WindowTester setup targets
+		=================================================-->
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: download-windowtester
+          download the windowtester for eclipse code
+         - - - - - - - - - - - - - - - - - -->
+	<target name="download-windowtester" depends="init-test">
+		<download-product-zip product="WindowTester" target="${eclipse.target}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: install-windowtester
+          install the windowtester for eclipse code
+         - - - - - - - - - - - - - - - - - -->
+	<target name="install-windowtester" depends="download-windowtester">
+		<install-product-zip product="WindowTester" target="${eclipse.target}" />
+		<link-product-zip product="WindowTester" target="${eclipse.target}" />
+	</target>
+
+	<!-- ================================================
+			test setup targets
+		=================================================-->
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: download-test
+          download the example WindowTesterTests for eclipse
+         - - - - - - - - - - - - - - - - - -->
+	<target name="download-test" depends="init-test">
+		<download-product-zip product="com.windowtester.test_example"
+		                      target="${eclipse.target}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: install-test
+          install the example WindowTesterTests for eclipse
+         - - - - - - - - - - - - - - - - - -->
+	<target name="install-test" depends="download-test">
+		<install-product-zip product="com.windowtester.test_example"
+		                     target="${eclipse.target}" />
+		<link-product-zip product="com.windowtester.test_example"
+		                  target="${eclipse.target}" />
+	</target>
+
+</project>

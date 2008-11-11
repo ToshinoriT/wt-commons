@@ -1,0 +1,392 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+	 Test Macros
+
+     Macros that are used to download, install and execute 
+     Eclipse 3.2 and the WindowTester Example Test
+     ====================================================================== -->
+<project name="test macros" default="no_default_target">
+    <description>
+        Macros that are used to run the windowtester tests
+    </description>
+
+    <!-- ================================= 
+          target: no_default_target              
+         ================================= -->
+    <target name="no_default_target" description="--> Macros that are used to run the windowtester tests">
+    	<fail message="there is no default target for this ant script as it only contains the macros" />
+    </target>
+	
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: set_os                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="set_os">
+		<condition property="os.windows">
+			<os family="windows" />
+		</condition>
+		<condition property="os.unix">
+			<os family="unix" />
+		</condition>
+		<condition property="os.mac">
+			<os family="mac" />
+		</condition>
+		<echo>Windows: ${os.windows}</echo>
+		<echo>Unix: ${os.unix}</echo>
+		<echo>Mac: ${os.mac}</echo>
+	</target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: check-file
+          Check to make sure a file exists
+          
+          attributes:
+          file(required) - the name of the to test for existance
+          message - the message to display if the file does not exist
+          			default: Cannot find file: @{file}
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="check-file">
+		<attribute name="file" />
+		<attribute name="message" default="Cannot find file: @{file}" />
+		<sequential>
+
+			<!-- Assert that the file exists -->
+			<fail message="@{message}">
+				<condition>
+					<not>
+						<available file="@{file}" />
+					</not>
+				</condition>
+			</fail>
+
+		</sequential>
+	</macrodef>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: check-eclipse
+          See if a version of eclipse exists and set the approprate properties
+          
+          attributes:
+          target(required) - the the target eclipse to check (e.g. Eclipse3.2)
+          
+          properties set:
+          @{target}-is-downloaded (e.g. Eclipse3.2-is-downloaded)
+          @{target}-test-is-downloaded (e.g. Eclipse3.2-test-is-downloaded)
+          @{target}-is-installed (e.g. Eclipse3.2-is-installed)
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="check-eclipse">
+		<attribute name="target" />
+		<sequential>
+			<available property="eclipse-is-downloaded"
+			           file="${download-eclipse}/${@{target}-archive}" />
+			<available property="eclipse-test-is-downloaded"
+			           file="${download-eclipse}/${@{target}-test-zip}" />
+			<available property="eclipse-is-installed"
+			           file="${@{target}}" />
+			<condition property="eclipse-zip-not-installed">
+				<and>
+					<os family="windows" />
+					<not>
+						<isset property="eclipse-is-installed" />
+					</not>
+				</and>
+			</condition>
+			<condition property="eclipse-tar-not-installed">
+				<and>
+					<os family="unix" />
+					<not>
+						<isset property="eclipse-is-installed" />
+					</not>
+				</and>
+			</condition>
+			<echo message="target                     = @{target}" />
+			<echo message="eclipse-is-downloaded      = ${eclipse-is-downloaded}" />
+			<echo message="eclipse-test-is-downloaded = ${eclipse-test-is-downloaded}" />
+			<echo message="eclipse-is-installed       = ${eclipse-is-installed}" />
+			<echo message="eclipse-zip-not-installed  = ${eclipse-zip-not-installed}" />
+			<echo message="eclipse-tar-not-installed  = ${eclipse-tar-not-installed}" />
+		</sequential>
+	</macrodef>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: download-product-zip
+          Download a product zip file
+          
+          attributes:
+          product(required) - the product to download (e.g. WindowTester)
+          target(required) - the the target eclipse to check (e.g. Eclipse3.2)
+          
+          properties set:
+          @{product}-@{target}-is-installed (e.g. WindowTester-Eclipse3.2-is-downloaded)
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="download-product-zip">
+		<attribute name="product" />
+		<attribute name="target" />
+		<sequential>
+			<echo>downloading @{product}-@{target} to ${download-product}</echo>
+			<mkdir dir="${download-product}" />
+			<get src="${@{product}-@{target}-url}"
+			     dest="${@{product}-@{target}-zip}"
+			     usetimestamp="true" 
+				 verbose="${verbose_download}"/>
+			<uptodate srcfile="${@{product}-@{target}-zip}"
+			          targetfile="${@{product}-@{target}}"
+			          property="@{product}-@{target}-is-installed" />
+		</sequential>
+	</macrodef>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: install-product-zip
+          Install a product zip file
+          
+          attributes:
+          product(required) - the product to download (e.g. WindowTester)
+          target(required) - the the target eclipse to check (e.g. Eclipse3.2)
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="install-product-zip">
+		<attribute name="product" />
+		<attribute name="target" />
+		<sequential>
+			<echo>installing @{product}-@{target} to ${@{product}-@{target}}</echo>
+			<delete dir="${@{product}-@{target}}" />
+			<mkdir dir="${@{product}-@{target}}/eclipse" />
+			<unzip src="${@{product}-@{target}-zip}"
+			       dest="${@{product}-@{target}}/eclipse" />
+		</sequential>
+	</macrodef>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: link-product-zip
+          Link the given product to the given eclipse
+          
+          attributes:
+          product(required) - the product to download (e.g. WindowTester)
+          target(required) - the the target eclipse to check (e.g. Eclipse3.2)
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="link-product-zip">
+		<attribute name="product" />
+		<attribute name="target" />
+		<sequential>
+			<echo>Linking @{product}-@{target} to @{target}</echo>
+			<check-file file="${@{product}-@{target}}/eclipse" />
+			<check-file file="${@{target}}" />
+			<mkdir dir="${@{target}}/links" />
+			<echo file="${@{target}}/links/@{product}.link">
+path=${@{product}-@{target}}
+</echo>
+			<replace file="${@{target}}/links/@{product}.link">
+				<replacetoken>\</replacetoken>
+				<replacevalue>/</replacevalue>
+			</replace>
+		</sequential>
+	</macrodef>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: deleteAllLinks
+          remove all links from all installed eclipses
+          
+          attributes:
+          product(required) - the product to download (e.g. WindowTester)
+          target(required) - the the target eclipse to check (e.g. Eclipse3.2)
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="deleteAllLinks">
+		<sequential>
+			<delete failonerror="false">
+				<fileset dir="${eclipses}">
+					<include name="*/links/*.link" />
+				</fileset>
+			</delete>
+		</sequential>
+	</macrodef>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: download-eclipse-zip
+          Download an eclipse archive file
+          
+          attributes:
+          target(required) - the the target eclipse to check (e.g. Eclipse3.2)
+          zipname - the name of the file to store on disk
+          			Default: @{target}-zip
+          
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="download-eclipse">
+		<attribute name="target" />
+		<attribute name="zipname" default="@{target}-archive" />
+		<sequential>
+			<echo>downloading ${@{zipname}} to ${download-eclipse}</echo>
+			<mkdir dir="${download-eclipse}" />
+			<get src="${@{target}-url}/${@{zipname}}"
+			     dest="${download-eclipse}/${@{zipname}}" 
+				 verbose="${verbose_download}" />
+		</sequential>
+	</macrodef>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: install-eclipse-zip
+          Install an eclipse zip file
+          
+          attributes:
+          target(required) - the the target eclipse to check (e.g. Eclipse3.2)
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="install-eclipse-zip">
+		<attribute name="target" />
+		<sequential>
+			<echo>installing @{target} to ${@{target}}</echo>
+			<delete dir="${@{target}}" />
+			<unzip src="${download-eclipse}/${@{target}-archive}"
+			       dest="${eclipses}" />
+			<unzip src="${download-eclipse}/${@{target}-test-zip}"
+			       dest="${eclipses}" />
+			<delete dir="${@{target}}" failonerror="false" />
+			<move todir="${@{target}}">
+				<fileset dir="${eclipses}/eclipse" />
+			</move>
+			<echo file="${@{target}}/${@{target}-archive}-installed.txt">Installed ${@{target}-archive}</echo>
+		</sequential>
+	</macrodef>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: install-eclipse-tar
+          Install an eclipse tar file
+          
+          attributes:
+          target(required) - the the target eclipse to check (e.g. Eclipse3.2)
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="install-eclipse-tar">
+		<attribute name="target" />
+		<sequential>
+			<echo>installing @{target} to ${@{target}}</echo>
+			<delete dir="${@{target}}" />
+			<untar src="${download-eclipse}/${@{target}-archive}"
+			       dest="${eclipses}"
+			       compression="gzip" />
+			<chmod file="${eclipses}/eclipse/eclipse" perm="740" />
+			<unzip src="${download-eclipse}/${@{target}-test-zip}"
+			       dest="${eclipses}" />
+			<delete dir="${@{target}}" failonerror="false" />
+			<move todir="${@{target}}">
+				<fileset dir="${eclipses}/eclipse" />
+			</move>
+			<echo file="${@{target}}/${@{target}-archive}-installed.txt">Installed ${@{target}-archive}</echo>
+		</sequential>
+	</macrodef>
+
+   <!-- - - - - - - - - - - - - - - - - - 
+          target: generate-summary
+          generate the summary of the junit tests
+          
+          attributes:
+          outputRoot - the root of the output
+          				Default: ${output-root}
+          junitReportSummary - the name of the file to hold the raw xml  for the junit run
+          						default: test-summary.xml
+          junitReportSummaryHtml - the name of the html file to store the formated xml in
+          							default: test-summary.html
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="generate-summary">
+		<attribute name="outputRoot" default="${output-root}" />
+		<attribute name="junitReportSummary" default="test-summary.xml" />
+		<attribute name="junitReportSummaryHtml" default="test-summary.html" />
+		<sequential>
+			<junitreport todir="@{outputRoot}" tofile="@{junitReportSummary}">
+				<fileset dir="@{outputRoot}">
+					<include name="*/test-result.xml" />
+				</fileset>
+				<report format="noframes"
+				        todir="@{outputRoot}" />
+			</junitreport>
+			<move file="@{outputRoot}/junit-noframes.html"
+			      tofile="@{outputRoot}/@{junitReportSummaryHtml}">
+			</move>
+		</sequential>
+	</macrodef>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: launch-eclipse
+          launch the eclipse with the testing framework
+          
+          attributes:
+          target(required) - the target eclipse to check (e.g. Eclipse3.2)
+          testname(required) - the name of the test run
+          testplugin(required) - the name of the plugin that the test cases live in
+          testclass(required) - test case to run
+          scratch - the scratch directory tstore temp files
+          				Default: ${scratch-root}/@{testname}-@{target}
+          output - the place to put the generated output
+          			Default: ${output-root}/@{testname}-@{target}
+         - - - - - - - - - - - - - - - - - -->
+	<macrodef name="launch-eclipse">
+		<attribute name="target" />
+		<attribute name="testname" />
+		<attribute name="testplugin" />
+		<attribute name="testclass" />
+		<attribute name="scratch"
+		           default="${scratch-root}/@{testname}-@{target}" />
+		<attribute name="output"
+		           default="${output-root}/@{testname}-@{target}" />
+		<sequential>
+			<delete dir="@{scratch}" />
+			<mkdir dir="@{scratch}" />
+			<mkdir dir="@{output}" />
+
+			<!-- Copy links to the output directory so we know what they were -->
+			<copy todir="@{output}/links-used" failonerror="false">
+				<fileset dir="${@{target}}/links" />
+			</copy>
+
+			<!-- Build a file so that this workspace can be manually launched later -->
+			<property name="@{target}.loc" location="${@{target}}" />
+			<property name="output.@{testname}.@{target}.loc"
+			          location="@{output}" />
+			<property name="scratch.@{testname}.@{target}.loc"
+			          location="@{scratch}" />
+			<echo file="@{scratch}/@{target}.bat">cd ${@{target}.loc}
+del /Q links
+copy ${output.@{testname}.@{target}.loc}\links-used\*.link links
+eclipse.exe -configuration ${scratch.@{testname}.@{target}.loc}/configuration -data ${scratch.@{testname}.@{target}.loc}/workspace
+pause</echo>
+		<!--Eclipse 3.3 launcher-->
+			<!--<fileset dir="${@{target}}/plugins" includes="org.eclipse.equinox.launcher_*.jar" id="eclipse.launcher"/>-->
+			
+		<!--Eclipse 3.2 launcher-->
+			<fileset dir="${@{target}}" includes="startup.jar" id="eclipse.launcher"/>
+			<pathconvert property="eclipse.startup.jar" refid="eclipse.launcher" />
+			<echo message="using eclipse launcher ${eclipse.startup.jar}" />
+
+			<echo message="running eclipse redirecting output to @{output}/test-out.txt"/>
+			<!-- Launch eclipse and run the tests -->
+			<exec os="Windows XP,Windows Vista,Windows 2003,Linux"
+			      executable="java"
+			      output="@{output}/test-out.txt">
+				<arg value="-Xms64M" />
+				<arg value="-Xmx256M" />
+				<arg value="-cp" />
+				<arg value="${eclipse.startup.jar}" />
+				<arg value="org.eclipse.core.launcher.Main" />
+				<arg value="-clean" />
+				<arg value="-noupdate" />
+				<arg value="-configuration" />
+				<arg value="@{scratch}/configuration" />
+				<arg value="-dev" />
+				<arg value="bin" />
+				<arg value="-data" />
+				<arg value="@{scratch}/workspace" />
+				<arg value="formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,@{output}/test-result.xml" />
+				<arg value="-application" />
+				<arg value="com.windowtester.runner.application" />
+				<arg value="-testPluginName" />
+				<arg value="@{testplugin}" />
+				<arg value="-classname" />
+				<arg value="@{testclass}" />
+				<arg value="-verbose" />
+				<arg value="-consolelog" />
+			</exec>
+
+			<!-- Move any screen captures to the output directory -->
+			<move todir="@{output}/screen-captures" failonerror="false">
+				<fileset dir="wintest" />
+			</move>
+		</sequential>
+	</macrodef>
+
+</project>
