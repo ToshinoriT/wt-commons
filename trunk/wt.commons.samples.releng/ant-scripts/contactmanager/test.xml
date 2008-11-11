@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+	 WindowTester Ant Example
+	 
+	 This ant script will download and install an application, the test for that application
+	 and the WindowTester runtime necessary to execute the application tests.
+	 Once downloaded and installed, the tests will be executed and a test summary report generated.
+	 
+     ====================================================================== -->
+<project name="Run WindowTester Example Test" default="main">
+
+	<property name="rootdir" location=".."/>
+	<property name="shared" location="${rootdir}/shared"/>
+		
+	<!-- import the helper targets and macros -->
+	<import file="${shared}/test-common.xml" />
+
+	<description>
+        This ant script will download and install an application, the test for that application
+		and the WindowTester runtime necessary to execute the application tests.
+		Once downloaded and installed, the tests will be executed and a test summary report generated.
+    </description>
+
+	<!-- ================================= 
+          target: main
+          Primary target to download, install and execute application tests
+          and then display the results
+         ================================= -->
+	<target name="main" depends="set_os, run-tests, show-summary">
+		<!-- all of the real work is done in the depends targets -->
+	</target>
+
+
+	<!-- ================================================
+			Application under test setup targets
+		=================================================-->
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: download-application
+          download the application code
+         - - - - - - - - - - - - - - - - - -->
+	<target name="download-application" depends="init-test" if="application-url">
+		<echo>downloading ${application-zip} to ${download}</echo>
+		<get src="${application-url}/${application-zip}"
+		     dest="${download}/${application-zip}"
+		     usetimestamp="true"
+		     verbose="${verbose-download}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: check-application
+          check if the application needs to be installed
+         - - - - - - - - - - - - - - - - - -->
+	<target name="check-application-zip" depends="download-application" if="application-zip">
+		<uptodate property="is-application-uptodate"
+		          srcfile="${download}/${application-zip}"
+		          targetfile="${application-install}" />
+	</target>
+	
+	<target name="check-application" depends="check-application-zip" unless="application-zip">
+		<property name="is-application-uptodate" value="true" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: install-application
+          install the application code
+         - - - - - - - - - - - - - - - - - -->
+	<target name="install-application" depends="check-application" unless="is-application-uptodate">
+		<echo>installing ${application-zip} to ${application-install}</echo>
+		<delete dir="${application-install}" />
+		<unzip src="${download}/${application-zip}" dest="${application-install}" />
+	</target>
+
+	<!-- ================================================
+			Application test setup targets
+		=================================================-->
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: download-tests
+          download the example application tests
+         - - - - - - - - - - - - - - - - - -->
+	<target name="download-tests" depends="init-test" if="apptests-url">
+		<echo>downloading ${apptests-zip} to ${download}</echo>
+		<get src="${apptests-url}/${apptests-zip}"
+		     dest="${download}/${apptests-zip}"
+		     usetimestamp="true"
+		     verbose="${verbose-download}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: unzip-tests
+          unzip the application tests
+         - - - - - - - - - - - - - - - - - -->
+	<target name="unzip-tests" depends="download-tests" if="apptests-zip">
+		<echo>installing ${apptests-zip} to ${apptests-install}</echo>
+		<mkdir dir="${apptests-install}" />
+		<unzip src="${download}/${apptests-zip}" dest="${apptests-install}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: install-test
+          link the application tests to the application under test
+         - - - - - - - - - - - - - - - - - -->
+	<target name="install-tests" depends="unzip-tests">
+		<link-plugins-zip plugins="apptests" />
+	</target>
+
+</project>
