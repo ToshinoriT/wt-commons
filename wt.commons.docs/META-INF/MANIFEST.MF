@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: WT Commons Documentation Plug-in
+Bundle-SymbolicName: wt.commons.docs
+Bundle-Version: 0.0.0.qulaifier
+Bundle-Vendor: WT Commons
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
