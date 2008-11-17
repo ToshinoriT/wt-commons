@@ -1,0 +1,208 @@
+\documentclass[10pt, twocolumn]{article}
+
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{fullpage}
+\usepackage[hmargin=1cm,vmargin=2cm]{geometry}
+
+\newcommand{\topic}[1]{
+\hRule
+
+{\sf{\textbf{#1}}}
+\vspace{0.1in}
+
+%\hRule
+}
+\newcommand{\code}[1]{\lstinline[basicstyle=\small\ttfamily]{#1}}
+\newcommand{\hRule}{\rule{\linewidth}{0.2mm}}
+
+\newcommand{\Indent}{\hspace{0.2in}}
+
+
+\newcommand{\desc}[1]{\Indent\parbox[b]{3.5in}{#1}}
+
+
+%------------------------------------------------------------------------------
+\begin{document}
+%------------------------------------------------------------------------------
+%\begin{multicols}{2}
+
+\thispagestyle{empty} % suppress page #s
+
+
+%------------------------------------------------------------------------------
+{
+\Large{\sf\textit{WindowTester API Quick Reference}}
+}
+
+%------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\topic{IUIContext methods}
+%------------------------------------------------------------------------------
+
+\code{ILocator click(ILocator locator)}
+
+\desc{click the widget identified by this locator}
+
+\code{IWidgetLocator find(ILocator locator)}
+
+\desc{find the widget identified by this locator}
+
+\code{IWidgetLocator[] findAll(ILocator locator)}
+
+\desc{find all the widgets identified by this locator}
+
+\code{void wait(ICondition condition)}
+
+\desc{wait for this condition to become true}
+
+\code{void assertThat(ICondition condition)}
+
+\desc{assert that this condition is true}
+
+%\code{IConditionMonitor getConditionMonitor()}
+%
+%\desc{get the current condition monitor}
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\topic{Locators}
+%------------------------------------------------------------------------------
+
+\code{new TreeItemLocator(``General/Project'')}
+
+\desc{the tree item ``Project'' with parent ``General''}
+
+\code{new TreeItemLocator(``(General|Simple)/Project'')}
+
+\desc{the tree item ``Project'' with parent ``General'' or ``Simple''}
+
+\code{new TreeItemLocator(``Project'',}
+\indent\indent\indent\code{new ViewLocator(``org.acme.Explorer''))}
+
+\desc{the tree item ``Project'' in the ``org.acme.Explorer'' view}
+
+\code{new MenuItemLocator(``Window/&Preferences(...)?'')}
+
+\desc{the preferences menu (with or without trailing dots)}
+
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\topic{Conditions}
+%------------------------------------------------------------------------------
+
+\code{ui.wait(new ShellShowingCondition(``New Project''))}
+
+\desc{wait for the ``New Project'' shell to be showing}
+
+\code{ui.wait(new ViewLocator(``JUnit'').isVisible()))}
+
+\desc{wait for the JUnit view to be visible}
+
+\code{ui.wait(new ProjectExistsCondition(``org.acme.MyProject''))}
+
+\desc{wait for the ``org.acme.MyProject'' to exist}
+
+\code{ui.wait(new JobsCompleteCondition())}
+
+\desc{wait for the all the Eclipse Jobs to be complete}
+
+%\code{ui.wait(new ICondition() \{} \\
+%\indent\indent\code{public boolean test() \{} \\
+%\indent\indent\indent\code{return something();} \\
+%\indent\indent\code{\}}\\
+%\indent\code{\})}
+%
+%\desc{wait for \textit{something} to be true}
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\topic{Assertions}
+%------------------------------------------------------------------------------
+
+
+\code{ui.assertThat(new ButtonLocator(``OK'').isEnabled())}
+
+\desc{assert that the ``OK'' button is enabled}
+
+\code{ui.assertThat(new EditorLocator(``Foo.java'').isActive())}
+
+\desc{assert that the editor open on ``Foo.java'' is active}
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\topic{Condition Monitors}
+%------------------------------------------------------------------------------
+
+\code{IShellMonitor sm =} \\
+\indent\indent\indent\code{(IShellMonitor)ui.getAdapter(IShellMonitor.class)}
+\indent\code{sm.add(new PerspectiveSwitchedShellHandler())}
+
+\desc{register a handler that clicks the ``No'' button on the
+``Confirm Perspective Switch'' Shell.}
+
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\topic{Naming}
+%------------------------------------------------------------------------------
+
+\code{button.setData(``name'', ``named.button'')}
+
+\desc{give the button the name ``named.button''}
+
+\code{ui.find(new NamedWidgetLocator(``named.widget''))}
+
+\desc{find the ``named.button'' button at runtime}
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\topic{Widget Access}
+%------------------------------------------------------------------------------
+
+\code{IWidgetLocator wl = ui.find(new ButtonLocator(``OK''))}
+
+\desc{find the ``OK'' button}
+
+\code{final Button b = (Button)((IWidgetReference)wl).getWidget()}
+
+\desc{get the underlying widget}
+
+\code{final boolean[] result = new boolean[1];}
+\indent\code{Display.getDefault().syncExec(new Runnable() \{} \\
+\indent\indent\code{public void run() \{} \\
+\indent\indent\indent\code{result[0] = button.getAlignment();} \\
+\indent\indent\code{\}}\\
+\indent\code{\});} \\
+\indent\code{assertEquals(SWT.UP, result[0]);}
+
+\desc{access the alignment property safely on the UI thread}
+
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\topic{Constants}
+%------------------------------------------------------------------------------
+
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+
+%\end{multicols}
+%------------------------------------------------------------------------------
+
+
+
+\end{document} 
