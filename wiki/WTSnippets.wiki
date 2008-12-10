@@ -31,3 +31,7 @@ To contribute a new snippet, create a snippet contribution report in our issue t
    * [http://code.google.com/p/wt-commons/source/browse/trunk/trunk/wt.commons.snippets/src/wt/commons/snippets/eclipse/Snippet004VerifyTreeContents.java Verifying the presence (and absence) of items in the Eclipse Navigator view.]
 
    * [http://code.google.com/p/wt-commons/source/browse/trunk/trunk/wt.commons.snippets/src/wt/commons/snippets/eclipse/Snippet005VerifyDynamicHelpContents.java Verifying context help content for the "General/Content Types" Eclipse preference page.]
+
+   * [http://code.google.com/p/wt-commons/source/browse/trunk/trunk/wt.commons.snippets/src/wt/commons/snippets/eclipse/Snippet006CustomBrowserLocator.java A sample custom Browser Widget Locator.]
+
+
