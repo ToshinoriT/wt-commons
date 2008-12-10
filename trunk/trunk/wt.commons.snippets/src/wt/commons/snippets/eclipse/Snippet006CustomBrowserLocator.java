@@ -31,7 +31,7 @@ import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
  * @since Eclipse 3.4
  * @author Phil Quitslund
  */
-public class Snippet006CustomBrowserLocator extends UITestCaseSWT /* intentionally NOT subclassing BASETEST! */ {
+public class Snippet006CustomBrowserLocator extends UITestCaseSWT {
 
 	
 	private static final String TUTORIALS = "http://org.eclipse.ui.intro/showPage?id=tutorials";
