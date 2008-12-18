@@ -2,4 +2,4 @@
 
 = Development Environment Setup =
 
-* MylynIssueTrackerConnector
+  * Setting up a [MylynIssueTrackerConnector Mylyn Issue Tracker Connector]
