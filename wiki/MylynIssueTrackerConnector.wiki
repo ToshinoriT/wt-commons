@@ -1,7 +1,5 @@
 #summary Mylyn Issue Tracker integration notes.
 
-==Mylyn Isssue Tracker Connector==
-
 Google-code does not as of yet (12/2008) have an [http://code.google.com/p/support/issues/detail?id=148 API for the issue tracker].
 
 Until it is implemented, the best bet is to use the generic web connector as described in [http://www.jroller.com/alexRuiz/entry/using_mylyn_with_google_code1 this blog entry].
