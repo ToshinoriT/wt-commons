@@ -1,0 +1,5 @@
+#summary Notes for the effective development of wt-commons content
+
+= Development Environment Setup =
+
+* MylynIssueTrackerConnector
