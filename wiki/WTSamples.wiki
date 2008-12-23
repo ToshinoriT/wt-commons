@@ -19,4 +19,4 @@ In some cases, you will want to increase the heap size of your runtime workspace
 
 ==GMF==
 
-   * [http://code.google.com/p/wt-commons/source/browse/#svn/trunk/trunk/wt.commons.samples.gmf.taipan Driving the GMF Taipan example]
+   * [http://code.google.com/p/wt-commons/source/browse/#svn/trunk/org.wtc.samples.gmf.taipan Driving the GMF Taipan example]
