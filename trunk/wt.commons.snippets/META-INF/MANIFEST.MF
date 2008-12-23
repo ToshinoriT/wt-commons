@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: WT Commons Snippets Plug-in
-Bundle-SymbolicName: wt.commons.snippets
+Bundle-SymbolicName: org.wtc.snippets
 Bundle-Version: 0.0.0.qualifier
 Bundle-Vendor: WT Commons
 Require-Bundle: com.windowtester.swt.runtime,
