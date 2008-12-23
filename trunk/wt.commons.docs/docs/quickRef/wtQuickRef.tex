@@ -4,7 +4,7 @@
 \usepackage{multicol}
 \usepackage{fullpage}
 \usepackage[hmargin=1cm,vmargin=2cm]{geometry}
-\usepackage{fancyhdr}
+\usepackage{boxedminipage}
 
 \newcommand{\topic}[1]{
 \hRule
@@ -36,7 +36,7 @@
 
 %------------------------------------------------------------------------------
 {
-\Large{\sf\textit{WindowTester API Quick Reference}}
+\Large{\sf\textit{WindowTester API Quick Reference (v.0.1)}}
 }
 
 %------------------------------------------------------------------------------
@@ -50,7 +50,7 @@
 \code{ILocator click(ILocator locator)}
 
 \desc{click the widget identified by this locator}
- 
+
 \code{ILocator contextClick(ILocator locator, String path)}
 
 \desc{select the given context menu path on this widget}
@@ -88,6 +88,27 @@
 %------------------------------------------------------------------------------
 \topic{Locators}
 %------------------------------------------------------------------------------
+
+
+
+%
+%\begin{boxedminipage}[t]{0.95\linewidth}
+%
+%\code{com.windowtester.runtime.swt.locator} \\
+%\indent\desc{SWT locators (Buttons, Combos, Trees, etc)}\\
+%\code{com.windowtester.runtime.swt.locator.eclipse} \\
+%\indent\desc{Eclipse locators (Editors, Views, Perspectives, etc)}\\
+%\code{com.windowtester.runtime.swt.locator.jface} \\
+%\indent\desc{JFace locators (Dialogs, Wizards, etc)}
+%
+%%\hspace{2.8in} {\sf{packages}}
+%
+%\end{boxedminipage}
+%
+%\desc{}
+%
+%\desc{}
+
 
 \code{new TreeItemLocator(``General/Project'')}
 
@@ -173,6 +194,7 @@
 
 \desc{assert that the open dialog has the message ``Error''}
 
+   
 
 
 %------------------------------------------------------------------------------
