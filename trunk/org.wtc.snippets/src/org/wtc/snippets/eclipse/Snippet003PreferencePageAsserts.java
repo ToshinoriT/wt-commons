@@ -1,4 +1,4 @@
-package wt.commons.snippets.eclipse;
+package org.wtc.snippets.eclipse;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WT;

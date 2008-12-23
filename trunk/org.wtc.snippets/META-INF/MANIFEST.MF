@@ -7,3 +7,4 @@ Bundle-Vendor: WT Commons
 Require-Bundle: com.windowtester.swt.runtime,
  org.eclipse.swt
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.wtc.snippets.eclipse

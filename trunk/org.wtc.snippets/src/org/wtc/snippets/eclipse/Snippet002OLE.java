@@ -1,4 +1,4 @@
-package wt.commons.snippets.eclipse;
+package org.wtc.snippets.eclipse;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.ole.win32.OleFrame;

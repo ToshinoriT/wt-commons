@@ -1,4 +1,4 @@
-package wt.commons.snippets.eclipse;
+package org.wtc.snippets.eclipse;
 
 import static com.windowtester.runtime.swt.locator.eclipse.EclipseLocators.view;
 
