@@ -1,4 +1,4 @@
-package wt.commons.snippets.eclipse;
+package org.wtc.snippets.eclipse;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
