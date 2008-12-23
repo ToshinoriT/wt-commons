@@ -16,7 +16,7 @@ In some cases, you will want to increase the heap size of your runtime workspace
 -Xmx512m
 }}}
 
-To contribute a new snippet, create a snippet contribution report in our issue tracking system by sending a mail to [mailto:wintest-support@instantiations.com WT Support]. Thanks in advance for your input and contributions!
+To contribute a new snippet, create a snippet contribution report in our [http://code.google.com/p/wt-commons/issues/entry issue tracker].  Thanks in advance for your input and contributions!
 
 ----
 
