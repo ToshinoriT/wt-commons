@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: WT Commons Release Engineering Samples
-Bundle-SymbolicName: wt.commons.samples.releng
+Bundle-SymbolicName: org.wtc.samples.releng
 Bundle-Version: 0.0.0.qualifier
 Bundle-Vendor: WT Commons
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
