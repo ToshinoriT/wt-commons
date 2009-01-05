@@ -1,0 +1,4 @@
+Result(
+<netui:span value="${pageInput.getTests6}"></netui:span>
+<netui:span value="${pageInput.getTests2}"></netui:span>
+)

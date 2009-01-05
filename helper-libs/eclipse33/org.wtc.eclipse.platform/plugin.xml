@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+    <extension-point id="conditionHandlers" name="Default Condition Handlers" schema="schema/conditionHandlers.exsd"/>
+    <extension-point id="shellHandlers" name="Default Shell Handlers" schema="schema/shellHandlers.exsd"/>
+    <extension-point id="focusFixingShells" name="Focus Fixing Shells" schema="schema/focusFixingShells.exsd"/>
+    <extension-point id="defaultPerspective" name="Tes Default Perspective" schema="schema/defaultPerspective.exsd"/>
+    <extension
+         point="org.wtc.eclipse.core.resetDaemon">
+      <resetDaemon
+            className="org.wtc.eclipse.platform.reset.DebugResetDaemon"
+            priority="100"
+            triggerLevel="20"/>
+      <resetDaemon
+            className="org.wtc.eclipse.platform.reset.AutoBuildResetDaemon"
+            priority="70"
+            triggerLevel="10"/>
+      <resetDaemon
+            className="org.wtc.eclipse.platform.reset.CloseAllEditorsResetDaemon"
+            priority="65"
+            triggerLevel="20"/>
+      <resetDaemon
+            className="org.wtc.eclipse.platform.reset.ProjectResetDaemon"
+            priority="50"
+            triggerLevel="50"/>
+      <resetDaemon
+            className="org.wtc.eclipse.platform.reset.ViewsPerspectivesResetDaemon"
+            priority="20"
+            triggerLevel="20"/>
+      <resetDaemon
+            className="org.wtc.eclipse.platform.handlers.FocusFixingConditionHandler"
+            priority="25"
+            triggerLevel="10"/>
+   </extension>
+   <extension
+         point="org.wtc.eclipse.platform.conditionHandlers">
+      <conditionHandler class="org.wtc.eclipse.platform.handlers.FocusFixingConditionHandler"/>
+   </extension>
+   <extension
+         point="org.wtc.eclipse.platform.focusFixingShells">
+      <shell title="Open Associated Perspective?"/>
+   </extension>
+   <extension
+         point="org.wtc.eclipse.platform.defaultPerspective">
+      <perspective
+            enumValue="org.wtc.eclipse.platform.helpers.IWorkbenchHelper$Perspective.JAVA"
+            priority="5"/>
+   </extension>
+</plugin>
