@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: WT Commons Eclipse Core Plug-in
+Bundle-SymbolicName: org.wtc.eclipse.core;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.wtc.eclipse.core.CoreActivator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit,
+ com.windowtester.runtime,
+ com.windowtester.swt.runtime
+Eclipse-LazyStart: true
+Export-Package: org.wtc.eclipse.core.reset,
+ org.wtc.eclipse.core.tests,
+ org.wtc.eclipse.core.util
