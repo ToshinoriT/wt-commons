@@ -53,6 +53,7 @@ import org.wtc.eclipse.platform.helpers.IPerspective;
 import org.wtc.eclipse.platform.helpers.IProjectHelper;
 import org.wtc.eclipse.platform.helpers.IView;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
+import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 import org.wtc.eclipse.platform.shellhandlers.ConfirmDeleteDialogShellHandler;
 import org.wtc.eclipse.platform.shellhandlers.ConfirmFileContentChangedDialog;
 import org.wtc.eclipse.platform.shellhandlers.ConfirmOverwriteFilesDialogShellHandler;

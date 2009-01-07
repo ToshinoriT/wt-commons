@@ -68,6 +68,7 @@ import org.wtc.eclipse.platform.helpers.IHelperConstants;
 import org.wtc.eclipse.platform.helpers.IProjectHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
+import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 import org.wtc.eclipse.platform.util.FileUtil;
 import org.wtc.eclipse.platform.util.StringUtil;
 import org.wtc.eclipse.platform.util.ZipFileUtil;

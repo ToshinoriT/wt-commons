@@ -12,6 +12,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.helpers.IUIHelper;
+import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
+
 import java.util.regex.Pattern;
 
 /**
@@ -114,7 +116,7 @@ public class UIHelperImpl extends HelperImplAdapter implements IUIHelper {
     }
 
     /**
-     * @see  org.wtc.eclipse.platform.internal.helpers.impl.HelperImplAdapter#pressEnter(com.windowtester.runtime.IUIContext)
+     * @see  org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter#pressEnter(com.windowtester.runtime.IUIContext)
      */
     @Override
     public void pressEnter(IUIContext ui) {

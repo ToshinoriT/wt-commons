@@ -41,6 +41,7 @@ import org.wtc.eclipse.platform.helpers.IEditorHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper.View;
+import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 import org.wtc.eclipse.platform.util.SourceEditorBlockInserter;
 
 /**

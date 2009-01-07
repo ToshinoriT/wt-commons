@@ -36,6 +36,7 @@ import org.eclipse.ui.dialogs.PropertyDialogAction;
 import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
+import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 
 /**
  * Helper for creating and manipulating projects.

@@ -3,7 +3,7 @@
  *
  * http://code.google.com/p/wt-commons/wiki/WTSamples
  */
-package org.wtc.eclipse.platform.internal.helpers.impl;
+package org.wtc.eclipse.platform.helpers.adapters;
 
 import abbot.finder.swt.SWTHierarchy;
 import abbot.finder.swt.TestHierarchy;

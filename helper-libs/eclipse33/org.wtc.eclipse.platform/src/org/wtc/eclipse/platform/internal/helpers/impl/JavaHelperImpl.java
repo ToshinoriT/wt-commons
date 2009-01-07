@@ -49,6 +49,7 @@ import org.wtc.eclipse.platform.helpers.IJavaHelper;
 import org.wtc.eclipse.platform.helpers.IProjectHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
+import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 import org.wtc.eclipse.platform.shellhandlers.SourceFolderAddedShellHandler;
 import java.util.ArrayList;
 import java.util.Arrays;

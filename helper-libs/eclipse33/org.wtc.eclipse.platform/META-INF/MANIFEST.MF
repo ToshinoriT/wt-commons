@@ -21,3 +21,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.workbench.texteditor,
  org.wtc.eclipse.core
 Eclipse-LazyStart: true
+Export-Package: org.wtc.eclipse.platform,
+ org.wtc.eclipse.platform.conditions,
+ org.wtc.eclipse.platform.exceptions,
+ org.wtc.eclipse.platform.handlers,
+ org.wtc.eclipse.platform.helpers,
+ org.wtc.eclipse.platform.helpers.adapters,
+ org.wtc.eclipse.platform.reset,
+ org.wtc.eclipse.platform.shellhandlers,
+ org.wtc.eclipse.platform.tests,
+ org.wtc.eclipse.platform.tests.helpers,
+ org.wtc.eclipse.platform.tests.reset,
+ org.wtc.eclipse.platform.util,
+ org.wtc.eclipse.platform.util.diff
