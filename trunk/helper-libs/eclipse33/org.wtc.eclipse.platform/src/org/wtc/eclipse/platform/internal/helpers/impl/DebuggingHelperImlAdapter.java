@@ -33,6 +33,7 @@ import org.wtc.eclipse.platform.helpers.IEditorHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper.Perspective;
+import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 
 /**
  * Common methods for debugging in any file type.

@@ -8,6 +8,7 @@ package org.wtc.eclipse.platform.internal.helpers.impl;
 import com.windowtester.runtime.IUIContext;
 import junit.framework.TestCase;
 import org.wtc.eclipse.platform.helpers.ITestHelper;
+import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 
 /**
  * Helper for injecting JUnit behavior into a test directly.

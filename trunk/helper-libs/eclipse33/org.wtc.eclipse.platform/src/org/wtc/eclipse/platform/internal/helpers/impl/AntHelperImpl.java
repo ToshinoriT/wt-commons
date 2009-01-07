@@ -23,6 +23,8 @@ import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IAntHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
+import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
+
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
