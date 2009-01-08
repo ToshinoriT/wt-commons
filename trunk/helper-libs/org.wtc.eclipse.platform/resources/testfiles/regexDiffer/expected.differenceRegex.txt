@@ -1,0 +1,13 @@
+<test>
+    <regexdiffer type="identical">
+        <description>
+            Regex differ blocks don't have to be XML. They can be any type of file.
+            I'm [abcd]ust using an XML-like format because it makes the test a little
+            easier
+        </description>
+    </regexdiffer>  
+    <description>Note - actual files to diff don't need to be XML</description>
+    
+    
+    
+</test>

@@ -1,0 +1,21 @@
+/**
+ * WT Commons Project 2008-2009
+ *
+ * http://code.google.com/p/wt-commons/wiki/WTSamples
+ */
+package org.wtc.eclipse.platform.helpers;
+
+import com.windowtester.runtime.IUIContext;
+
+/**
+ * Helper for injecting JUnit behavior into a test directly.
+ */
+public interface ITestHelper {
+    /**
+     * Fail the test with the given message.
+     *
+     * @param  ui       - Driver for UI-generated input
+     * @param  message  - The message to tag the failure with
+     */
+    public void failTest(IUIContext ui, String message);
+}
