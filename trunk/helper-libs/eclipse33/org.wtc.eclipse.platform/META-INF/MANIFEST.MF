@@ -21,6 +21,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.workbench.texteditor,
  org.wtc.eclipse.core
 Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: org.wtc.eclipse.platform,
  org.wtc.eclipse.platform.conditions,
  org.wtc.eclipse.platform.exceptions,
