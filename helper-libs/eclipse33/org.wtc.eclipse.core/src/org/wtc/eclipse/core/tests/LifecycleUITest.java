@@ -7,8 +7,8 @@ package org.wtc.eclipse.core.tests;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.swt.UITestCaseSWT;
 import com.windowtester.runtime.util.ScreenCapture;
-import junit.extensions.UITestCaseSWT;
 import junit.framework.TestCase;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
