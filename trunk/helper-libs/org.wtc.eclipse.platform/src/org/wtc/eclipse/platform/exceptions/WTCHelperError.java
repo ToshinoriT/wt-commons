@@ -9,7 +9,10 @@ package org.wtc.eclipse.platform.exceptions;
  * Abstract error from which all specific WT commons helper errors should extend.
  */
 public abstract class WTCHelperError extends Error {
-    /**
+    
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Constructs a new error with the specified detail message.  The cause is not
      * initialized, and may subsequently be initialized by a call to {@link #initCause}.
      *
