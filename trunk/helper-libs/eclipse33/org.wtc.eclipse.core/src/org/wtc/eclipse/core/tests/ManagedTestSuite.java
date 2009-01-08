@@ -47,7 +47,7 @@ public class ManagedTestSuite extends TestSuite {
     /**
      * @return  Test - Make sure to use nested suite methods
      */
-    private Test getTest(final Class testClass) {
+    private Test getTest(final Class<?> testClass) {
         try {
             // if test has a suite method use it
             Method suiteMethod = getSuiteMethod(testClass);
