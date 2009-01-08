@@ -9,6 +9,7 @@ import abbot.swt.eclipse.utils.WorkbenchUtilities;
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
 import com.windowtester.runtime.swt.locator.ButtonLocator;
@@ -16,7 +17,6 @@ import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
 import com.windowtester.runtime.swt.locator.TableItemLocator;
 import com.windowtester.swt.WaitTimedOutException;
-import com.windowtester.swt.util.WaitForIdle;
 import junit.framework.TestCase;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
@@ -285,7 +285,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
                     intro.closeIntro(intro.getIntro());
                 }
             });
-        new WaitForIdle().waitForIdle();
+        new SWTIdleCondition().waitForIdle();
 
         logExit2();
     }

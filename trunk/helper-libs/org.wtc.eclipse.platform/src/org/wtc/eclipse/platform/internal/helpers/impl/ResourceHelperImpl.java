@@ -11,6 +11,7 @@ import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.ICondition;
 import com.windowtester.runtime.locator.IWidgetLocator;
 import com.windowtester.runtime.locator.WidgetReference;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
 import com.windowtester.runtime.swt.condition.eclipse.FolderExistsCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
@@ -21,7 +22,6 @@ import com.windowtester.runtime.swt.locator.LabeledLocator;
 import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
-import com.windowtester.swt.util.WaitForIdle;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 import org.eclipse.core.filebuffers.FileBuffers;
@@ -1603,7 +1603,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
             // Along with the wait no jobs, we should give the file some
             // time to allow it to update (to avoid the case where it hasn't
             // been updated yet and therefore giving a false positive)
-            new WaitForIdle().waitForIdle();
+        	new SWTIdleCondition().waitForIdle();
             ui.pause(5000);
 
             long actualTimestamp = getFileTimstampInternal(theFile);
