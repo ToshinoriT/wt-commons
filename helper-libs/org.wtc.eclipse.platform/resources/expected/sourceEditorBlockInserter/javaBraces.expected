@@ -1,0 +1,14 @@
+public java.lang.String ejbCreate(String visitorName)
+{
+    setVisitorName(visitorName);
+    setVisitNumber(1);
+    try
+    {   System.out.println("hello")
+    catch(RuntimeException e)
+    {
+       // nothing
+    }
+
+
+    return null;
+}

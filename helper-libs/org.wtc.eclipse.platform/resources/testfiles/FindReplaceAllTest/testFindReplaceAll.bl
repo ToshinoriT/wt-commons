@@ -1,0 +1,5 @@
+NEWTEXT test char(0)
+test end of line NEWTEXT
+test middle (NEWTEXT) of line
+test close but no cigar (REPLACE)
+test last chars NEWTEXT
