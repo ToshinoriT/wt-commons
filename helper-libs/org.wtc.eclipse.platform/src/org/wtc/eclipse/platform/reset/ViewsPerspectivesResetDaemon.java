@@ -6,7 +6,7 @@
 package org.wtc.eclipse.platform.reset;
 
 import com.windowtester.runtime.IUIContext;
-import com.windowtester.swt.util.WaitForIdle;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -60,7 +60,7 @@ public class ViewsPerspectivesResetDaemon implements IResetDaemon {
             });
 
         // Clear the event queue
-        new WaitForIdle().waitForIdle();
+        new SWTIdleCondition().waitForIdle();
         ui.wait(new PerspectiveActiveCondition(defaultPerspective));
     }
 }

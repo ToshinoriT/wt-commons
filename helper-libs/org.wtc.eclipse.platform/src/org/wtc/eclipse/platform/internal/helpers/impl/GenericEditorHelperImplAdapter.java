@@ -5,22 +5,8 @@
  */
 package org.wtc.eclipse.platform.internal.helpers.impl;
 
-import abbot.tester.swt.ButtonTester;
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.locator.IWidgetLocator;
-import com.windowtester.runtime.locator.WidgetReference;
-import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.LabeledLocator;
-import com.windowtester.runtime.swt.locator.MenuItemLocator;
-import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
-import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
-import com.windowtester.swt.util.WaitForIdle;
 import junit.framework.TestCase;
+
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.jface.text.ITextSelection;
@@ -43,6 +29,23 @@ import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper.View;
 import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 import org.wtc.eclipse.platform.util.SourceEditorBlockInserter;
+
+import abbot.tester.swt.ButtonTester;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.locator.IWidgetLocator;
+import com.windowtester.runtime.locator.WidgetReference;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.LabeledLocator;
+import com.windowtester.runtime.swt.locator.MenuItemLocator;
+import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
+import com.windowtester.runtime.swt.locator.TreeItemLocator;
+import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
 
 /**
  * Helper for manipulating files through the source editor. Adapter for any text-based
@@ -119,7 +122,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
         gotoLine(ui, 1);
 
         try {
-            new WaitForIdle().waitForIdle();
+        	new SWTIdleCondition().waitForIdle();
             ui.click(new MenuItemLocator("&Edit/&Find.*Replace.*")); //$NON-NLS-1$
             ui.wait(new ShellShowingCondition("Find/Replace")); //$NON-NLS-1$
 
@@ -292,7 +295,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
             ui.click(new ButtonLocator("Fi&nd")); //$NON-NLS-1$
 
             // Wait for things to repaint
-            new WaitForIdle().waitForIdle();
+            new SWTIdleCondition().waitForIdle();
 
             // If we found the String, then there will be text
             // highlighted and the "Replace" button will be enabled.
@@ -730,7 +733,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
             });
         ui.handleConditions();
 
-        new WaitForIdle().waitForIdle();
+        new SWTIdleCondition().waitForIdle();
 
         logExit2();
     }

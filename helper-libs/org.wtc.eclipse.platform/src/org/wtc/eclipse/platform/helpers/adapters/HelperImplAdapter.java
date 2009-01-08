@@ -17,6 +17,7 @@ import com.windowtester.runtime.locator.IWidgetLocator;
 import com.windowtester.runtime.locator.WidgetReference;
 import com.windowtester.runtime.locator.XYLocator;
 import com.windowtester.runtime.monitor.IUIThreadMonitor;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.condition.shell.IShellCondition;
 import com.windowtester.runtime.swt.condition.shell.IShellMonitor;
 import com.windowtester.runtime.swt.internal.condition.shell.ShellMonitor;
@@ -25,7 +26,6 @@ import com.windowtester.runtime.swt.locator.MenuItemLocator;
 import com.windowtester.runtime.swt.locator.NamedWidgetLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 import com.windowtester.swt.UIContext;
-import com.windowtester.swt.util.WaitForIdle;
 import com.windowtester.tester.swt.TreeItemTester;
 import junit.framework.TestCase;
 import org.eclipse.core.runtime.Platform;
@@ -181,7 +181,7 @@ public abstract class HelperImplAdapter {
         ui.click(new TreeItemLocator(nodePath, treeRef));
 
         // Let everything repaint
-        new WaitForIdle().waitForIdle();
+        new SWTIdleCondition().waitForIdle();
 
         try {
             TreeItemTester treeItemTester = new TreeItemTester();
@@ -200,7 +200,7 @@ public abstract class HelperImplAdapter {
             // Now determine the click point. First, make sure the facet is
             // selected and scrolled into view [handled by ui.click() above]
             ui.click(new XYLocator(treeRef, itemCenterXY[0], itemCenterXY[1]));
-            new WaitForIdle().waitForIdle();
+            new SWTIdleCondition().waitForIdle();
         } catch (abbot.finder.swt.WidgetNotFoundException ex) {
             throw new WidgetSearchException(ex);
         } catch (abbot.finder.swt.MultipleWidgetsFoundException ex) {
@@ -745,7 +745,7 @@ public abstract class HelperImplAdapter {
 
         // NEVER DO THIS!! WE DO THIS HERE BECAUSE WE WANT TO MAKE SURE
         // THE WORKBENCH HAS REPAINTED BEFORE SELECTING THE MENU ITEM
-        new WaitForIdle().waitForIdle();
+        new SWTIdleCondition().waitForIdle();
         ui.pause(2000); // For good measure
 
         try {
@@ -786,7 +786,7 @@ public abstract class HelperImplAdapter {
         TableItemTester tableItemTester = new TableItemTester();
         tableItemTester.actionClickTableItem(items[index], column);
 
-        new WaitForIdle().waitForIdle();
+        new SWTIdleCondition().waitForIdle();
     }
 
     /**
