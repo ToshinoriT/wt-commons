@@ -3,7 +3,7 @@
  *
  * http://code.google.com/p/wt-commons/wiki/WTSamples
  */
-package org.wtc.eclipse.platform.internal.helpers.impl;
+package org.wtc.eclipse.platform.helpers.adapters;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
@@ -33,7 +33,6 @@ import org.wtc.eclipse.platform.helpers.IEditorHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper.Perspective;
-import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 
 /**
  * Common methods for debugging in any file type.
