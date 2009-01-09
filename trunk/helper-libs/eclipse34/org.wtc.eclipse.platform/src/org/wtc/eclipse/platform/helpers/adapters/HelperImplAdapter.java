@@ -819,8 +819,8 @@ public abstract class HelperImplAdapter {
      * @param  ui  - Driver for UI input
      */
     public void stopListeningForAllDialogs(IUIContext ui) {
-        PlatformActivator.logDebug("[SHELL MONITOR] STOPPING *ALL* SHELLS!!",
-                                   DEBUG_OPTION_SHELLHANDLERREG); //$NON-NLS-1$
+        PlatformActivator.logDebug("[SHELL MONITOR] STOPPING *ALL* SHELLS!!", //$NON-NLS-1$
+                                   DEBUG_OPTION_SHELLHANDLERREG); 
 
         IShellMonitor shellMontitor = getShellMonitor(ui);
         shellMontitor.removeAll();

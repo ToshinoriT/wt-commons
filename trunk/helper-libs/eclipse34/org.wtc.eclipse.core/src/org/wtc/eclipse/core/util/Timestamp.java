@@ -19,7 +19,7 @@ public class Timestamp {
      */
     public Timestamp() {
         Date now = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HHmmssSSS"); //$NON-NLS-1$
         _timestamp = format.format(now);
     }
 
