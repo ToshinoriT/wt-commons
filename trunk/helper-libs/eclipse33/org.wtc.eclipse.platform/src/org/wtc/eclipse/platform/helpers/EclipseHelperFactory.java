@@ -5,8 +5,8 @@
  */
 package org.wtc.eclipse.platform.helpers;
 
+import org.wtc.eclipse.platform.helpers.adapters.GenericEditorHelperImplAdapter;
 import org.wtc.eclipse.platform.internal.helpers.impl.AntHelperImpl;
-import org.wtc.eclipse.platform.internal.helpers.impl.GenericEditorHelperImplAdapter;
 import org.wtc.eclipse.platform.internal.helpers.impl.JavaDebuggingHelperImpl;
 import org.wtc.eclipse.platform.internal.helpers.impl.JavaHelperImpl;
 import org.wtc.eclipse.platform.internal.helpers.impl.JavaProjectHelperImpl;

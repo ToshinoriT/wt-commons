@@ -41,6 +41,7 @@ import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IProjectHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
+import org.wtc.eclipse.platform.helpers.adapters.ProjectHelperImplAdapter;
 import org.wtc.eclipse.platform.util.FileUtil;
 import java.io.File;
 import java.io.IOException;

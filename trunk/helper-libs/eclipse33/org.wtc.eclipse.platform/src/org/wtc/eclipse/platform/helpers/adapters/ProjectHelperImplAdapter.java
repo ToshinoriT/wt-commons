@@ -3,7 +3,7 @@
  *
  * http://code.google.com/p/wt-commons/wiki/WTSamples
  */
-package org.wtc.eclipse.platform.internal.helpers.impl;
+package org.wtc.eclipse.platform.helpers.adapters;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
@@ -36,7 +36,6 @@ import org.eclipse.ui.dialogs.PropertyDialogAction;
 import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
-import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 
 /**
  * Helper for creating and manipulating projects.

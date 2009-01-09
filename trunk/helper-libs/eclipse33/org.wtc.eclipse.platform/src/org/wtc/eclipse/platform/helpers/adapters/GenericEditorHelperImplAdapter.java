@@ -3,7 +3,7 @@
  *
  * http://code.google.com/p/wt-commons/wiki/WTSamples
  */
-package org.wtc.eclipse.platform.internal.helpers.impl;
+package org.wtc.eclipse.platform.helpers.adapters;
 
 import abbot.tester.swt.ButtonTester;
 import com.windowtester.runtime.IUIContext;
@@ -41,7 +41,6 @@ import org.wtc.eclipse.platform.helpers.IEditorHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper.View;
-import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 import org.wtc.eclipse.platform.util.SourceEditorBlockInserter;
 
 /**
