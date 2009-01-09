@@ -18,6 +18,7 @@ import org.eclipse.jdt.debug.core.IJavaMethodEntryBreakpoint;
 import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IEditorHelper;
 import org.wtc.eclipse.platform.helpers.IJavaDebuggingHelper;
+import org.wtc.eclipse.platform.helpers.adapters.DebuggingHelperImlAdapter;
 
 public class JavaDebuggingHelperImpl extends DebuggingHelperImlAdapter
     implements IJavaDebuggingHelper {
