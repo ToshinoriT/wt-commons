@@ -123,8 +123,8 @@ public class JobsInFamilyExistCondition implements ICondition {
             WaitResult currentStatus = _monitor.getStatus();
 
             if (currentStatus == WaitResult.DONE_JOBSCOMPLETE) {
-                PlatformActivator.logDebug("[JFEC] --> JOBS WERE FOUND AND JOINED",
-                                           DEBUG_OPTION); //$NON-NLS-1$
+                PlatformActivator.logDebug("[JFEC] --> JOBS WERE FOUND AND JOINED", //$NON-NLS-1$
+                                           DEBUG_OPTION); 
 
                 return true;
             }
@@ -137,8 +137,8 @@ public class JobsInFamilyExistCondition implements ICondition {
                 // be run, then keep waiting (The next loop will
                 // restart the thread)
                 if (!_returnIfNoJobs) {
-                    PlatformActivator.logDebug("[JFEC] --> NO JOBS WERE FOUND BUT WERE EXPECTED.",
-                                               DEBUG_OPTION); //$NON-NLS-1$
+                    PlatformActivator.logDebug("[JFEC] --> NO JOBS WERE FOUND BUT WERE EXPECTED.", //$NON-NLS-1$
+                                               DEBUG_OPTION); 
                     _monitor = null;
 
                     return false;
@@ -146,8 +146,8 @@ public class JobsInFamilyExistCondition implements ICondition {
 
                 // Otherwise, we're not requiring jobbs to run,
                 // and no jobs were found, so we're done waiting
-                PlatformActivator.logDebug("[JFEC] --> NO JOBS WERE FOUND BUT WE DON'T CARE",
-                                           DEBUG_OPTION); //$NON-NLS-1$
+                PlatformActivator.logDebug("[JFEC] --> NO JOBS WERE FOUND BUT WE DON'T CARE", //$NON-NLS-1$
+                                           DEBUG_OPTION);
 
                 return true;
             }
