@@ -19,6 +19,7 @@ import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IJavaProjectHelper;
 import org.wtc.eclipse.platform.helpers.IProjectHelperConstants;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
+import org.wtc.eclipse.platform.helpers.adapters.ProjectHelperImplAdapter;
 
 /**
  * Helper for creating and manipulating java projects.
