@@ -14,5 +14,6 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.wtc.eclipse.core.preprocess,
  org.wtc.eclipse.core.reset,
  org.wtc.eclipse.core.tests,
+ org.wtc.eclipse.core.tsb,
  org.wtc.eclipse.core.util
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

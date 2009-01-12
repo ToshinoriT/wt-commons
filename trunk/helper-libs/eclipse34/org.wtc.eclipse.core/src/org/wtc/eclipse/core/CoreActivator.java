@@ -111,6 +111,10 @@ public class CoreActivator extends AbstractUIPlugin {
     public static void logException(String message, Throwable ex) {
         log(new Status(IStatus.ERROR, PLUGIN_ID, IStatus.ERROR, message, ex));
     }
+    
+    public static void logWarning(String message) {
+        log(new Status(IStatus.ERROR, PLUGIN_ID, IStatus.WARNING, message, null));
+    }
 
     /**
      * @see  org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)

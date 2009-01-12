@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-project>
+    <test class="org.wtc.eclipse.platform.tests.helpers.AntHelperTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.EditorHelperFindReplaceAllTest">
+        <module>wtc.platform</module>
+        <module>wtc.tsbtest</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.EditorHelperGoToLineTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.FileBlockDifferTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.JavaHelperAddClassFolderTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.JavaHelperBuildPathJAROpsTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.JavaHelperCreateClassTest">
+        <module>wtc.platform</module>
+        <module>wtc.tsbtest</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.JavaHelperCreatePackageTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.JavaHelperCreateSourceFolderTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.LineByLineRegexDifferTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.LineByLineSetDifferTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperDeleteTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperExportTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperExportToArchiveTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperImportFromArchiveTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperImportFromSourceTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperJavaTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperOpenCloseTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperProjectDependencyTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperSimpleTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ResourceHelperCreateSimpleFileTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ResourceHelperDeleteFileTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ResourceHelperGetFileFormPluginTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ResourceHelperMoveFileTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ResourceHelperOpenCloseFileTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ResourceHelperVerifyFileUpdatedTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.SEBIJavaBracesTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.SourceEditorBlockInserterTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.StringExistsDifferTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.WorkbenchHelperCleanAllProjTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.WorkbenchHelperCloseActivePerspectiveTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.WorkbenchHelperCloseEditorsTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.WorkbenchHelperOpenViewPerspectiveTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.WorkbenchHelperSwitchPerspectiveDialogTest">
+        <module>wtc.platform</module>
+    </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.WorkbenchHelperVerifyMarkersTest">
+        <module>wtc.platform</module>
+    </test>
+
+</test-project>
