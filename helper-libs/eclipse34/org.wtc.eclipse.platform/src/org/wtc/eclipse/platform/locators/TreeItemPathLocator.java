@@ -68,9 +68,7 @@ import java.util.regex.PatternSyntaxException;
  * </ol>
  *
  * <p>But if we want to select the node identified with "select this [B]" then the
- * TreeItemLocator must be used (see <a
- * href="http://radar/netui/showcr.jsp?bugid=CR289857">CR289857</a> for details why
- * WindowTester cannot handle this case)</p>
+ * TreeItemLocator must be used </p>
  *
  * <ol>
  *   <li>

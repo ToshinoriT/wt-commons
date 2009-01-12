@@ -5,6 +5,14 @@
     <extension-point id="shellHandlers" name="Default Shell Handlers" schema="schema/shellHandlers.exsd"/>
     <extension-point id="focusFixingShells" name="Focus Fixing Shells" schema="schema/focusFixingShells.exsd"/>
     <extension-point id="defaultPerspective" name="Tes Default Perspective" schema="schema/defaultPerspective.exsd"/>
+   <extension
+         point="org.wtc.eclipse.core.testSuiteBuilder">
+      <testSuiteBuilder>
+         <registry
+               path="testregistry.xml">
+         </registry>
+      </testSuiteBuilder>
+   </extension>
     <extension
          point="org.wtc.eclipse.core.resetDaemon">
       <resetDaemon
