@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:element name="test-project">
+        <xsd:annotation>
+        	<xsd:documentation>
+        		Root node of a registry file defining tests in this plugin
+        	</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element ref="test" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="test">
+        <xsd:annotation>
+        	<xsd:documentation>
+        		A JUnit test in this plugin that is to be run when
+        		building a TestSuiteBuilder-generated suite of tests
+        	</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element ref="module" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    		</xsd:sequence>
+    		<xsd:attribute name="class" type="xsd:string"
+    			use="required">
+    		</xsd:attribute>
+    		<xsd:attribute name="owner" type="xsd:string"
+    			use="optional">
+    		</xsd:attribute>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="module" type="xsd:string">
+    	<xsd:annotation>
+    		<xsd:documentation>
+    			A module that applies to test elements. A
+    			list of modules is defined as a union of modules rather
+    			than the intersection. For example, if a test defines
+    			modules "checkin," "smoke," and "mytests," and the
+    			TestSuiteBuilder is passed only the "smoke" module, then
+    			the test will be loaded. When a test does not contain
+    			the TestSuiteBuilder-provided model, the test isn't run.
+    		</xsd:documentation>
+    	</xsd:annotation>
+    </xsd:element>
+    
+</xsd:schema>
