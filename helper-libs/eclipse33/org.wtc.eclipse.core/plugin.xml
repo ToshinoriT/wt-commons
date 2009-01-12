@@ -4,4 +4,5 @@
     <extension-point id="initialConditions" name="Initial Conditions" schema="schema/initialConditions.exsd"/>
     <extension-point id="preprocessor" name="Preprocessors" schema="schema/preprocessor.exsd"/>
     <extension-point id="resetDaemon" name="Workspace Reset Daemon" schema="schema/resetDaemon.exsd"/>
+    <extension-point id="testSuiteBuilder" name="Test Suite Builder" schema="schema/testSuiteBuilder.exsd"/>
 </plugin>
