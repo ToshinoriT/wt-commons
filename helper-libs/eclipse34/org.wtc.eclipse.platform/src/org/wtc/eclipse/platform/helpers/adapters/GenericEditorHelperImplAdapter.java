@@ -11,6 +11,7 @@ import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.ICondition;
 import com.windowtester.runtime.locator.IWidgetLocator;
 import com.windowtester.runtime.locator.WidgetReference;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
 import com.windowtester.runtime.swt.locator.ButtonLocator;
@@ -19,7 +20,6 @@ import com.windowtester.runtime.swt.locator.MenuItemLocator;
 import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
-import com.windowtester.swt.util.WaitForIdle;
 import junit.framework.TestCase;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Plugin;
@@ -118,7 +118,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
         gotoLine(ui, 1);
 
         try {
-            new WaitForIdle().waitForIdle();
+            new SWTIdleCondition().waitForIdle();
             ui.click(new MenuItemLocator("&Edit/&Find.*Replace.*")); //$NON-NLS-1$
             ui.wait(new ShellShowingCondition("Find/Replace")); //$NON-NLS-1$
 
@@ -129,13 +129,13 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
                 ui.enterText(searchString);
 
                 IWidgetLocator replaceComboLocator = new LabeledLocator(Combo.class,
-                                                                        "R&eplace With:"); //$NON-NLS-1$
+                                                                        "R&eplace (W|w)ith:"); //$NON-NLS-1$
                 IWidgetLocator replaceComboRef = ui.find(replaceComboLocator);
                 TestCase.assertTrue(replaceComboRef instanceof WidgetReference);
 
                 safeEnterText(ui, replaceComboLocator, replaceString);
 
-                IWidgetLocator checkRef = (IWidgetLocator) ui.find(new ButtonLocator("Wra&p Search")); //$NON-NLS-1$
+                IWidgetLocator checkRef = (IWidgetLocator) ui.find(new ButtonLocator("Wra&p (S|s)earch")); //$NON-NLS-1$
                 TestCase.assertTrue(checkRef instanceof WidgetReference);
 
                 Button wrapButton = (Button) ((WidgetReference) checkRef).getWidget();
@@ -291,7 +291,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
             ui.click(new ButtonLocator("Fi&nd")); //$NON-NLS-1$
 
             // Wait for things to repaint
-            new WaitForIdle().waitForIdle();
+            new SWTIdleCondition().waitForIdle();
 
             // If we found the String, then there will be text
             // highlighted and the "Replace" button will be enabled.
@@ -729,7 +729,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
             });
         ui.handleConditions();
 
-        new WaitForIdle().waitForIdle();
+        new SWTIdleCondition().waitForIdle();
 
         logExit2();
     }
