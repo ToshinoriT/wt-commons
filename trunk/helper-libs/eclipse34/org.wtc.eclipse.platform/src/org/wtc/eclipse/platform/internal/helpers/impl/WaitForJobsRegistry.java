@@ -25,11 +25,11 @@ public class WaitForJobsRegistry {
     public static String JOB_JAVA_INDEXING  = "Java indexing in progress"; //$NON-NLS-1$
     public static String UDC_EVENT_CONSUMER = "Usage Data Event consumer"; //$NON-NLS-1$
     public static String FLUSHING_CACHE     = "Flush Cache Job";           //$NON-NLS-1$
-
+    public static String OPEN_NOTICATIONS   = "Open Notification Job";     //$NON-NLS-1$
     
 
     public static String[] DEFAULT_JOBS = {
-            JOB_JAVA_INDEXING, UDC_EVENT_CONSUMER, FLUSHING_CACHE
+            JOB_JAVA_INDEXING, UDC_EVENT_CONSUMER, FLUSHING_CACHE, OPEN_NOTICATIONS
     };
 
     private static WaitForJobsRegistry _instance;
