@@ -41,7 +41,10 @@ import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
  * Helper for creating and manipulating projects.
  */
 public abstract class ProjectHelperImplAdapter extends HelperImplAdapter {
-    /**
+	
+    private static final String CONFIRM_PROJECT_DELETE_SHELL_TITLE = "Delete Resources"; //$NON-NLS-1$
+
+	/**
      * addProjectBuildDependency - Open the project properties for a given project and add
      * a project dependency to another given project.
      *
@@ -113,17 +116,15 @@ public abstract class ProjectHelperImplAdapter extends HelperImplAdapter {
                                                 new SWTWidgetLocator(Tree.class,
                                                                      new ViewLocator(IWorkbenchHelper.View.JAVA_PACKAGEEXPLORER.getViewID()))),
                             "&Delete\tDelete"); //$NON-NLS-1$
-            ui.wait(new ShellShowingCondition("Confirm Project Delete")); //$NON-NLS-1$
+            ui.wait(new ShellShowingCondition(CONFIRM_PROJECT_DELETE_SHELL_TITLE)); //$NON-NLS-1$
 
             if (deleteContents) {
-                ui.click(new ButtonLocator("&Also delete.*")); //$NON-NLS-1$
-            } else {
-                ui.click(new ButtonLocator("&Do not delete.*")); //$NON-NLS-1$
-            }
+                ui.click(new ButtonLocator("&Delete project contents on disk.*")); //$NON-NLS-1$
+            } 
+            
+            clickOK(ui);
 
-            clickYes(ui);
-
-            ui.wait(new ShellDisposedCondition("Confirm Project Delete")); //$NON-NLS-1$
+            ui.wait(new ShellDisposedCondition(CONFIRM_PROJECT_DELETE_SHELL_TITLE)); //$NON-NLS-1$
             waitForProjectExists(ui, projectName, false);
         } catch (WidgetSearchException wse) {
             PlatformActivator.logException(wse);
