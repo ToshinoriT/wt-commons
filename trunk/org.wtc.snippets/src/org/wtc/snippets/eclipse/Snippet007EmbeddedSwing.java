@@ -1,13 +1,5 @@
 package org.wtc.snippets.eclipse;
  
-/*
- * example snippet: embed Swing/AWT in SWT
- *
- * For a list of all SWT example snippets see
- * http://www.eclipse.org/swt/snippets/
- * 
- * @since 3.0
- */
 import java.awt.EventQueue;
 import java.awt.Point;
 import java.io.File;
@@ -45,6 +37,19 @@ import com.windowtester.runtime.swing.locator.JTableItemLocator;
 import com.windowtester.runtime.swt.UITestCaseSWT;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 
+
+/**
+ * An example that interacts with an embedded Swing widget (based on an example found here: http://www.eclipse.org/swt/snippets/) 
+ * <p>
+ * To run this snippet, you may need to increase your heap size.  It was developed using the following VM
+ * args:
+ * <pre>
+ * -Xms256m
+ * -Xmx512m
+ * </pre> 
+ * 
+ * @author Phil Quitslund
+ */
 public class Snippet007EmbeddedSwing extends UITestCaseSWT {
 
 	static class FileTableModel extends AbstractTableModel {		
