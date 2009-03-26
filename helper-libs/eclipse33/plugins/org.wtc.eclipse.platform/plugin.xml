@@ -54,4 +54,21 @@
             enumValue="org.wtc.eclipse.platform.helpers.IWorkbenchHelper$Perspective.JAVA"
             priority="5"/>
    </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            description="WT Commons Helper Interaction"
+            id="org.wtc.eclipse.platform.actionSet"
+            label="WT Commons Test Harness Actions"
+            visible="true">
+         <action
+               class="org.wtc.eclipse.platform.actions.Thaw"
+               icon="resources/images/thaw.png"
+               id="org.wtc.eclipse.platform.actions.action.thaw"
+               label="Thaw"
+               style="push"
+               toolbarPath="Thaw">
+         </action>
+      </actionSet>
+   </extension>
 </plugin>
