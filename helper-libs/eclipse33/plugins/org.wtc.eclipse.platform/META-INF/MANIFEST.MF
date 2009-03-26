@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: WT Commons for Eclipse Platform
 Bundle-SymbolicName: org.wtc.eclipse.platform;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 3.3.0.qualifier
 Bundle-Activator: org.wtc.eclipse.platform.PlatformActivator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
