@@ -27,6 +27,9 @@ public class CoreActivator extends AbstractUIPlugin {
     // ILogger implementation details
     private ILog _logInstance = null;
 
+    // Basic debugging option
+    private static final String OPTION_DEBUG = "/logging/debug"; //$NON-NLS-1$
+    
     private Map<String, Boolean> _options;
 
     /**
@@ -89,14 +92,18 @@ public class CoreActivator extends AbstractUIPlugin {
     }
 
     public static void logDebug(String message) {
-        log(new Status(IStatus.INFO, PLUGIN_ID, IStatus.INFO, message, null));
-        System.out.println(message);
+        logDebug(message, OPTION_DEBUG);
     }
 
     public static void logDebug(String message, String option) {
         if (isOptionEnabled(option)) {
-            logDebug(message);
+            logDebugInternal(message);
         }
+    }
+
+    private static void logDebugInternal(String message) {
+        log(new Status(IStatus.INFO, PLUGIN_ID, IStatus.INFO, message, null));
+        System.out.println(message);
     }
 
     public static void logError(String message) {
