@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="build_javadoc">
+
+	<!-- build javadocs for projects in the workspace 
+		 TODO: add a story for different versions of the helper libs
+		 TODO: link out to WT doc site
+	-->	  
+	<target name="build_javadoc">
+	
+		<!--checkEclipseRunning/-->
+		
+		<property name="javadoc.out" location="../docs/html/reference/javadoc/helper-libs"/>
+	
+		<mkdir dir="${javadoc.out}"/>
+		
+		<javadoc destdir="${javadoc.out}" stylesheetfile="stylesheets/book.css">
+			<classpath>
+				<pathelement location="${java.home}/lib/rt.jar"/>
+				<pathelement location="../org.wtc.eclipse.core/bin"/>
+				<pathelement location="../org.wtc.eclipse.platform/bin"/>
+				<pathelement location="../org.wtc.eclipse.draw2d/bin"/>
+			</classpath>
+			<fileset dir="../org.wtc.eclipse.core/src">
+				<include name="**/*.java"/>
+				<exclude name="**/internal/**/*.java"/>
+			</fileset>
+			<fileset dir="../org.wtc.eclipse.platform/src">
+				<include name="**/*.java"/>
+				<exclude name="**/internal/**/*.java"/>
+			</fileset>
+			<fileset dir="../org.wtc.eclipse.draw2d/src">
+				<include name="**/*.java"/>
+				<exclude name="**/internal/**/*.java"/>
+			</fileset>
+		</javadoc>
+
+	</target>
+
+
+
+</project>
