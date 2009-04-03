@@ -1,1 +1,2 @@
+org.wtc.eclipse.core/logging/debug=true
 org.wtc.eclipse.core/logging/testsuitemodel=false

@@ -1,3 +1,4 @@
+org.wtc.eclipse.platform/logging/debug=true
 org.wtc.eclipse.platform/logging/entry_exit=false
 org.wtc.eclipse.platform/logging/shellHandlerRegistraion=false
 org.wtc.eclipse.platform/logging/widgetSearch=false

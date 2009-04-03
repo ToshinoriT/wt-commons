@@ -11,6 +11,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The activator class controls the plug-in life cycle.
@@ -21,14 +23,20 @@ public class Draw2DActivator extends AbstractUIPlugin {
 
     // The shared instance
     private static Draw2DActivator _plugin;
-    
+
+    // Basic debugging option
+    private static final String OPTION_DEBUG = "/logging/debug"; //$NON-NLS-1$
+
     // ILogger implementation details
     private ILog _logInstance = null;
+
+    private Map<String, Boolean> _options;
 
     /**
      * The constructor.
      */
     public Draw2DActivator() {
+        _options = new HashMap<String, Boolean>();
     }
 
     /**
@@ -39,7 +47,7 @@ public class Draw2DActivator extends AbstractUIPlugin {
     public static Draw2DActivator getDefault() {
         return _plugin;
     }
-    
+
     /**
      * @return  ILog - A shared instance of an eclipse log
      */
@@ -50,16 +58,54 @@ public class Draw2DActivator extends AbstractUIPlugin {
 
         return _logInstance;
     }
-    
+
+    public String getOptionValue(String option) {
+        if (option == null) {
+            return null;
+        }
+
+        return Platform.getDebugOption(option);
+    }
+
+    public static boolean isOptionEnabled(String option) {
+        return getDefault().isOptionEnabledInternal(PLUGIN_ID + option);
+    }
+
+    private synchronized boolean isOptionEnabledInternal(String option) {
+        if (option == null) {
+            return false;
+        }
+
+        Boolean optionValue = _options.get(option);
+
+        if (optionValue == null) {
+            String value = getOptionValue(option);
+            optionValue = (value != null) && (value.equalsIgnoreCase("true")); //$NON-NLS-1$
+            _options.put(option, optionValue);
+        }
+
+        return optionValue;
+    }
+
     public static void log(IStatus status) {
         getDefault().getLogInstance().log(status);
     }
-    
+
     public static void logDebug(String message) {
+        logDebug(message, OPTION_DEBUG);
+    }
+
+    public static void logDebug(String message, String option) {
+        if (isOptionEnabled(option)) {
+            logDebugInternal(message);
+        }
+    }
+
+    private static void logDebugInternal(String message) {
         log(new Status(IStatus.INFO, PLUGIN_ID, IStatus.INFO, message, null));
         System.out.println(message);
     }
-    
+
     public static void logException(Throwable ex) {
         logException(ex.getLocalizedMessage(), ex);
     }
@@ -67,7 +113,7 @@ public class Draw2DActivator extends AbstractUIPlugin {
     public static void logException(String message, Throwable ex) {
         log(new Status(IStatus.ERROR, PLUGIN_ID, IStatus.ERROR, message, ex));
     }
-    
+
     /**
      * @see  org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
      */
