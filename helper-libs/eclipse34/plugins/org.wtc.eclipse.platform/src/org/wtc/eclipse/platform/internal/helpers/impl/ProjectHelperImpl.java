@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -40,6 +41,7 @@ import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.adapters.ProjectHelperImplAdapter;
 import org.wtc.eclipse.platform.util.FileUtil;
 
+import com.windowtester.finder.swt.ShellFinder;
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WT;
 import com.windowtester.runtime.WidgetSearchException;
@@ -53,6 +55,7 @@ import com.windowtester.runtime.swt.locator.ButtonLocator;
 import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
 import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
+import com.windowtester.swt.util.DebugHelper;
 
 /**
  * Helper manipulating IProject elements in the workspace.
@@ -331,14 +334,17 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
             new SWTIdleCondition().waitForIdle();
 
             if (projectName != null) {
-                // Let's wait for the tree to be populated
+            	
+            	String projectNodeLabel = projectName + " .*"; //$NON-NLS-1$ //regexep captures project location
+
+            	// Let's wait for the tree to be populated
                 Tree tree = (Tree) ((WidgetReference) treeRef).getWidget();
-                ui.wait(new TreeItemExistsCondition(tree, projectName, true));
+                ui.wait(new TreeItemExistsCondition(tree, projectNodeLabel, true));
 
                 ui.click(new ButtonLocator("&Deselect All")); //$NON-NLS-1$
                 new SWTIdleCondition().waitForIdle();
 
-                ui.click(1, new TreeItemLocator(projectName), SWT.BUTTON1 | SWT.CHECK);
+                ui.click(1, new TreeItemLocator(projectNodeLabel), SWT.BUTTON1 | SWT.CHECK);
                 new SWTIdleCondition().waitForIdle();
             }
 
