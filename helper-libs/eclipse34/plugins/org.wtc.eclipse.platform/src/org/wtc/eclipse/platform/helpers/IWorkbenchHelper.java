@@ -80,7 +80,7 @@ public interface IWorkbenchHelper {
             "org.eclipse.debug.ui.BreakpointView"), //$NON-NLS-1$
         JAVA_PACKAGEEXPLORER("Java/Package Explorer", //$NON-NLS-1$
             "org.eclipse.jdt.ui.PackageExplorer"), //$NON-NLS-1$
-        PDERUNTIME_ERRORLOG("PDE Runtime/Error Log", //$NON-NLS-1$
+        PDERUNTIME_ERRORLOG("General/Error Log", //$NON-NLS-1$
             "org.eclipse.pde.runtime.LogView"); //$NON-NLS-1$
 
         private String _viewSelectionPath;
