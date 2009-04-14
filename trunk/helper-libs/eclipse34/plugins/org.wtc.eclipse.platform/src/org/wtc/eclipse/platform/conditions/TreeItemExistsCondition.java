@@ -7,6 +7,7 @@ package org.wtc.eclipse.platform.conditions;
 
 import abbot.tester.swt.TreeTester;
 import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.util.StringComparator;
 import com.windowtester.tester.swt.TreeItemTester;
 import junit.framework.TestCase;
 import org.eclipse.swt.widgets.Tree;
@@ -67,7 +68,7 @@ public class TreeItemExistsCondition implements ICondition {
             for (TreeItem nextItem : items) {
                 String itemText = _treeItemTester.getText(nextItem);
 
-                if (itemText.equals(searchString)) {
+                if (textMatches(itemText, searchString)) {
                     if ((nextPath != null) && (nextPath.length() > 0)) {
                         TreeItem[] subItems = _treeItemTester.getItems(nextItem);
                         found = searchTreeItems(subItems, nextPath);
@@ -82,6 +83,10 @@ public class TreeItemExistsCondition implements ICondition {
 
         return found;
     }
+
+	private boolean textMatches(String itemText, String searchString) {
+		return StringComparator.matches(itemText, searchString);
+	}
 
     /**
      * @see  com.windowtester.runtime2.condition.ICondition#test()
