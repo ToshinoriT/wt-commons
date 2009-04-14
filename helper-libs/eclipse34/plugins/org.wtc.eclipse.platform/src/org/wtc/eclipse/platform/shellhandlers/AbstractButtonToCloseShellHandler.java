@@ -44,4 +44,8 @@ public class AbstractButtonToCloseShellHandler extends AbstractShellHandler {
             TestCase.fail(e.getLocalizedMessage());
         }
     }
+    
+	public String getButtonLabel() {
+		return _buttonLabel;
+	}
 }
