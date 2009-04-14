@@ -69,6 +69,7 @@ import org.wtc.eclipse.platform.helpers.IProjectHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
+import org.wtc.eclipse.platform.shellhandlers.MovedResourceExistsShellHandler;
 import org.wtc.eclipse.platform.util.FileUtil;
 import org.wtc.eclipse.platform.util.StringUtil;
 import org.wtc.eclipse.platform.util.ZipFileUtil;
@@ -454,12 +455,13 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
         workbench.openView(ui, IWorkbenchHelper.View.BASIC_NAVIGATOR);
 
         try {
+        	
             ui.contextClick(new TreeItemLocator(relPath.toPortableString(), new ViewLocator(IWorkbenchHelper.View.BASIC_NAVIGATOR.getViewID())),
                             "&Delete"); //$NON-NLS-1$
 
-            ui.wait(new ShellShowingCondition("Confirm Resource Delete"), 30000); //$NON-NLS-1$
-            clickYes(ui);
-            ui.wait(new ShellDisposedCondition("Confirm Resource Delete"), 30000); //$NON-NLS-1$
+            ui.wait(new ShellShowingCondition("(Delete Resources|Confirm Delete)"), 30000); //$NON-NLS-1$
+            clickOK(ui);
+            ui.wait(new ShellDisposedCondition("(Delete Resources|Confirm Delete)"), 30000); //$NON-NLS-1$
 
             verifyFileExists(ui, path, false);
         } catch (WidgetSearchException e) {
@@ -957,6 +959,8 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
         workbench.openView(ui, IWorkbenchHelper.View.BASIC_NAVIGATOR);
 
         workbench.listenForDialogResourceExists(ui);
+        MovedResourceExistsShellHandler movedResourceExistsHandler = new MovedResourceExistsShellHandler(ui);
+		
 
         verifyFileExists(ui, filePath, true);
         verifyFolderExists(ui, targetPath, true);
@@ -969,17 +973,22 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
         try {
             ui.contextClick(new TreeItemLocator(filePath.makeRelative().toPortableString(), new ViewLocator(IWorkbenchHelper.View.BASIC_NAVIGATOR.getViewID())),
                             "Mo&ve..."); //$NON-NLS-1$
-            ui.wait(new ShellShowingCondition("Folder Selection")); //$NON-NLS-1$
+            ui.wait(new ShellShowingCondition("Move Resources")); //$NON-NLS-1$
 
             ui.click(new TreeItemLocator(targetPath.makeRelative().toPortableString()));
+            workbench.listenForDialog(ui, movedResourceExistsHandler);
+            
             clickOK(ui);
-
-            ui.wait(new ShellDisposedCondition("Folder Selection")); //$NON-NLS-1$
+                    
+            ui.wait(new ShellDisposedCondition("Move Resources")); //$NON-NLS-1$
         } catch (WidgetSearchException wse) {
             PlatformActivator.logException(wse);
             TestCase.fail(wse.getLocalizedMessage());
         }
 
+        workbench.stopListeningForDialog(ui, movedResourceExistsHandler);
+        
+        
         verifyFileExists(ui, filePath, false);
         verifyFileExists(ui, newPath, true);
 
