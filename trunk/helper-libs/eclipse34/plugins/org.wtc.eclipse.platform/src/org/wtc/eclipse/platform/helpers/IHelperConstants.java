@@ -9,5 +9,6 @@ package org.wtc.eclipse.platform.helpers;
  * Commonly used constants for all helper implementations.
  */
 public interface IHelperConstants {
-    public static final String MENU_FILE_NEW_OTHER = "&New.*\\+N/&Other.*"; //$NON-NLS-1$
+    public static final String MENU_FILE_NEW_OTHER = "New/Other..."; //$NON-NLS-1$
+    
 }
