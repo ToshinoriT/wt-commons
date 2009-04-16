@@ -5,29 +5,16 @@
  */
 package org.wtc.eclipse.platform.helpers.adapters;
 
-import abbot.finder.swt.SWTHierarchy;
-import abbot.finder.swt.TestHierarchy;
-import abbot.tester.swt.ControlTester;
-import abbot.tester.swt.TableItemTester;
-import abbot.tester.swt.TableTester;
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.locator.IWidgetLocator;
-import com.windowtester.runtime.locator.WidgetReference;
-import com.windowtester.runtime.locator.XYLocator;
-import com.windowtester.runtime.monitor.IUIThreadMonitor;
-import com.windowtester.runtime.swt.condition.SWTIdleCondition;
-import com.windowtester.runtime.swt.condition.shell.IShellCondition;
-import com.windowtester.runtime.swt.condition.shell.IShellMonitor;
-import com.windowtester.runtime.swt.internal.condition.shell.ShellMonitor;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.MenuItemLocator;
-import com.windowtester.runtime.swt.locator.NamedWidgetLocator;
-import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import com.windowtester.swt.UIContext;
-import com.windowtester.tester.swt.TreeItemTester;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import junit.framework.TestCase;
+
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Rectangle;
@@ -45,13 +32,31 @@ import org.osgi.framework.Bundle;
 import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.conditions.RegexTitleShellCondition;
 import org.wtc.eclipse.platform.shellhandlers.IWorkbenchShellHandler;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import abbot.finder.swt.SWTHierarchy;
+import abbot.finder.swt.TestHierarchy;
+import abbot.tester.swt.ControlTester;
+import abbot.tester.swt.TableItemTester;
+import abbot.tester.swt.TableTester;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WT;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.locator.IWidgetLocator;
+import com.windowtester.runtime.locator.WidgetReference;
+import com.windowtester.runtime.locator.XYLocator;
+import com.windowtester.runtime.monitor.IUIThreadMonitor;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
+import com.windowtester.runtime.swt.condition.shell.IShellCondition;
+import com.windowtester.runtime.swt.condition.shell.IShellMonitor;
+import com.windowtester.runtime.swt.internal.condition.shell.ShellMonitor;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.MenuItemLocator;
+import com.windowtester.runtime.swt.locator.NamedWidgetLocator;
+import com.windowtester.runtime.swt.locator.TreeItemLocator;
+import com.windowtester.swt.UIContext;
+import com.windowtester.tester.swt.TreeItemTester;
 
 /**
  * Generic methods shared in Helper implementation subclasses.
@@ -673,11 +678,12 @@ public abstract class HelperImplAdapter {
         WidgetReference ref = new WidgetReference(c);
 
         ui.click(ref);
-        ui.keyClick(SWT.CTRL, 'a');
-
+        
+        selectAll(ui);
+        
         //added duplicate for EAR project field on project creation, sometimes it's selected sometimes not
         ///duplicate select all does not affect any other scenario but fixes this inconsistancy
-        ui.keyClick(SWT.CTRL, 'a');
+        selectAll(ui);
 
         if ((value != null) && (value.length() > 0)) {
             ui.enterText(value);
@@ -685,6 +691,16 @@ public abstract class HelperImplAdapter {
             ui.keyClick(SWT.DEL);
         }
     }
+
+    /**
+     * selectAll - Simple helper for sending the keystroke to select all.
+     *
+     * @param  ui  - Driver for UI generated input
+     */
+	protected void selectAll(IUIContext ui) {
+		int modKey = abbot.Platform.isOSX() ? WT.COMMAND : WT.CTRL;
+		ui.keyClick(modKey, 'a');
+	}
 
     /**
      * safeEnterText - Select all of the text in the entry field at the given
@@ -727,7 +743,7 @@ public abstract class HelperImplAdapter {
         TestCase.assertNotNull(ui);
         TestCase.assertNotNull(menuItem);
 
-        selectMenuItem(ui, "&File", menuItem); //$NON-NLS-1$
+        selectMenuItem(ui, "File", menuItem); //$NON-NLS-1$
     }
 
     /**
