@@ -44,4 +44,11 @@ public class AbstractButtonToCloseShellHandler extends AbstractShellHandler {
             TestCase.fail(e.getLocalizedMessage());
         }
     }
+    
+	/**
+	 * @return String - The label of the button that this handler will select to close the dialog
+	 */
+	public String getButtonLabel() {
+		return _buttonLabel;
+	}
 }
