@@ -5,43 +5,6 @@
  */
 package org.wtc.eclipse.platform.internal.helpers.impl;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import junit.framework.TestCase;
-
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IProjectDescription;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Plugin;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Tree;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
-import org.wtc.eclipse.core.util.Timestamp;
-import org.wtc.eclipse.platform.PlatformActivator;
-import org.wtc.eclipse.platform.conditions.ProjectOpenCondition;
-import org.wtc.eclipse.platform.conditions.TreeItemExistsCondition;
-import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
-import org.wtc.eclipse.platform.helpers.IProjectHelper;
-import org.wtc.eclipse.platform.helpers.IResourceHelper;
-import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
-import org.wtc.eclipse.platform.helpers.adapters.ProjectHelperImplAdapter;
-import org.wtc.eclipse.platform.util.FileUtil;
-
-import com.windowtester.finder.swt.ShellFinder;
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WT;
 import com.windowtester.runtime.WidgetSearchException;
@@ -55,7 +18,38 @@ import com.windowtester.runtime.swt.locator.ButtonLocator;
 import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
 import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import com.windowtester.swt.util.DebugHelper;
+import junit.framework.TestCase;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Plugin;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.wtc.eclipse.core.util.Timestamp;
+import org.wtc.eclipse.platform.PlatformActivator;
+import org.wtc.eclipse.platform.conditions.ProjectOpenCondition;
+import org.wtc.eclipse.platform.conditions.TreeItemExistsCondition;
+import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
+import org.wtc.eclipse.platform.helpers.IProjectHelper;
+import org.wtc.eclipse.platform.helpers.IResourceHelper;
+import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
+import org.wtc.eclipse.platform.helpers.adapters.ProjectHelperImplAdapter;
+import org.wtc.eclipse.platform.util.FileUtil;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Helper manipulating IProject elements in the workspace.
@@ -334,10 +328,9 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
             new SWTIdleCondition().waitForIdle();
 
             if (projectName != null) {
-            	
-            	String projectNodeLabel = projectName + " .*"; //$NON-NLS-1$ //regexep captures project location
+                String projectNodeLabel = projectName + " .*"; //$NON-NLS-1$ //regexep captures project location
 
-            	// Let's wait for the tree to be populated
+                // Let's wait for the tree to be populated
                 Tree tree = (Tree) ((WidgetReference) treeRef).getWidget();
                 ui.wait(new TreeItemExistsCondition(tree, projectNodeLabel, true));
 

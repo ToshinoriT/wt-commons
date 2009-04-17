@@ -7,8 +7,8 @@ package org.wtc.eclipse.platform.util;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
-import com.windowtester.swt.util.WaitForIdle;
 import junit.framework.TestCase;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
@@ -504,7 +504,7 @@ public class SourceEditorBlockInserter {
         int oldLocation = editorHelper.getCursorLocation(ui);
 
         ui.keyClick(SWT.CR);
-        new WaitForIdle().waitForIdle();
+        new SWTIdleCondition().waitForIdle();
 
         int newLocation = editorHelper.getCursorLocation(ui);
 
@@ -520,7 +520,7 @@ public class SourceEditorBlockInserter {
 
         while (newLocation > (tempLocation + 1)) {
             ui.keyClick(SWT.ARROW_LEFT);
-            new WaitForIdle().waitForIdle();
+            new SWTIdleCondition().waitForIdle();
 
             newLocation = editorHelper.getCursorLocation(ui);
         }
@@ -529,7 +529,7 @@ public class SourceEditorBlockInserter {
 
         while ((resources.getFileLength(targetFile) - oldLength) > difference) {
             ui.keyClick(SWT.DEL);
-            new WaitForIdle().waitForIdle();
+            new SWTIdleCondition().waitForIdle();
         }
     }
 
