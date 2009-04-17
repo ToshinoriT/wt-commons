@@ -10,6 +10,8 @@ package org.wtc.eclipse.core.preprocess;
  * TestSuite) a preprocessor should be very rarely used (the other setup methods should be
  * able to handle all other test setup). The preprocessor is equivalent to a suiteSetUp
  * call.
+ * 
+ * @since 3.8.0
  */
 public interface IPreprocessor {
     /**

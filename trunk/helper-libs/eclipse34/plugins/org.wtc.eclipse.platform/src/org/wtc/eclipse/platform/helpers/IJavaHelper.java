@@ -12,6 +12,8 @@ import org.wtc.eclipse.platform.exceptions.SourceFolderCreationError;
 
 /**
  * Helper for java-specific actions.
+ * 
+ * @since 3.8.0
  */
 public interface IJavaHelper {
     /**
@@ -19,6 +21,7 @@ public interface IJavaHelper {
      * does not already exist, then add that folder to the project's list of class
      * folders.
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  sourcePath  - The full path (project name included) of the class folder to
      *                     (create and) add. Ex: <i>RuntimeTestProject/classes</i>
@@ -32,6 +35,7 @@ public interface IJavaHelper {
      * control runs, this should be limited to paths from known temp directories, i.e.
      * project metadata, etc.
      *
+     * @since 3.8.0
      * @param  ui               - Driver for UI generated input
      * @param  javaProjectName  - The name of the project to add the jar to
      * @param  jarPath          - The absolute file system location path of the jar to be
@@ -48,6 +52,7 @@ public interface IJavaHelper {
      * addProjectFolderToClasspathViaAPI - Create a classpath entry for the given folder
      * path and add it to the given project's classpath.
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  folderPath  - The full path (project name included) to be added to it's
      *                     parent project's classpath
@@ -61,6 +66,7 @@ public interface IJavaHelper {
      * the target project's resources (a project- to-project build dependency should use
      * addProjectBuildDependency)
      *
+     * @since 3.8.0
      * @param  ui       - Driver for UI generated input
      * @param  jarPath  - Full path (project included) of the JAR to add to the containing
      *                  project's build path
@@ -71,6 +77,7 @@ public interface IJavaHelper {
      * addProjectJARToClasspathViaAPI - Create a classpath entry for the given JAR path
      * and add it to the given project's classpath.
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  jarPath     - The full path (project name included) to be added to it's
      *                     parent project's classpath
@@ -136,6 +143,7 @@ public interface IJavaHelper {
      * createPackage - Create a java package in the given source path, with the given
      * package name.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  outputPath   - Full path (project included) of the source root to contain
      *                      the package.  Ex: <i>RuntimeTestProject/src/yourFolder</i>
@@ -150,6 +158,7 @@ public interface IJavaHelper {
      * list of exported classpath entries. The JAR file must exist and must already be on
      * the classpath.
      *
+     * @since 3.8.0
      * @param  ui       - Driver for UI generated input
      * @param  jarPath  - Full path (project included) of the JAR to export
      */
@@ -182,6 +191,7 @@ public interface IJavaHelper {
      * removeAllSourceFolders - Use the API to remove all source folders from the project
      * with the given name.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Name of the project whose source folders are to be removed
      */

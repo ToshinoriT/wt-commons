@@ -14,11 +14,14 @@ import org.eclipse.core.runtime.IPath;
  * other words, if a test is testing that a breakpoint will be hit in an application
  * deployed to a server, it is the responsibility of the caller to start that server in
  * debug mode.
+ * 
+ * @since 3.8.0
  */
 public interface IJavaDebuggingHelper {
     /**
      * removeAllBreakpoints - Remove all breakpoints in the current workspace.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void removeAllBreakpoints(IUIContext ui);
@@ -26,6 +29,7 @@ public interface IJavaDebuggingHelper {
     /**
      * resumeDebugging - Resume debugging a suspended process.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void resumeDebugging(IUIContext ui);
@@ -33,6 +37,7 @@ public interface IJavaDebuggingHelper {
     /**
      * setLineBreakpoint - Add a breakpoint to the given file on the given line.
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  filePath        - The full path (project included) of the file in which to
      *                         set a breakpoint.
@@ -55,6 +60,7 @@ public interface IJavaDebuggingHelper {
      * setMethodBreakpoint - Locate the first occurrence of the method with the given
      * signature search parameters, and toggle a method breakpoint on that method.
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  filePath          - The full path (project included) of the file in which
      *                           to set a breakpoint. Must be a Java file
@@ -74,6 +80,7 @@ public interface IJavaDebuggingHelper {
      * verifyLineBreakpointExists - Wait for a line breakpoint in the given file and the
      * given line to have the given expected existence.
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  filePath        - Full path (project included) of the file whose
      *                         breakpoints (if any) are to be verified
@@ -89,6 +96,7 @@ public interface IJavaDebuggingHelper {
      * verifyLineBreakpointExists - Wait for a line breakpoint in the given file and the
      * given line to have the given expected existence.
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  filePath          - Full path (project included) of the file whose
      *                           breakpoints (if any) are to be verified
@@ -111,6 +119,7 @@ public interface IJavaDebuggingHelper {
      * the given line in the given file.  It is the responsibility of the caller to begin
      * a process in debug mode, and to resume a suspended process.
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  filePath        - Full path (project included) of the file that a debugging
      *                         process is expected to be suspended within
@@ -126,6 +135,7 @@ public interface IJavaDebuggingHelper {
      * the given method in the given file.  It is the responsibility of the caller to
      * begin a process in debug mode, and to resume a suspended process.
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  filePath          - Full path (project included) of the file that a
      *                           debugging process is expected to be suspended within

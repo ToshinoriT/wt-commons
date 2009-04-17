@@ -11,6 +11,8 @@ import junit.framework.TestCase;
 /**
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
  * and is to be disposed without failing the test.
+ * 
+ * @since 3.8.0
  */
 public abstract class AbstractShellHandler implements IWorkbenchShellHandler {
     private final String _title;
@@ -21,6 +23,7 @@ public abstract class AbstractShellHandler implements IWorkbenchShellHandler {
     /**
      * Save the UI context.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected AbstractShellHandler(IUIContext ui,

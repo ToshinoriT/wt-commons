@@ -11,6 +11,8 @@ import org.eclipse.swt.widgets.Button;
 
 /**
  * Condition for verifying a button of type check is checked.
+ * 
+ * @since 3.8.0
  */
 public class CheckboxSelectedCondition implements ICondition {
     private boolean _checked;

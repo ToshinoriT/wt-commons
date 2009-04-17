@@ -103,6 +103,7 @@ public class UIHelperImpl extends HelperImplAdapter implements IUIHelper {
     }
 
     /**
+     * @since 3.8.0
      * @param  ui             - Driver for UI generated input
      * @param  code           - The SWT code to press
      * @param  numberOfTimes  - The number of times to press the key

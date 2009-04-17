@@ -15,12 +15,15 @@ import java.io.FilenameFilter;
 
 /**
  * Helper for manipulating files and folders at a low level.
+ * 
+ * @since 3.8.0
  */
 public interface IResourceHelper {
     /**
      * closeFile - If the given file is open in an editor, close that editor. If that file
      * is not open, then no-op
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  filePath  - The full path (project included) of the file to close
      */
@@ -31,6 +34,7 @@ public interface IResourceHelper {
      * workspace. Force the copy such that the copied file will overwrite an existing file
      * at the destination location
      *
+     * @since 3.8.0
      * @param  ui                   - Driver for UI-generated input
      * @param  sourceFilePath       - The full path (project name included) of the file to
      *                              copy
@@ -44,6 +48,7 @@ public interface IResourceHelper {
      * the contents of the given file in the given plugin.**!! THIS METHOD SHOULD BE USED
      * FOR MODEL TESTS ONLY SINCE IT DOES NOT USE THE UI !!**
      *
+     * @since 3.8.0
      * @param  ui                   - Driver for UI generated input
      * @param  sourcePlugin         - Container plugin for the resources whose contents
      *                              are to be used to create a new file
@@ -60,6 +65,7 @@ public interface IResourceHelper {
     /**
      * createFolder - Create a new folder in a project.
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  folderPath  - Full path (project name and new folder name included) of the
      *                     folder to create Ex: <i>RuntimeTestProject/src/myFolder</i>
@@ -97,6 +103,7 @@ public interface IResourceHelper {
      * file filters. The zip file will be created in the workspace directory under the
      * 'results' sub-directory
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  zipFileName  - The name of the zip file to create. A timestamp will be
      *                      added to this zip file name. For example, if the given name is
@@ -117,6 +124,7 @@ public interface IResourceHelper {
     /**
      * deleteFileOrFolder - deletes the identified file (or folder) at the given location.
      *
+     * @since 3.8.0
      * @param  ui    - Driver for the UI generated input
      * @param  path  - Full Path (project included) of the file (or folder) to delete Ex:
      *               <i>RuntimeTestProject/src/myFolder</i>
@@ -130,6 +138,7 @@ public interface IResourceHelper {
      * <p>!! THIS METHOD SHOULD BE USED FOR API-DRIVEN TESTS ONLY SINCE IT DOES NOT USE
      * THE UI !!</p>
      *
+     * @since 3.8.0
      * @param  ui    - Driver for the UI generated input
      * @param  path  - Full Path (project included) of the file or folder to delete. If a
      *               folder is specified, the contents are recursively deleted.
@@ -238,6 +247,7 @@ public interface IResourceHelper {
      * given plugin's resources into the given workspace path. Will import all files under
      * the given source path
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  sourcePlugin    - Container plugin for the resources to import
      * @param  importFromPath  - Path to the folder to import from Ex: <i>
@@ -255,6 +265,7 @@ public interface IResourceHelper {
      * given plugin's resources into the given workspace path. Will import all files under
      * the given source path
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  sourcePluginID  - ID of the container plugin for the resources to import. A
      *                         test case failure will be issued if a plugin for the given
@@ -274,6 +285,7 @@ public interface IResourceHelper {
      * given plugin's resources into the given workspace path. Will import all files under
      * the given source path
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  sourcePlugin    - Container plugin for the resources to import
      * @param  importFromPath  - Path to the folder to import from Ex: <i>
@@ -294,6 +306,7 @@ public interface IResourceHelper {
      * before the move is executed. If the resource exists in the target location it will
      * be overwritten
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  filePath    - The full path (project included) of the file to move Ex: <i>
      *                     RuntimeTestProject/src/sourceFolder/MyFile.jsp</i>
@@ -310,6 +323,7 @@ public interface IResourceHelper {
      * file-associated editor. If the file is already open, then this operation will bring
      * that editor to the front
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  filePath  - Full path (project included) of the file to open Ex: <i>
      *                   RuntimeTestProject/src/myFolder/MyFile.jsp</i>
@@ -321,6 +335,7 @@ public interface IResourceHelper {
      * lines are replaced with the lines in the given file without recreating the file on
      * disc.
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  filePath        - The full path (project name included) to the file whose
      *                         contents are to be replaced Ex: <i>
@@ -343,6 +358,7 @@ public interface IResourceHelper {
      * not exist or the block contains differences) then this method will issue a TestCase
      * failure
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  plugin            - The source plugin where the baseline file is located
      * @param  baselineFilePath  - A plugin relative path (plugin NOT included) to the
@@ -364,6 +380,7 @@ public interface IResourceHelper {
      * then this method will issue a TestCase failure. If the given file has a line
      * difference then this method will issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  plugin            - The source plugin where the baseline file is located
      * @param  baselineFilePath  - A plugin relative path (plugin NOT included) to the
@@ -385,6 +402,7 @@ public interface IResourceHelper {
      * source file could not be found then this method will issue a TestCase failure. If
      * the given file has a line difference then this method will issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  plugin            - The source plugin where the baseline file is located
      * @param  baselineFilePath  - A plugin relative path (plugin NOT included) to the
@@ -406,6 +424,7 @@ public interface IResourceHelper {
      * source file could not be found then this method will issue a TestCase failure. If
      * the given file has a line difference then this method will issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  plugin            - The source plugin where the baseline file is located
      * @param  baselineFilePath  - A plugin relative path (plugin NOT included) to the
@@ -427,6 +446,7 @@ public interface IResourceHelper {
      * expression. If the given file has a line difference then this method will issue a
      * TestCase failure
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  plugin            - The source plugin where the baseline file is located
      * @param  baselineFilePath  - A plugin relative path (plugin NOT included) to the
@@ -451,6 +471,7 @@ public interface IResourceHelper {
      * not be found then this method will issue a TestCase failure. If the given files has
      * a line difference then this method will issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  plugin            - The source plugin where the baseline file is located
      * @param  baselineFilePath  - A plugin relative path (plugin NOT included) to the
@@ -473,6 +494,7 @@ public interface IResourceHelper {
      * text and will be considered a match if a line of text in the given file contains
      * the String.
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  baselineString  - A single line of text (does not need to be a complete
      *                         line) to search for in the given file.
@@ -492,6 +514,7 @@ public interface IResourceHelper {
      * verifyFileExists - Wait until the file at the given path exists. If the file still
      * does not exist after 30 seconds, then issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  filePath  - Full path (project included) to the file whose existence is to
      *                   be verified Ex: <i>RuntimeTestProject/src/myFolder/File.java</i>
@@ -505,6 +528,7 @@ public interface IResourceHelper {
      * verifyFileExists - Wait until the file at the given path exists. If the file still
      * does not exist after 2 seconds, then issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  plugin    - The test plugin containing the file to check for
      * @param  filePath  - Plugin relative path to the file whose existence is to be
@@ -520,6 +544,7 @@ public interface IResourceHelper {
      * verifyFileExists - Wait until the file at the given path exists. If the file still
      * does not exist after 2 seconds, then issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  pluginID  - The ID of the test plugin containing the file to check for
      * @param  filePath  - Plugin relative path to the file whose existence is to be
@@ -536,6 +561,7 @@ public interface IResourceHelper {
      * modifaction timestamp greater than the given timestap. If the file does not meet
      * these criteria after 30 seconds then issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  filePath    - Full path (project included) to the file whose existence and
      *                     timestamp is to be verified
@@ -553,6 +579,7 @@ public interface IResourceHelper {
      * verifyFolderExists - Wait until the folder at the given path exists. If the folder
      * still does not exist after 30 seconds, then issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  folderPath  - Full path (project included) to the folder whose existence is
      *                     to be verified Ex: <i>RuntimeTestProject/src/myFolder</i>
@@ -570,6 +597,7 @@ public interface IResourceHelper {
      * be found then this method will issue a TestCase failure. If the given files has a
      * line difference then this method will issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  plugin            - The source plugin where the baseline file is located
      * @param  baselineFilePath  - A plugin relative path (plugin NOT included) to the
@@ -587,6 +615,7 @@ public interface IResourceHelper {
     /**
      * writeFileContents - Write a file to disk and set its contents to the given text.
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  filePath  - Full path (project included) of the file to create. If the
      *                   project doesn't exist or is not accessible, an assertion error

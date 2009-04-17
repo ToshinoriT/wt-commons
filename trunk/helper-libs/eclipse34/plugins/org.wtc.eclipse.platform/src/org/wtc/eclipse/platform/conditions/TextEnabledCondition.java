@@ -11,6 +11,8 @@ import org.eclipse.swt.widgets.Text;
 
 /**
  * A condition that checks the enabled state of a given text field.
+ * 
+ * @since 3.8.0 
  */
 public class TextEnabledCondition implements ICondition {
     private final Text _textField;

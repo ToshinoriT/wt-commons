@@ -13,6 +13,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 
 /**
  * Condition that waits until the project with the given name has the given opened state.
+ * 
+ * @since 3.8.0
  */
 public class ProjectOpenCondition implements ICondition {
     private IProject _project;

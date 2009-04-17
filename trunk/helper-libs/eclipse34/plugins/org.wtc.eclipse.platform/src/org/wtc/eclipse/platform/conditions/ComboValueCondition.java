@@ -16,6 +16,9 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Widget;
 import java.text.Collator;
 
+/**
+ * @since 3.8.0
+ */
 public final class ComboValueCondition implements ICondition {
     private final Collator _collator;
     private final String _expectedText;

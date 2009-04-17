@@ -23,6 +23,8 @@ import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 
 /**
  * Helper delegate for finding and selecting palette items.
+ * 
+ * @since 3.8.0
  */
 public class GenericPaletteHelper extends HelperImplAdapter {
     /**
@@ -30,6 +32,7 @@ public class GenericPaletteHelper extends HelperImplAdapter {
      * This method will issue a test case failure if the palette item could not be found
      * for any reason
      *
+     * @since 3.8.0
      * @param  ui             - driver for ui generated events
      * @param  rootCanvas     - the root FigureCanvas
      * @param  categoryLabel  - The category to click
@@ -69,6 +72,7 @@ public class GenericPaletteHelper extends HelperImplAdapter {
      * then double click it. This method will issue a test case failure if the palette
      * item could not be found for any reason
      *
+     * @since 3.8.0
      * @param  ui             - Driver for UI generated input
      * @param  rootCanvas     - The parent canvas for a design palette
      * @param  locator        - With Window Tester 2.0, the widget locator is also the
@@ -125,6 +129,7 @@ public class GenericPaletteHelper extends HelperImplAdapter {
     /**
      * find a palette item in the palette and drag and drop it onto the target IFigure.
      *
+     * @since 3.8.0
      * @param  ui             - driver for ui generated events
      * @param  sourceCanvas   - the root FigureCanvas of the palette
      * @param  categoryLabel  - the palette category containing the item
@@ -170,6 +175,7 @@ public class GenericPaletteHelper extends HelperImplAdapter {
      * palette and with the given text, check its expanded state, and (if the expanded
      * state is not the expected state) toggle the category's expanded state.
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  parentCanvas      - The parent canvas for a design palette
      * @param  categoryLabel     - The label of the category whose expansion is to be
@@ -355,6 +361,7 @@ public class GenericPaletteHelper extends HelperImplAdapter {
      * verifyCategoryExists - Open the palette, and verify the category with the given
      * label exists or doesn't exist based on the provided boolean.
      *
+     * @since 3.8.0
      * @param  ui             - Driver for UI generated input
      * @param  rootCanvas     - The root FigureCanvas
      * @param  categoryLabel  - The screen label of the palette category to search for

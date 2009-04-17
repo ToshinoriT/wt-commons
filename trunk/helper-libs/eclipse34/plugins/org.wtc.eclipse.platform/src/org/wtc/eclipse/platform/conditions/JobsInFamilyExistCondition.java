@@ -18,6 +18,8 @@ import java.text.MessageFormat;
  * Will return true if either the max number of iterations are hit or if a call to
  * JobManager.find(family) returns a non-zero number of jobs and the call to join
  * terminates.
+ * 
+ * @since 3.8.0
  */
 public class JobsInFamilyExistCondition implements ICondition {
     private static final String DEBUG_OPTION = "/logging/jobFamilyExistsCondition"; //$NON-NLS-1$

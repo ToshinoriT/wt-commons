@@ -14,6 +14,8 @@ import com.windowtester.runtime.swt.locator.MenuItemLocator;
  * Some menu items are add/removed to menus based on selection and/or other conditions.
  * When under a heavy load, the workbench may not respond fast enough to render the menu
  * before a test thread tries to click the menu item
+ * 
+ * @since 3.8.0
  */
 public class MenuItemExistsCondition implements ICondition {
     // Menu Item Path

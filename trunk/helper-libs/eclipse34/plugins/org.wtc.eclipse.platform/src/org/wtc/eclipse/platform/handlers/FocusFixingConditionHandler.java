@@ -36,6 +36,7 @@ import java.util.Set;
  * All Rights Reserved</p>
  *
  * @author  Phil Quitslund
+ * @since 3.8.0
  */
 public class FocusFixingConditionHandler implements IConditionHandler {
     // The shared instance

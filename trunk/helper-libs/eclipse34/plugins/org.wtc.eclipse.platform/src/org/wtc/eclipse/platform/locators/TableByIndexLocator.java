@@ -10,6 +10,8 @@ import org.eclipse.swt.widgets.Table;
 /**
  * SWTWidgetLocator that can find Table widgets by index without requiring a parent widget
  * locator.
+ * 
+ * @since 3.8.0
  */
 public class TableByIndexLocator extends SWTWidgetByIndexLocator {
     private static final long serialVersionUID = 936193588405270199L;

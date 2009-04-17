@@ -7,6 +7,8 @@ package org.wtc.eclipse.platform.exceptions;
 
 /**
  * Abstract error from which all specific WT commons helper errors should extend.
+ * 
+ * @since 3.8.0
  */
 public abstract class WTCHelperError extends Error {
     

@@ -36,6 +36,8 @@ import org.wtc.eclipse.platform.helpers.IWorkbenchHelper.Perspective;
 
 /**
  * Common methods for debugging in any file type.
+ * 
+ * @since 3.8.0
  */
 public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
     protected static final int DEFAULT_BREAKPOINT_TIMEOUT = 120000; // Two minutes
@@ -43,6 +45,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
     /**
      * clickRunMenuItem - Utility for executing menu items in the Run menu.
      *
+     * @since 3.8.0
      * @param  ui    - Driver for UI generated input
      * @param  menu  - Menu item to execute
      */
@@ -72,6 +75,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
     /**
      * removeAllBreakpoints - Remove all breakpoints in the current workspace.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void removeAllBreakpoints(IUIContext ui) {
@@ -110,6 +114,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
     }
 
     /**
+     * @since 3.8.0
      * @param  ui
      */
     public void resumeDebugging(IUIContext ui) {
@@ -133,6 +138,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
     /**
      * setLineBreakpoint - Add a breakpoint to the given file on the given line.
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  filePath        - The full path (project included) of the file in which to
      *                         set a breakpoint.
@@ -172,6 +178,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
      * switchPerspectiveOpenFile - Utility to prepare a file for setting breakpoints by
      * opening the file and opening the DEBUG perspective.
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  filePath  - Full path (project included) of the file to open
      */
@@ -194,6 +201,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
      * verifyLineBreakpointExists - Wait for a line breakpoint in the given file and the
      * given line to have the given expected existence.
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  filePath        - Full path (project included) of the file whose
      *                         breakpoints (if any) are to be verified
@@ -247,6 +255,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
      * at the given breakpoint.  It is the responsibility of the caller to begin a process
      * in debug mode, and to resume a suspended process.
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  breakpoint  - Describes the breakpoint we're looking for
      */

@@ -9,12 +9,15 @@ import com.windowtester.runtime.IUIContext;
 
 /**
  * Helper for creating Java projects.
+ * 
+ * @since 3.8.0
  */
 public interface IJavaProjectHelper {
     /**
      * addProjectBuildDependency - Open the project properties for a given project and add
      * a project dependency to another given project.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void addProjectBuildDependency(IUIContext ui,
@@ -25,6 +28,7 @@ public interface IJavaProjectHelper {
      * createProject - Create a simple project with the default location. Method should
      * wait until the project is created
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Should adhere to project name validation rules (not null,
      *                      not the empty string, legal characters, etc)
@@ -36,6 +40,7 @@ public interface IJavaProjectHelper {
      * source and output folders, if specified. Method should wait until the project is
      * created
      *
+     * @since 3.8.0
      * @param  ui                       - Driver for UI generated input
      * @param  projectName              - Should adhere to project name validation rules
      *                                  (not null, not the empty string, legal characters,
@@ -48,6 +53,7 @@ public interface IJavaProjectHelper {
     /**
      * deleteProject - Delete the given project from the workspace.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Should adhere to project name validation rules (not null,
      *                      not the empty string, legal characters, etc)
@@ -57,6 +63,7 @@ public interface IJavaProjectHelper {
     /**
      * deleteProject - Delete the given project from the workspace.
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  projectName     - Should adhere to project name validation rules (not null,
      *                         not the empty string, legal characters, etc)

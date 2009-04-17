@@ -16,6 +16,8 @@ import java.util.regex.Pattern;
 
 /**
  * Helper workbench specific tasks.
+ * 
+ * @since 3.8.0
  */
 public interface IWorkbenchHelper {
     public static enum JobWaitType {
@@ -119,6 +121,7 @@ public interface IWorkbenchHelper {
     /**
      * bringToFront - Bring the active workbench to the front.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void bringToFront(IUIContext ui);
@@ -130,6 +133,7 @@ public interface IWorkbenchHelper {
      * an unexpected build error occurs (build problem markers will not trigger a
      * failure).
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - The name of the project in the workspace to build. Should
      *                      not be null.
@@ -142,6 +146,7 @@ public interface IWorkbenchHelper {
      * cleanAllProjects - Use the project -> clean menu to clean all projects. Wait for
      * the auto build jobs to complete before returning
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void cleanAllProjects(IUIContext ui);
@@ -153,6 +158,7 @@ public interface IWorkbenchHelper {
      * project does not exist or an unexpected build error occurs (build problem markers
      * will not trigger a failure).
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI-generated input
      * @param  projectName  - Name of the project in the workspace to clean and build
      */
@@ -162,6 +168,7 @@ public interface IWorkbenchHelper {
      * closeActiveEditor - closes the currently active editor, based on the active
      * workbench window.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void closeActiveEditor(IUIContext ui);
@@ -169,6 +176,7 @@ public interface IWorkbenchHelper {
     /**
      * closeActivePerspective - Close the active perspective.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void closeActivePerspective(IUIContext ui);
@@ -176,6 +184,7 @@ public interface IWorkbenchHelper {
     /**
      * closeAllEditors - closes all editors, based on the active workbench window.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void closeAllEditors(IUIContext ui);
@@ -183,6 +192,7 @@ public interface IWorkbenchHelper {
     /**
      * closeAllEditors - closes all editors, based on the active workbench window.
      *
+     * @since 3.8.0
      * @param  ui    - Driver for UI generated input
      * @param  save  - True if the editors should be saved as they are closed
      */
@@ -191,6 +201,7 @@ public interface IWorkbenchHelper {
     /**
      * closeView - Close the view of the given type.
      *
+     * @since 3.8.0
      * @param  ui    - Driver for UI generated input
      * @param  view  - View to open.
      */
@@ -199,6 +210,7 @@ public interface IWorkbenchHelper {
     /**
      * closeWelcomePage - Close the welcome page.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void closeWelcomePage(IUIContext ui);
@@ -207,6 +219,7 @@ public interface IWorkbenchHelper {
      * disableAutoBuild - Turn the auto build option off, will fail if option is already
      * off.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void disableAutoBuild(IUIContext ui);
@@ -221,6 +234,7 @@ public interface IWorkbenchHelper {
      * enableAutoBuild - Turn the build automatically option on, will fail if option is
      * already on.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void enableAutoBuild(IUIContext ui);
@@ -254,6 +268,7 @@ public interface IWorkbenchHelper {
      * invokeRedo - Invoke the main workbench "edit->redo" menu item. This will fail if
      * the item is not enabled; but will not do any further verification.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void invokeRedo(IUIContext ui);
@@ -262,6 +277,7 @@ public interface IWorkbenchHelper {
      * invokeUndo - Invoke the main workbench "edit->undo" menu item. This will fail if
      * the item is not enabled; but will not do any further verification.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void invokeUndo(IUIContext ui);
@@ -270,6 +286,7 @@ public interface IWorkbenchHelper {
      * Start listening for the the given dialog and use the given dialog handler to react
      * to the dialog when it is shown. THIS IS FOR UNEXPACTED DIALOGS.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialog(IUIContext ui, IWorkbenchShellHandler handler);
@@ -279,6 +296,7 @@ public interface IWorkbenchHelper {
      * click "Yes To All" if it is ever shown. The caller should call stop listening for
      * this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialogConfirmDelete(IUIContext ui);
@@ -288,6 +306,7 @@ public interface IWorkbenchHelper {
      * Dialog click "Yes" to close if ever shown. The caller should call stop listening
      * for this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialogFileContentChanged(IUIContext ui);
@@ -297,6 +316,7 @@ public interface IWorkbenchHelper {
      * "Close" or "OK" to close if ever shown. The caller should call stop listening for
      * this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialogFileDeleted(IUIContext ui);
@@ -306,6 +326,7 @@ public interface IWorkbenchHelper {
      * and click "I Agree" if it is ever shown. The caller should call stop listening for
      * this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialogLicenceAgreement(IUIContext ui);
@@ -315,6 +336,7 @@ public interface IWorkbenchHelper {
      * and click "No" if it ever shown. The caller should call stop listening for this
      * dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI input
      */
     public void listenForDialogOpenPerspective(IUIContext ui);
@@ -323,6 +345,7 @@ public interface IWorkbenchHelper {
      * listenForDialogOverwriteFiles - Start listening for the Overwrite Files Dialog and
      * click "OK" if it ever shown. The caller should call stop listening for this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI input
      */
     public void listenForDialogOverwriteFiles(IUIContext ui);
@@ -331,6 +354,7 @@ public interface IWorkbenchHelper {
      * listenForDialogProgress - Start listening for the Progress Dialog and wait for it
      * to close if ever shown. The caller should call stop listening for this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI input
      */
     public void listenForDialogProgress(IUIContext ui);
@@ -339,6 +363,7 @@ public interface IWorkbenchHelper {
      * listenForDialogRebuilding - Start listening for the Rebuilding Dialog. The caller
      * should call stop listening for this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialogRebuilding(IUIContext ui);
@@ -348,6 +373,7 @@ public interface IWorkbenchHelper {
      * Unit Dialog and click "Continue" to close if it is ever shown. The caller should
      * call stop listening for this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialogRenameCompilationUnit(IUIContext ui);
@@ -357,6 +383,7 @@ public interface IWorkbenchHelper {
      * click "Yes" to close if it is ever shown. The caller should call stop listening for
      * this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialogResourceExists(IUIContext ui);
@@ -366,6 +393,7 @@ public interface IWorkbenchHelper {
      * Resources Dialog click "OK" to close if ever shown. The caller should call stop
      * listening for this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialogSaveAllModifiedResources(IUIContext ui);
@@ -374,6 +402,7 @@ public interface IWorkbenchHelper {
      * listenForDialogSaveResource - Start listening for the Save Resource Dialog click
      * "Yes" to close if ever shown. The caller should call stop listening for this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI input
      */
     public void listenForDialogSaveResource(IUIContext ui);
@@ -382,6 +411,7 @@ public interface IWorkbenchHelper {
      * listenForDialogSaveResources - Start listening for the Save Resources Dialog click
      * "OK" to close if ever shown. The caller should call stop listening for this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialogSaveResources(IUIContext ui);
@@ -390,6 +420,7 @@ public interface IWorkbenchHelper {
      * listenForDialogSettingBuildPath - Start listening for the Setting build path Dialog
      * click and wait if ever shown. The caller should call stop listening for this dialog
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialogSettingBuildPath(IUIContext ui);
@@ -398,6 +429,7 @@ public interface IWorkbenchHelper {
      * listenForDialogWizardClosing - Start listening for the Wizard Closing Dialog and
      * click "OK" to close if ever shown.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialogWizardClosing(IUIContext ui);
@@ -406,6 +438,7 @@ public interface IWorkbenchHelper {
      * logDebug - Log a message with the debug level to the Eclipse log. See
      * LoggingService for more details
      *
+     * @since 3.8.0
      * @param  ui       - Driver for UI generated input
      * @param  plugin   - The plugin issuing this message
      * @param  message  - The literal text to log
@@ -415,6 +448,7 @@ public interface IWorkbenchHelper {
     /**
      * maximizeWorkbench - Maximize the active workbench window.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void maximizeWorkbench(IUIContext ui);
@@ -422,6 +456,7 @@ public interface IWorkbenchHelper {
     /**
      * openPerspective - Open the perspective of the given type.
      *
+     * @since 3.8.0
      * @param  ui    - Driver for UI generated input
      * @param  type  - Type to open.
      */
@@ -430,6 +465,7 @@ public interface IWorkbenchHelper {
     /**
      * openView - Open the view of the given type.
      *
+     * @since 3.8.0
      * @param  ui    - Driver for UI generated input
      * @param  view  - View to open.
      */
@@ -449,6 +485,7 @@ public interface IWorkbenchHelper {
     /**
      * save - Save all open editors and do NOT wait for jobs to complete.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void save(IUIContext ui);
@@ -456,6 +493,7 @@ public interface IWorkbenchHelper {
     /**
      * saveAndWait - Save all open editors and wait for jobs to complete.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void saveAndWait(IUIContext ui);
@@ -464,6 +502,7 @@ public interface IWorkbenchHelper {
      * stopListeningForAllDialogs - Stop listening for all unexpected dialogs. This is the
      * complimentary method to the listenForDialog method
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI input
      */
     public void stopListeningForAllDialogs(IUIContext ui);
@@ -471,6 +510,7 @@ public interface IWorkbenchHelper {
     /**
      * stopListeningForDialog - Stop listening for the given dialog.
      *
+     * @since 3.8.0
      * @param  ui       - Driver for UI generated input
      * @param  handler  - The shell handler that should no longer be handled through the
      *                  Shell Monitor. Should have been registered through the
@@ -481,6 +521,7 @@ public interface IWorkbenchHelper {
     /**
      * Stop listening for the Confirm Delete Dialog.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void stopListeningForDialogConfirmDelete(IUIContext ui);
@@ -488,6 +529,7 @@ public interface IWorkbenchHelper {
     /**
      * Stop listening for the Confirm Overwrite Files Dialog.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void stopListeningForDialogConfirmOverwrite(IUIContext ui);
@@ -496,6 +538,7 @@ public interface IWorkbenchHelper {
      * stopListeningForDialogFileContentChanged - Stop listening for the File Content
      * Changed Dialog.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void stopListeningForDialogFileContentChanged(IUIContext ui);
@@ -503,6 +546,7 @@ public interface IWorkbenchHelper {
     /**
      * stopListeningForDialogFileDeleted - Stop listening for the File Deleted Dialog.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void stopListeningForDialogFileDeleted(IUIContext ui);
@@ -510,6 +554,7 @@ public interface IWorkbenchHelper {
     /**
      * stopListeningForDialogRebuilding - Stop listening for the Rebuilding dialog.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void stopListeningForDialogRebuilding(IUIContext ui);
@@ -518,6 +563,7 @@ public interface IWorkbenchHelper {
      * stopListeningForDialogRenameCompilationUnit - Stop listening for the Rename
      * Compilation Unit Dialog.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void stopListeningForDialogRenameCompilationUnit(IUIContext ui);
@@ -526,6 +572,7 @@ public interface IWorkbenchHelper {
      * stopListeningForDialogSaveAllModifiedResources - Stop listening for the File Save
      * All Modified Resources Dialog.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void stopListeningForDialogSaveAllModifiedResources(IUIContext ui);
@@ -537,6 +584,7 @@ public interface IWorkbenchHelper {
      * no errors by checking the known error markers for the project. If the project does
      * not exist or contains errors, then this method will issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - The name of the project in the workspace to verify. Should
      *                      not be null
@@ -550,6 +598,7 @@ public interface IWorkbenchHelper {
      * a TestCase failure if the project does not exist or the specified build conditions
      * are not met.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - The name of the project in the workspace to verify. Should
      *                      not be null.
@@ -571,6 +620,7 @@ public interface IWorkbenchHelper {
      * prior to calling this method. Generates a TestCase failure if the conditions are
      * not met.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Source of the project to verify
      * @param  markerInfos  - Describes the markers that should Marker type to check
@@ -607,11 +657,13 @@ public interface IWorkbenchHelper {
      * thread continues to add jobs of the given family, or if a job in the given family
      * reschedules itself in an infinite loop.</p>
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void waitForBuild(IUIContext ui);
 
     /**
+     * @since 3.8.0
      * @param  ui    - Driver for UI generated input
      * @param  type  - The job wait type.
      */
@@ -630,6 +682,7 @@ public interface IWorkbenchHelper {
      * thread continues to add jobs of the given family, or if a job in the given family
      * reschedules itself in an infinite loop.</p>
      *
+     * @since 3.8.0
      * @param  ui               - Driver for UI generated input
      * @param  timeout          - How long (in ms) to wait for the job activity to settle
      *                          down before marking the test as a failure.
@@ -640,6 +693,7 @@ public interface IWorkbenchHelper {
     public void waitForBuild(IUIContext ui, long timeout, int pollingInterval);
 
     /**
+     * @since 3.8.0
      * @param  ui    - Driver for UI generated input
      * @param  type  - The job wait type.
      */
@@ -653,12 +707,14 @@ public interface IWorkbenchHelper {
      * necessarily have to run but repeated checks are made for it.
      *
      * @see    #waitForBuild for deadlock warning
+     * @since 3.8.0
      * @param  ui      Driver for UI generated input
      * @param  family  Job family. Cannot be null.
      */
     public void waitForJobFamily(IUIContext ui, Object family);
 
     /**
+     * @since 3.8.0
      * @param  ui           Driver for UI generated input
      * @param  family       Job family. Cannot be null.
      * @param  jobWaitType  Either RETURN_IF_NO_JOBS, WAIT_FOR_JOBS or JOB_MUST_RUN.
@@ -666,6 +722,7 @@ public interface IWorkbenchHelper {
     public void waitForJobFamily(IUIContext ui, Object family, JobWaitType type);
 
     /**
+     * @since 3.8.0
      * @param  ui           Driver for UI generated input
      * @param  family       Job family. Cannot be null.
      * @param  jobWaitType  Either RETURN_IF_NO_JOBS, WAIT_FOR_JOBS or JOB_MUST_RUN.
@@ -685,6 +742,7 @@ public interface IWorkbenchHelper {
      * @see    #waitForBuild for deadlock warning.
      *
      *         <p>Use the default timeout and polling interval</p>
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void waitNoJobs(IUIContext ui);
@@ -696,6 +754,7 @@ public interface IWorkbenchHelper {
      * circumstance.
      *
      * @see    #waitForBuild for deadlock warning
+     * @since 3.8.0
      * @param  ui               - Driver for UI generated input
      * @param  timeout          - How long (in ms) to wait for the job activity to settle
      *                          down before marking the test as a failure.
@@ -713,6 +772,7 @@ public interface IWorkbenchHelper {
      * timeout value after the last resource changed event to make sure no new events are
      * broadcast. By default, use a 6 second timeout
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void waitNoResourceChangeEvents(IUIContext ui);
@@ -725,6 +785,7 @@ public interface IWorkbenchHelper {
      * timeout value after the last resource changed event to make sure no new events are
      * broadcast.
      *
+     * @since 3.8.0
      * @param  ui       - Driver for UI generated input
      * @param  timeout  - How long to wait after the last resource changed event
      */
