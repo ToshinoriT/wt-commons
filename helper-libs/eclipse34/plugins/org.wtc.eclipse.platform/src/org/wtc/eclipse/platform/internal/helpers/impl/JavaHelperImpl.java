@@ -21,8 +21,6 @@ import com.windowtester.runtime.swt.locator.TabItemLocator;
 import com.windowtester.runtime.swt.locator.TableItemLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
-import com.windowtester.swt.util.DebugHelper;
-
 import junit.framework.TestCase;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -227,8 +225,6 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
             String nestedTitle = "JAR Selection"; //$NON-NLS-1$
             ui.wait(new ShellShowingCondition(nestedTitle));
 
-            new DebugHelper().printWidgets();
-            
             ui.click(new TreeItemLocator(jarPath.makeRelative().toPortableString())); 
             
             clickOK(ui);

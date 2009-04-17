@@ -5,40 +5,11 @@
  */
 package org.wtc.eclipse.platform.helpers.adapters;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import junit.framework.TestCase;
-
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeItem;
-import org.eclipse.swt.widgets.Widget;
-import org.osgi.framework.Bundle;
-import org.wtc.eclipse.platform.PlatformActivator;
-import org.wtc.eclipse.platform.conditions.RegexTitleShellCondition;
-import org.wtc.eclipse.platform.shellhandlers.IWorkbenchShellHandler;
-
 import abbot.finder.swt.SWTHierarchy;
 import abbot.finder.swt.TestHierarchy;
 import abbot.tester.swt.ControlTester;
 import abbot.tester.swt.TableItemTester;
 import abbot.tester.swt.TableTester;
-
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WT;
 import com.windowtester.runtime.WidgetSearchException;
@@ -57,6 +28,31 @@ import com.windowtester.runtime.swt.locator.NamedWidgetLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 import com.windowtester.swt.UIContext;
 import com.windowtester.tester.swt.TreeItemTester;
+import junit.framework.TestCase;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.swt.widgets.Widget;
+import org.osgi.framework.Bundle;
+import org.wtc.eclipse.platform.PlatformActivator;
+import org.wtc.eclipse.platform.conditions.RegexTitleShellCondition;
+import org.wtc.eclipse.platform.shellhandlers.IWorkbenchShellHandler;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Generic methods shared in Helper implementation subclasses.
@@ -678,9 +674,9 @@ public abstract class HelperImplAdapter {
         WidgetReference ref = new WidgetReference(c);
 
         ui.click(ref);
-        
+
         selectAll(ui);
-        
+
         //added duplicate for EAR project field on project creation, sometimes it's selected sometimes not
         ///duplicate select all does not affect any other scenario but fixes this inconsistancy
         selectAll(ui);
@@ -691,16 +687,6 @@ public abstract class HelperImplAdapter {
             ui.keyClick(SWT.DEL);
         }
     }
-
-    /**
-     * selectAll - Simple helper for sending the keystroke to select all.
-     *
-     * @param  ui  - Driver for UI generated input
-     */
-	protected void selectAll(IUIContext ui) {
-		int modKey = abbot.Platform.isOSX() ? WT.COMMAND : WT.CTRL;
-		ui.keyClick(modKey, 'a');
-	}
 
     /**
      * safeEnterText - Select all of the text in the entry field at the given
@@ -730,6 +716,16 @@ public abstract class HelperImplAdapter {
         if ((value != null) && (value.length() > 0)) {
             ui.enterText(value);
         }
+    }
+
+    /**
+     * selectAll - Simple helper for sending the keystroke to select all.
+     *
+     * @param  ui  - Driver for UI generated input
+     */
+    protected void selectAll(IUIContext ui) {
+        int modKey = abbot.Platform.isOSX() ? WT.COMMAND : WT.CTRL;
+        ui.keyClick(modKey, 'a');
     }
 
     /**
@@ -836,7 +832,7 @@ public abstract class HelperImplAdapter {
      */
     public void stopListeningForAllDialogs(IUIContext ui) {
         PlatformActivator.logDebug("[SHELL MONITOR] STOPPING *ALL* SHELLS!!", //$NON-NLS-1$
-                                   DEBUG_OPTION_SHELLHANDLERREG); 
+                                   DEBUG_OPTION_SHELLHANDLERREG);
 
         IShellMonitor shellMontitor = getShellMonitor(ui);
         shellMontitor.removeAll();

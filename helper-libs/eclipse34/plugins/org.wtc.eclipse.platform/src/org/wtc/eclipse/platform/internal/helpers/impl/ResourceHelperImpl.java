@@ -5,19 +5,25 @@
  */
 package org.wtc.eclipse.platform.internal.helpers.impl;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-
+import abbot.tester.swt.ButtonTester;
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.locator.IWidgetLocator;
+import com.windowtester.runtime.locator.WidgetReference;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
+import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
+import com.windowtester.runtime.swt.condition.eclipse.FolderExistsCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
+import com.windowtester.runtime.swt.locator.LabeledLocator;
+import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
+import com.windowtester.runtime.swt.locator.TreeItemLocator;
+import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
 import junit.framework.Assert;
 import junit.framework.TestCase;
-
 import org.eclipse.core.filebuffers.FileBuffers;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
 import org.eclipse.core.filebuffers.ITextFileBufferManager;
@@ -74,25 +80,15 @@ import org.wtc.eclipse.platform.util.diff.LineByLineRegexDiffer;
 import org.wtc.eclipse.platform.util.diff.LineByLineRexexIgnoreDiffer;
 import org.wtc.eclipse.platform.util.diff.LineByLineSetDiffer;
 import org.wtc.eclipse.platform.util.diff.StringExistsFileDiffer;
-
-import abbot.tester.swt.ButtonTester;
-
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.locator.IWidgetLocator;
-import com.windowtester.runtime.locator.WidgetReference;
-import com.windowtester.runtime.swt.condition.SWTIdleCondition;
-import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
-import com.windowtester.runtime.swt.condition.eclipse.FolderExistsCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
-import com.windowtester.runtime.swt.locator.LabeledLocator;
-import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
-import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 
 /**
  * Helper for manipulating files and folders at a low level.
@@ -457,7 +453,6 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
         workbench.openView(ui, IWorkbenchHelper.View.BASIC_NAVIGATOR);
 
         try {
-        	
             ui.contextClick(new TreeItemLocator(relPath.toPortableString(), new ViewLocator(IWorkbenchHelper.View.BASIC_NAVIGATOR.getViewID())),
                             "&Delete"); //$NON-NLS-1$
 
@@ -961,7 +956,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
         workbench.openView(ui, IWorkbenchHelper.View.BASIC_NAVIGATOR);
 
         workbench.listenForDialogResourceExists(ui);
-		
+
         verifyFileExists(ui, filePath, true);
         verifyFolderExists(ui, targetPath, true);
 
@@ -976,20 +971,19 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
             ui.wait(new ShellShowingCondition("Move Resources")); //$NON-NLS-1$
 
             ui.click(new TreeItemLocator(targetPath.makeRelative().toPortableString()));
-            
+
             clickOK(ui);
-                
+
             /*
              * In the clobber case, "Continue" needs to be pressed
              */
             if (alreadyExists) {
-            	ui.wait(new ButtonLocator("Continue").isVisible()); //$NON-NLS-1$
-            	ui.click(new ButtonLocator("Continue")); //$NON-NLS-1$
+                ui.wait(new ButtonLocator("Continue").isVisible()); //$NON-NLS-1$
+                ui.click(new ButtonLocator("Continue")); //$NON-NLS-1$
             }
-            
+
             ui.wait(new ShellDisposedCondition("Move Resources")); //$NON-NLS-1$
-            
-            
+
         } catch (WidgetSearchException wse) {
             PlatformActivator.logException(wse);
             TestCase.fail(wse.getLocalizedMessage());
@@ -1618,7 +1612,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
             // Along with the wait no jobs, we should give the file some
             // time to allow it to update (to avoid the case where it hasn't
             // been updated yet and therefore giving a false positive)
-        	new SWTIdleCondition().waitForIdle();
+            new SWTIdleCondition().waitForIdle();
             ui.pause(5000);
 
             long actualTimestamp = getFileTimstampInternal(theFile);

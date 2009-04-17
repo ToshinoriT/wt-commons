@@ -6,7 +6,7 @@
 package org.wtc.eclipse.platform.reset;
 
 import com.windowtester.runtime.IUIContext;
-import com.windowtester.swt.util.WaitForIdle;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.DebugPlugin;
@@ -29,7 +29,7 @@ public class DebugResetDaemon implements IResetDaemon {
      *       org.wtc.eclipse.core.reset.IResetDaemon.ResetContext)
      */
     public void resetWorkspace(IUIContext ui, ResetContext context) {
-        new WaitForIdle().waitForIdle();
+        new SWTIdleCondition().waitForIdle();
 
         // First, remove all breakpoints
         IBreakpointManager breakpointManager = DebugPlugin.getDefault().getBreakpointManager();

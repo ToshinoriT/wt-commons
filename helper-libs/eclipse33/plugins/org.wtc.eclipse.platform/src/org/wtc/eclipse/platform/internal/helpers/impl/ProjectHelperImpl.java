@@ -10,6 +10,7 @@ import com.windowtester.runtime.WT;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.locator.IWidgetLocator;
 import com.windowtester.runtime.locator.WidgetReference;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
@@ -17,7 +18,6 @@ import com.windowtester.runtime.swt.locator.ButtonLocator;
 import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
 import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import com.windowtester.swt.util.WaitForIdle;
 import junit.framework.TestCase;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
@@ -132,16 +132,16 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
             clickNext(ui);
 
             // Let the tree repaint
-            new WaitForIdle().waitForIdle();
+            new SWTIdleCondition().waitForIdle();
 
             ui.click(new ButtonLocator("&Deselect All")); //$NON-NLS-1$
 
             // Let the tree repaint
-            new WaitForIdle().waitForIdle();
+            new SWTIdleCondition().waitForIdle();
 
             for (String nextProjectName : projectNames) {
                 ui.click(1, new TreeItemLocator(nextProjectName), SWT.BUTTON1 | SWT.CHECK);
-                new WaitForIdle().waitForIdle();
+                new SWTIdleCondition().waitForIdle();
             }
 
             IPath workspaceLocationMinus = ResourcesPlugin.getWorkspace().getRoot().getLocation();
@@ -319,13 +319,13 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
             }
 
             // Click the tree to trigger the tree refresh
-            new WaitForIdle().waitForIdle();
+            new SWTIdleCondition().waitForIdle();
 
             IWidgetLocator treeRef = ui.find(new SWTWidgetLocator(Tree.class));
             TestCase.assertTrue(treeRef instanceof WidgetReference);
 
             ui.click(treeRef);
-            new WaitForIdle().waitForIdle();
+            new SWTIdleCondition().waitForIdle();
 
             if (projectName != null) {
                 // Let's wait for the tree to be populated
@@ -333,10 +333,10 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
                 ui.wait(new TreeItemExistsCondition(tree, projectName, true));
 
                 ui.click(new ButtonLocator("&Deselect All")); //$NON-NLS-1$
-                new WaitForIdle().waitForIdle();
+                new SWTIdleCondition().waitForIdle();
 
                 ui.click(1, new TreeItemLocator(projectName), SWT.BUTTON1 | SWT.CHECK);
-                new WaitForIdle().waitForIdle();
+                new SWTIdleCondition().waitForIdle();
             }
 
             clickFinish(ui);
