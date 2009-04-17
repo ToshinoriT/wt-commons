@@ -18,12 +18,14 @@ public class ProjectHelperImplTest extends TestCase {
 	public void testRegexpMatch() throws Exception {
 		assertTrue(matches("Project", "Project (Project)"));	
 		assertTrue(matches("Project", "Project (/Users/Joe/Workspaces/Project)"));	
+		assertTrue(matches("Project A", "Project A (/Users/Joe/Workspaces/Project A)"));	
 		
 	}
 
 	public void testRegexpNoMatch() throws Exception {
 		assertFalse(matches("Project", "ProjectA (ProjectA)"));	
 		assertFalse(matches("Project", "ProjectA (/Users/Joe/Workspaces/ProjectA)"));	
+		assertFalse(matches("Project", "Project A (/Users/Joe/Workspaces/Project A)"));	
 	}	
 	
 	
