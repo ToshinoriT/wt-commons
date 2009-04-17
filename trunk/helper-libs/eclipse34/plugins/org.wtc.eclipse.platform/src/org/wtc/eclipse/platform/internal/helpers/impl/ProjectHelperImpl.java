@@ -367,7 +367,7 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
 	 * NOTE: public for testing
 	 */
 	public String buildProjectTreeNodeLabelRegexp(String projectName) {
-		return projectName + " .*"; //$NON-NLS-1$ //regexep captures project location;
+		return projectName + " \\(.*"; //$NON-NLS-1$ //regexep captures project location;
 	}
     
     /**
