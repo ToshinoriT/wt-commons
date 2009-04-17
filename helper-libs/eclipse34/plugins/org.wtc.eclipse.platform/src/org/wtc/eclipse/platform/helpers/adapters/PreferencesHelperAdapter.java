@@ -15,6 +15,8 @@ import org.wtc.eclipse.platform.PlatformActivator;
 
 /**
  * Helper adapter for actions that manipulate preferences.
+ * 
+ * @since 3.8.0
  */
 public abstract class PreferencesHelperAdapter extends HelperImplAdapter {
     /**
@@ -28,6 +30,7 @@ public abstract class PreferencesHelperAdapter extends HelperImplAdapter {
      * Open the preferences dialog, and show the preferences page given by the category
      * name.
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  categoryName  - The category name of the preferences page to open. Use
      *                       forward slashes for pages that are in nested categories

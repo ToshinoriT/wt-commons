@@ -15,6 +15,8 @@ import java.util.regex.PatternSyntaxException;
 /**
  * Like a regular ShellCondition that checks for modality and title, but use the expected
  * title as a regex pattern.
+ * 
+ * @since 3.8.0
  */
 public class RegexTitleShellCondition extends ShellCondition {
     private Pattern _titlePattern;

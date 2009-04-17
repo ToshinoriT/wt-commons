@@ -10,6 +10,8 @@ import org.eclipse.swt.widgets.Combo;
 /**
  * SWTWidgetLocator that can find Combo widgets by index without requiring a parent widget
  * locator.
+ * 
+ * @since 3.8.0
  */
 public class ComboByIndexLocator extends SWTWidgetByIndexLocator {
     private static final long serialVersionUID = 1777491466482690598L;

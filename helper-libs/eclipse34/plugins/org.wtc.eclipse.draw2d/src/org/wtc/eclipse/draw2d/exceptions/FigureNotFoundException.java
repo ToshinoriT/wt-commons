@@ -7,6 +7,8 @@ package org.wtc.eclipse.draw2d.exceptions;
 
 /**
  * Represents exception thrown when a search for a Draw2D figure did not resolve a figure.
+ * 
+ * @since 3.8.0
  */
 public class FigureNotFoundException extends Exception {
     private static final long serialVersionUID = -5452800126478046999L;

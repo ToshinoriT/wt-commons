@@ -11,11 +11,14 @@ import com.windowtester.runtime.IUIContext;
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
  * and is to be disposed without failing the test. This handler will specifically click
  * the "Yes" button when the "Save Resource?" option dialog is shown
+ * 
+ * @since 3.8.0
  */
 public class SaveResourceShellHandler extends AbstractYesToCloseShellHandler {
     /**
      * Save the UI context.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public SaveResourceShellHandler(IUIContext ui) {

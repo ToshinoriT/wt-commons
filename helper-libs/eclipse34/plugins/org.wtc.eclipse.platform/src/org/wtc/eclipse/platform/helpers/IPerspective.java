@@ -7,6 +7,8 @@ package org.wtc.eclipse.platform.helpers;
 
 /**
  * Describes a perspective that can be opened in the workbench.
+ * 
+ * @since 3.8.0
  */
 public interface IPerspective {
     // The perspective ID as defined in the perspective extension

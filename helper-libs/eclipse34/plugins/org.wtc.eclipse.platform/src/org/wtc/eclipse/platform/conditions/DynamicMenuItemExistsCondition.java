@@ -12,6 +12,8 @@ import org.wtc.eclipse.platform.PlatformActivator;
  * Just like a menu item exists condition, but don't fail if after the given number of
  * millis because the menu may be a dynamic menu. Instead, after the given number of
  * millis just return true.
+ * 
+ * @since 3.8.0
  */
 public class DynamicMenuItemExistsCondition extends MenuItemExistsCondition {
     // Just return true after this amount of time

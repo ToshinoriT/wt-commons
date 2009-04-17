@@ -18,6 +18,8 @@ import java.util.regex.PatternSyntaxException;
  * Locates a widget by getting its parent, looking for the control's previous sibling,
  * then (if that sibling is a Label) comparing the sibling's text value against the given
  * text value.
+ * 
+ * @since 3.8.0
  */
 public class AdjacentLabeledControlLocator extends SWTWidgetLocator {
     private static final long serialVersionUID = 1L;

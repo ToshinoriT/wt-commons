@@ -21,6 +21,8 @@ import java.util.regex.PatternSyntaxException;
 
 /**
  * Automated test support for Draw2D objects.
+ * 
+ * @since 3.8.0
  */
 public class FigureHelper {
     /**

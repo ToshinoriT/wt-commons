@@ -82,6 +82,8 @@ import java.util.regex.PatternSyntaxException;
  *     </pre>
  *   </li>
  * </ol>
+ * 
+ * @since 3.8.0
  */
 public class TreeItemPathLocator {
     private int _index;

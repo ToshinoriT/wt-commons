@@ -9,12 +9,15 @@ import com.windowtester.runtime.IUIContext;
 
 /**
  * Helper for creating Simple projects.
+ * 
+ * @since 3.8.0
  */
 public interface ISimpleProjectHelper {
     /**
      * createProject - Create a simple project with the default location. Method should
      * wait until the project is created
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Should adhere to project name validation rules (not null,
      *                      not the empty string, legal characters, etc)
@@ -24,6 +27,7 @@ public interface ISimpleProjectHelper {
     /**
      * deleteProject - Delete the given project from the workspace.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Should adhere to project name validation rules (not null,
      *                      not the empty string, legal characters, etc)
@@ -33,6 +37,7 @@ public interface ISimpleProjectHelper {
     /**
      * deleteProject - Delete the given project from the workspace.
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  projectName     - Should adhere to project name validation rules (not null,
      *                         not the empty string, legal characters, etc)

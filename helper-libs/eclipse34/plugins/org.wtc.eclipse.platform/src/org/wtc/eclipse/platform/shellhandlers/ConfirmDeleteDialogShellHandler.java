@@ -11,12 +11,13 @@ import com.windowtester.runtime.IUIContext;
  * Start listening for the Confirm Delete Dialog and click "Yes To All" (or "Yes") if it
  * is ever shown. The caller should call stop listening for this dialog
  *
- * @param  ui  - Driver for UI generated input
+ * @since 3.8.0
  */
 public class ConfirmDeleteDialogShellHandler extends AbstractYesToCloseShellHandler {
     /**
      * Save the UI context.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public ConfirmDeleteDialogShellHandler(IUIContext ui) {

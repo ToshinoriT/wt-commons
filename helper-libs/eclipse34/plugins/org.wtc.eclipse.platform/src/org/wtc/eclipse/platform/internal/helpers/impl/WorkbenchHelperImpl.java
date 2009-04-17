@@ -158,6 +158,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      * auto build job to finish. Subclasses should implement this method for any post-UI
      * operations
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void cleanAllProjectsAfterUI(IUIContext ui) {
@@ -169,6 +170,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      * Called just before the UI operations on cleanAllProjects. By default, do nothing.
      * Subclasses should implement this method for any pre-UI operations
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void cleanAllProjectsBeforeUI(IUIContext ui) {
@@ -1057,6 +1059,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
     /**
      * Wait for the given perspective to be open/closed.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  perspective  - The perspective whose visibility is to be verified
      * @param  open         - True if the perspective is to be open for this condition to
@@ -1126,6 +1129,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
     /**
      * Wait for the given view to be open/closed.
      *
+     * @since 3.8.0
      * @param  ui    - Driver for UI generated input
      * @param  view  - The view whose visibility is to be verified
      * @param  open  - True if the view is to be open for this condition to be met; False

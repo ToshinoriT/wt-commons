@@ -12,6 +12,8 @@ import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 /**
  * Condition that waits until there is no active editor open in the current workbench
  * page.
+ * 
+ * @since 3.8.0
  */
 public class AllEditorsClosedCondition implements ICondition {
     /**

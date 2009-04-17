@@ -35,6 +35,8 @@ import java.io.InputStreamReader;
  * SourceEditorBlockInserter - Internal utility for inserting blocks of text into the
  * active source file. This class will read in a file and issue corresponding keystrokes
  * in the active source editor to type as a user would.
+ * 
+ * @since 3.8.0
  */
 public class SourceEditorBlockInserter {
     private static final String NEWLINE = System.getProperty("line.separator"); //$NON-NLS-1$
@@ -46,6 +48,7 @@ public class SourceEditorBlockInserter {
      * position. This test will issue a TestCase failure if any of the resources cannot be
      * accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui                 - Driver for UI generated input
      * @param  editorHelper       - Implementation of a helper used in text manipulation
      * @param  insertBlockPlugin  - Plugin containing the resource that defines the text
@@ -90,6 +93,7 @@ public class SourceEditorBlockInserter {
      * given search string. This test will issue a TestCase failure if any of the
      * resources cannot be accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui                 - Driver for UI generated input
      * @param  editorHelper       - Implementation of an editor to insert text into
      * @param  insertBlockPlugin  - Plugin containing the resource that defines the text
@@ -137,6 +141,7 @@ public class SourceEditorBlockInserter {
      * position. This test will issue a TestCase failure if any of the resources cannot be
      * accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui                 - Driver for UI generated input
      * @param  editorHelper       - Implementation of a helper used in text manipulation
      * @param  insertBlockPlugin  - Plugin containing the resource that defines the text
@@ -200,6 +205,7 @@ public class SourceEditorBlockInserter {
      * position. This test will issue a TestCase failure if any of the resources cannot be
      * accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  editorHelper    - Implementation of a helper used in text manipulation
      * @param  insertString    - String of characters to insert into the active editor
@@ -219,6 +225,7 @@ public class SourceEditorBlockInserter {
      * given by a character offset. This test will issue a TestCase failure if any of the
      * resources cannot be accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  editorHelper  - Implementation of a helper used in text manipulation
      * @param  insertText    - the text to insert
@@ -252,6 +259,7 @@ public class SourceEditorBlockInserter {
      * position. This test will issue a TestCase failure if any of the resources cannot be
      * accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  editorHelper    - Implementation of a helper used in text manipulation
      * @param  insertString    - String of characters to insert into the active editor
@@ -291,6 +299,7 @@ public class SourceEditorBlockInserter {
      * given by a line-column position. This test will issue a TestCase failure if any of
      * the resources cannot be accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  editorHelper    - Implementation of a helper used in text manipulation
      * @param  insertText      - the text to insert
@@ -432,6 +441,7 @@ public class SourceEditorBlockInserter {
      * may insert a closing brace when an opening brace is entered into a java file. This
      * method ensures that only the characters in the given string are entered.
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  editorHelper  - Implementation of a helper used in text manipulation
      * @param  keyString     - Characters to type into the given target file
@@ -485,6 +495,7 @@ public class SourceEditorBlockInserter {
      * a closing brace when an opening brace is entered into a java file. This method
      * ensures that only a newline in the given string is entered.
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  editorHelper  - Implementation of a helper used in text manipulation
      * @param  targetFile    - Enter characters into the current character position of
@@ -537,6 +548,7 @@ public class SourceEditorBlockInserter {
      * setCursorPosition - Internal method to set the position of the cursor in the active
      * editor.
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  editorHelper  - Implementation of a helper used in text manipulation
      * @param  text          - Text to search in the active editor. This method will find
@@ -570,6 +582,7 @@ public class SourceEditorBlockInserter {
      * setCursorPosition - Internal method to set the position of the cursor in the active
      * editor.
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  editorHelper  - Implementation of a helper used in text manipulation
      * @param  offset        - The character offset at which the cursor will be placed
@@ -588,6 +601,7 @@ public class SourceEditorBlockInserter {
      * setCursorPosition - Internal method to set the position of the cursor in the active
      * editor.
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  editorHelper  - Implementation of a helper used in text manipulation
      * @param  line          - Line number to insert the block of text into. Indexing

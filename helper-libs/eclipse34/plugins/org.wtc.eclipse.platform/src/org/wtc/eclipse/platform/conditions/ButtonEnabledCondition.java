@@ -11,6 +11,8 @@ import org.eclipse.swt.widgets.Button;
 
 /**
  * A condition that checks the enabled state of a given button.
+ * 
+ * @since 3.8.0
  */
 public class ButtonEnabledCondition implements ICondition {
     private final Button _button;

@@ -19,6 +19,8 @@ import java.text.Collator;
 
 /**
  * Condition to verify that the given text field contains the expected text value.
+ * 
+ * @since 3.8.0
  */
 public class TextValueCondition implements ICondition {
     private final Collator _collator;

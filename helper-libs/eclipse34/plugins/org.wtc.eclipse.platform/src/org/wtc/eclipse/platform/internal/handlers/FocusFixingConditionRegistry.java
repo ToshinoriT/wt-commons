@@ -16,6 +16,8 @@ import java.util.Set;
 /**
  * Registry for declaring which shells should be considered shells that are always active
  * and focused.
+ * 
+ * @since 3.8.0
  */
 public class FocusFixingConditionRegistry {
     // The shared instance
