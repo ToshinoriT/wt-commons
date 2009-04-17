@@ -56,6 +56,8 @@ import java.util.Set;
 
 /**
  * Generic methods shared in Helper implementation subclasses.
+ * 
+ * @since 3.8.0
  */
 public abstract class HelperImplAdapter {
     protected static final String DEBUG_OPTION_ENTRY_EXIT = "/logging/entry_exit"; //$NON-NLS-1$
@@ -71,6 +73,7 @@ public abstract class HelperImplAdapter {
     /**
      * Simple utility for clicking a button.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void clickButton(IUIContext ui, String buttonLabel) {
@@ -87,6 +90,7 @@ public abstract class HelperImplAdapter {
     /**
      * Simple utility for clicking a button by name (not label).
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void clickButtonByName(IUIContext ui, String buttonName) {
@@ -105,6 +109,7 @@ public abstract class HelperImplAdapter {
     /**
      * Simple utility for clicking a Cancel button.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void clickCancel(IUIContext ui) {
@@ -114,6 +119,7 @@ public abstract class HelperImplAdapter {
     /**
      * Simple utility for clicking a Close button.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void clickClose(IUIContext ui) {
@@ -123,6 +129,7 @@ public abstract class HelperImplAdapter {
     /**
      * Simple utility for clicking a finish button.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void clickFinish(IUIContext ui) {
@@ -132,6 +139,7 @@ public abstract class HelperImplAdapter {
     /**
      * Simple utility for clicking a next button.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void clickNext(IUIContext ui) {
@@ -141,6 +149,7 @@ public abstract class HelperImplAdapter {
     /**
      * Simple utility for clicking a next button.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void clickNo(IUIContext ui) {
@@ -150,6 +159,7 @@ public abstract class HelperImplAdapter {
     /**
      * Simple utility for clicking a OK button.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void clickOK(IUIContext ui) {
@@ -161,6 +171,7 @@ public abstract class HelperImplAdapter {
      * In other words, click a multi-columned tree item where Y-position is determined by
      * the tree node text and the X-position is determined by the given column index
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  tree      - The multi-columned tree
      * @param  nodePath  - The label of the tree node to find where nested nodes are
@@ -212,6 +223,7 @@ public abstract class HelperImplAdapter {
     /**
      * Simple utility for clicking a Yes button.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void clickYes(IUIContext ui) {
@@ -477,6 +489,7 @@ public abstract class HelperImplAdapter {
      * Start listening for the the given dialog and use the given dialog handler to react
      * to the dialog when it is shown. THIS IS FOR UNEXPACTED DIALOGS.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void listenForDialog(IUIContext ui, IWorkbenchShellHandler handler) {
@@ -488,6 +501,7 @@ public abstract class HelperImplAdapter {
      * Start listening for the the given dialog and use the given dialog handler to react
      * to the dialog when it is shown. THIS IS FOR UNEXPACTED DIALOGS.
      *
+     * @since 3.8.0
      * @param  ui         - Driver for UI generated input
      * @param  handler    - How to react to the shell
      * @param  condition  - How to tell if the given handler applies to a popped shell
@@ -636,6 +650,7 @@ public abstract class HelperImplAdapter {
     /**
      * pressTab - Simple helper for pressing the enter key.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void pressEnter(IUIContext ui) {
@@ -645,6 +660,7 @@ public abstract class HelperImplAdapter {
     /**
      * pressTab - Simple helper for pressing the tab key.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void pressTab(IUIContext ui) {
@@ -721,6 +737,7 @@ public abstract class HelperImplAdapter {
     /**
      * selectAll - Simple helper for sending the keystroke to select all.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void selectAll(IUIContext ui) {
@@ -731,6 +748,7 @@ public abstract class HelperImplAdapter {
     /**
      * Utility for selecting a menu item in the file menu.
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  menuText  - The escaped menu text to select. Sub menus are accessed using a
      *                   forward slash to delimit the menu items
@@ -745,6 +763,7 @@ public abstract class HelperImplAdapter {
     /**
      * Utility for selecting a menu items.
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  root      - The top level menu text. For example, "&File"
      * @param  menuText  - The escaped menu text to select. Sub menus are accessed using a
@@ -771,6 +790,7 @@ public abstract class HelperImplAdapter {
     /**
      * Utility for selecting a menu item in the project menu.
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  menuText  - The escaped menu text to select. Sub menus are accessed using a
      *                   forward slash to delimit the menu items
@@ -809,6 +829,7 @@ public abstract class HelperImplAdapter {
      * thread waits on a condition until the upgrade is complete (upgrades can take much
      * longer than 2 minutes)
      *
+     * @since 3.8.0
      * @param  ui      - Driver for UI generated input
      * @param  millis  - The number of milliseconds that the UI thread safety  nets should
      *                 expect to wait before failing the test. In other words, if the test
@@ -828,6 +849,7 @@ public abstract class HelperImplAdapter {
      * Stop listening for all unexpected dialogs. This is the complimentary method to the
      * listenForDialog method
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI input
      */
     public void stopListeningForAllDialogs(IUIContext ui) {
@@ -842,6 +864,7 @@ public abstract class HelperImplAdapter {
     /**
      * stopListeningForDialog - Stop listening for the given dialog.
      *
+     * @since 3.8.0
      * @param  ui       - Driver for UI generated input
      * @param  handler  - The shell handler that should no longer be handled through the
      *                  Shell Monitor. Should have been registered through the
@@ -895,6 +918,7 @@ public abstract class HelperImplAdapter {
      * the control is not found after 30 seconds, THEN close all dialogs, take a
      * screenshot, fail the test, etc
      *
+     * @since 3.8.0
      * @param  ui              - Driver for UI generated input
      * @param  controlLocator  - How to find the control
      * @param  controlClass    - The widget class to find

@@ -15,6 +15,8 @@ import org.wtc.eclipse.platform.PlatformActivator;
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
  * and is to be disposed without failing the test. This handler will specifically click
  * the specified button found by label
+ * 
+ * @since 3.8.0
  */
 public class AbstractButtonToCloseShellHandler extends AbstractShellHandler {
     private final String _buttonLabel;

@@ -1231,6 +1231,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
      * failure. If the given file has a line difference then this method will issue a
      * TestCase failure
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  plugin            - The source plugin where the baseline file is located
      * @param  baselineFilePath  - A plugin relative path (plugin NOT included) to the
@@ -1285,6 +1286,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
      * file. If the baseline file could not be found or the source file could not be found
      * then this method will issue a TestCase failure.
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  plugin            - The source plugin where the baseline file is located
      * @param  baselineFilePath  - Plugin relative path to the baseline file. The file
@@ -1344,6 +1346,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
      * given regular expression. If the given file has a line difference then this method
      * will issue a TestCase failure
      *
+     * @since 3.8.0
      * @param  ui                - Driver for UI generated input
      * @param  plugin            - The source plugin where the baseline file is located
      * @param  baselineFilePath  - A plugin relative path (plugin NOT included) to the

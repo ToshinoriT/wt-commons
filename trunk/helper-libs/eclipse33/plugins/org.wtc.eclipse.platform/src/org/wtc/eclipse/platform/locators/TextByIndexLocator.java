@@ -10,6 +10,8 @@ import org.eclipse.swt.widgets.Text;
 /**
  * SWTWidgetLocator that can find Text widgets by index without requiring a parent widget
  * locator.
+ * 
+ * @since 3.8.0
  */
 public class TextByIndexLocator extends SWTWidgetByIndexLocator {
     private static final long serialVersionUID = 5822032254007604998L;

@@ -46,6 +46,8 @@ import org.wtc.eclipse.platform.util.SourceEditorBlockInserter;
 /**
  * Helper for manipulating files through the source editor. Adapter for any text-based
  * editors
+ * 
+ * @since 3.8.0
  */
 public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements IEditorHelper {
     /**
@@ -65,6 +67,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
      * findAndReplace- Open the given file, search for the provided string and replace it
      * the specified number of times with the given replacement value.
      *
+     * @since 3.8.0
      * @param  ui                   - Driver for UI generated input
      * @param  filePath             - Full path (project included) of the file to edit.
      *                              Ex: <i>RuntimeTestProject/src/folder/MyFile.jsp</i>
@@ -90,6 +93,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
      * findAndReplace- Open the given file, search for the provided string and replace it
      * the specified number of times with the given replacement value.
      *
+     * @since 3.8.0
      * @param  ui                   - Driver for UI generated input
      * @param  filePath             - Full path (project included) of the file to edit.
      *                              Ex: <i>RuntimeTestProject/src/folder/MyFile.jsp</i>

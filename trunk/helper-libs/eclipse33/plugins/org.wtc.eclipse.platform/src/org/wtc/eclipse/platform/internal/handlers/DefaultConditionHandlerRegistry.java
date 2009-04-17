@@ -28,6 +28,8 @@ import java.util.Collection;
  * example, if a plugin changes the default text editor behavior, then all plugins in the
  * workbench will be affected and a condition handler that even base plugins can use
  * should be added</p>
+ * 
+ * @since 3.8.0
  */
 public class DefaultConditionHandlerRegistry {
     private static DefaultConditionHandlerRegistry _instance;

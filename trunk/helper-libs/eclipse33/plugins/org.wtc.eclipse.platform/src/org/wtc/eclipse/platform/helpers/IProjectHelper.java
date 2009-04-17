@@ -14,12 +14,15 @@ import java.util.List;
 
 /**
  * Helper for creating and manipulating projects.
+ * 
+ * @since 3.8.0
  */
 public interface IProjectHelper {
     /**
      * addProjectBuildDependency - Open the project properties for a given project and add
      * a project dependency to another given project.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void addProjectBuildDependency(IUIContext ui,
@@ -30,6 +33,7 @@ public interface IProjectHelper {
      * addProjectNatureViaAPI - Use the Eclipse API to add a project nature to the project
      * with the given name.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Name of the project to add the nature to
      * @param  natureID     - The ID of the nature (as determined by the the nature's
@@ -44,6 +48,7 @@ public interface IProjectHelper {
      * method will issue a test case failure if the project cannot be found for any
      * reason. If the project is already closed, this operation is a no-op.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Name of the project to close
      */
@@ -100,6 +105,7 @@ public interface IProjectHelper {
      * IN THE WORKSPACE. INSTEAD, THE createNewProject() METHODS ON SPECIFIC PROJECT
      * HELPERS SHOULD BE USED
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  sourcePlugin  - The test plugin containing the archive with the project to
      *                       import
@@ -118,6 +124,7 @@ public interface IProjectHelper {
      * IN THE WORKSPACE. INSTEAD, THE createNewProject() METHODS ON SPECIFIC PROJECT
      * HELPERS SHOULD BE USED
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  sourcePlugin  - The test plugin containing the archive with the project to
      *                       import
@@ -141,6 +148,7 @@ public interface IProjectHelper {
      * TYPICALLY BE USED TO CREATE PROEJCTS IN THE WORKSPACE. INSTEAD, THE
      * createNewProject() METHODS ON SPECIFIC PROJECT HELPERS SHOULD BE USED
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  sourcePlugin  - The test plugin containing the project source to import
      * @param  projectRoot   - The plugin-relative path to the project to import. The
@@ -162,6 +170,7 @@ public interface IProjectHelper {
      * TYPICALLY BE USED TO CREATE PROEJCTS IN THE WORKSPACE. INSTEAD, THE
      * createNewProject() METHODS ON SPECIFIC PROJECT HELPERS SHOULD BE USED
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  sourcePlugin  - The test plugin containing the project source to import
      * @param  projectRoot   - The plugin-relative path to the project to import. The
@@ -184,6 +193,7 @@ public interface IProjectHelper {
      * THE WORKSPACE. INSTEAD, THE createNewProject() METHODS ON SPECIFIC PROJECT HELPERS
      * SHOULD BE USED
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  sourcePlugin  - The test plugin containing the archive with the project to
      *                       import
@@ -200,6 +210,7 @@ public interface IProjectHelper {
      * THE WORKSPACE. INSTEAD, THE createNewProject() METHODS ON SPECIFIC PROJECT HELPERS
      * SHOULD BE USED
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  sourcePlugin  - The test plugin containing the archive with the project to
      *                       import
@@ -217,6 +228,7 @@ public interface IProjectHelper {
      * invokeProjecPropertiesDialog - Show the properties dialog for the project with the
      * given name.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - The project whose properties dialog is to be shown
      */
@@ -228,6 +240,7 @@ public interface IProjectHelper {
      * method will issue a test case failure if the project cannot be found for any
      * reason. If the project is already opened, this operation is a no-op.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Name of the project to open
      */
@@ -236,6 +249,7 @@ public interface IProjectHelper {
     /**
      * waitForProjectExists - Wait for the project with the given name to exist.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Should not be null
      * @param  exists       - True if the project should exist for this condition to be
@@ -250,6 +264,7 @@ public interface IProjectHelper {
      * AREN'T SURE WHAT THE TIMEOUT AND INTERVAL VALUES ARE SUPPOSED TO BE, THEN YOU
      * SHOULDN'T BE USING THIS METHOD).
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Should not be null
      * @param  exists       - True if the project should exist for this condition to be
@@ -268,6 +283,7 @@ public interface IProjectHelper {
      * waitForProjectOpen - Wait for the project with the given name to exist and to have
      * the given open/closed state.
      *
+     * @since 3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Should not be null
      * @param  open         - True if the project should exist and be open for this

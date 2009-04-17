@@ -20,6 +20,8 @@ import java.util.Set;
  * are any running jobs. Will return false (condition not met) when there are WAITING or
  * RUNNING jobs. Can be passed a list of exceptions (jobs that can be RUNNING or WAITING
  * and still meet this condition)
+ * 
+ * @since 3.8.0
  */
 public class JobExistsCondition implements ICondition {
     // default to waiting 6 minutes

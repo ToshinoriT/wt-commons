@@ -22,6 +22,8 @@ import org.eclipse.ui.PlatformUI;
 /**
  * Condition that waits for the open editors to (not) contain an editor for the given file
  * path.
+ * 
+ * @since 3.8.0
  */
 public class FileOpenCondition implements ICondition {
     private final IPath _filePath;
@@ -30,6 +32,7 @@ public class FileOpenCondition implements ICondition {
     /**
      * Save the data members.
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input. Needed because any time we start
      *                   doing synExec calls outside of the WindowTester framework, we'll
      *                   need to call handleConditions ourselves

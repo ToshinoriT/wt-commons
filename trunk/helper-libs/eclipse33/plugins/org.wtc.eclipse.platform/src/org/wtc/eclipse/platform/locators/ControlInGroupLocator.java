@@ -17,6 +17,8 @@ import java.util.regex.PatternSyntaxException;
 /**
  * Find a control with the given class that has a first level parent of type Group and
  * given text.
+ * 
+ * @since 3.8.0
  */
 public class ControlInGroupLocator extends SWTWidgetLocator {
     private static final long serialVersionUID = -4086494387384448701L;

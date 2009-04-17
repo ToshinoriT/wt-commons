@@ -31,12 +31,15 @@ import java.text.MessageFormat;
 /**
  * Legacy automated test support for low level UI "events" to be issued to Draw 2D
  * figures.
+ * 
+ * @since 3.8.0
  */
 public class FigureTester {
     /**
      * Move the mouse to the figure with given parent canvas and click it once in the
      * center with mouse button 1.
      *
+     * @since 3.8.0
      * @param  ui      - Driver for UI generated input
      * @param  parent  - The owner of the target label
      * @param  target  - The label figure to click
@@ -51,6 +54,7 @@ public class FigureTester {
      * Move the mouse to the figure with given parent canvas and click it in the center
      * with mouse button 1.
      *
+     * @since 3.8.0
      * @param  ui       - Driver for UI generated input
      * @param  locator  - With Window Tester 2.0, the widget locator is also the manager
      *                  of how a widget will be selected (for example, the ButtonLocator
@@ -77,6 +81,7 @@ public class FigureTester {
      * Move the mouse to the figure with given parent canvas and click it once in the
      * center with mouse button 1.
      *
+     * @since 3.8.0
      * @param  ui      - Driver for UI generated input
      * @param  parent  - The owner of the target label
      * @param  target  - The label figure to click
@@ -97,6 +102,7 @@ public class FigureTester {
      * Move the mouse to the figure with given parent canvas and click it once in the
      * center with mouse button 1.
      *
+     * @since 3.8.0
      * @param  ui       - Driver for UI generated input
      * @param  parent   - The owner of the target label
      * @param  locator  - With Window Tester 2.0, the widget locator is also the manager
@@ -135,6 +141,7 @@ public class FigureTester {
     /**
      * move the mouse to the given click point and click it once using mouse button 1.
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  parent      - The owner of the target Point
      * @param  clickPoint  - The location relative to the parent's bounds to click
@@ -154,6 +161,7 @@ public class FigureTester {
     /**
      * move the mouse to the given click point and click it once using mouse button 1.
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  parent      - The owner of the target Point
      * @param  locator     - With Window Tester 2.0, the widget locator is also the
@@ -212,6 +220,7 @@ public class FigureTester {
      * Move the mouse to the label-typed figure with given parent canvas and click it once
      * in the middle of the text with mouse button 1.
      *
+     * @since 3.8.0
      * @param  ui      - Driver for UI generated input
      * @param  parent  - The owner of the target label
      * @param  target  - The label figure to click
@@ -233,6 +242,7 @@ public class FigureTester {
      * Move the mouse to the polyline figure with given parent canvas and click it once
      * with mouse button 1.
      *
+     * @since 3.8.0
      * @param  ui      - Driver for UI generated input
      * @param  parent  - The owner of the polyline
      * @param  target  - The polyline figure to click
@@ -258,6 +268,7 @@ public class FigureTester {
      * Move the mouse to the figure with given parent canvas and click it once with mouse
      * button 3.
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  parent    - The owner of the target label
      * @param  target    - The label figure to click
@@ -284,6 +295,7 @@ public class FigureTester {
      * Move the mouse to the label-typed figure with given parent canvas and click it once
      * with mouse button 3.
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  parent    - The owner of the target label
      * @param  target    - The label figure to click
@@ -310,6 +322,7 @@ public class FigureTester {
      * performs a context menu click at the given 'clickPoint' and invokes the context
      * menu item that matches the given 'menuText'
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  parent      - The figure canvas on which the context click will occur
      * @param  clickPoint  - The click point on the figure canvas (does not consider the
@@ -339,6 +352,7 @@ public class FigureTester {
      * Move the mouse to the polyline figure associated with the given parent canvas and
      * click it once with mouse button 3.
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  parent    - The owner of the target polyline
      * @param  target    - The polyline to click
@@ -360,6 +374,7 @@ public class FigureTester {
      * Move the mouse to the figure with given parent canvas and click it twice in the
      * center with mouse button 1.
      *
+     * @since 3.8.0
      * @param  ui      - Driver for UI generated input
      * @param  parent  - The owner of the target label
      * @param  target  - The label figure to click
@@ -374,6 +389,7 @@ public class FigureTester {
      * Move the mouse to the figure with given parent canvas and click it twice in the
      * center with mouse button 1.
      *
+     * @since 3.8.0
      * @param  ui       - Driver for UI generated input
      * @param  locator  - With Window Tester 2.0, the widget locator is also the manager
      *                  of how a widget will be selected (for example, the ButtonLocator

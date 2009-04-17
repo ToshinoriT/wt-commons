@@ -12,6 +12,8 @@ import com.windowtester.runtime.swt.condition.shell.IShellCondition;
 /**
  * Wrapper for the Window Tester WizardClosingShellHandler that extends
  * AbstractShellHandler.
+ * 
+ * @since 3.8.0
  */
 public class WrappedWizardClosingShellHandler extends AbstractShellHandler {
     private WizardClosingShellHandler _wizardClosingShellHandler;
