@@ -7,6 +7,7 @@ package org.wtc.eclipse.platform.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
 import org.wtc.eclipse.core.tests.ManagedTestSuite;
 import org.wtc.eclipse.platform.tests.helpers.AntHelperTest;
 import org.wtc.eclipse.platform.tests.helpers.EditorHelperFindReplaceAllTest;
@@ -22,6 +23,7 @@ import org.wtc.eclipse.platform.tests.helpers.LineByLineSetDifferTest;
 import org.wtc.eclipse.platform.tests.helpers.ProjectHelperDeleteTest;
 import org.wtc.eclipse.platform.tests.helpers.ProjectHelperExportTest;
 import org.wtc.eclipse.platform.tests.helpers.ProjectHelperExportToArchiveTest;
+import org.wtc.eclipse.platform.tests.helpers.ProjectHelperImplTest;
 import org.wtc.eclipse.platform.tests.helpers.ProjectHelperImportFromArchiveTest;
 import org.wtc.eclipse.platform.tests.helpers.ProjectHelperImportFromSourceTest;
 import org.wtc.eclipse.platform.tests.helpers.ProjectHelperJavaTest;
@@ -87,6 +89,7 @@ public class PlatformHelperTestSuite extends EclipseUITest {
         suite.addTest(new ManagedTestSuite(WorkbenchHelperOpenViewPerspectiveTest.class));
         suite.addTest(new ManagedTestSuite(WorkbenchHelperSwitchPerspectiveDialogTest.class));
         suite.addTest(new ManagedTestSuite(WorkbenchHelperVerifyMarkersTest.class));
+        suite.addTest(new ManagedTestSuite(ProjectHelperImplTest.class));
 
         return suite;
     }
