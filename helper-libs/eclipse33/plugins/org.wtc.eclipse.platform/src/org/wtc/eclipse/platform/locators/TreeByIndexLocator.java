@@ -10,6 +10,8 @@ import org.eclipse.swt.widgets.Tree;
 /**
  * SWTWidgetLocator that can find Tree widgets by index without requiring a parent widget
  * locator.
+ * 
+ * @since 3.8.0
  */
 public class TreeByIndexLocator extends SWTWidgetByIndexLocator {
     private static final long serialVersionUID = -6689845417821346294L;

@@ -10,6 +10,8 @@ import org.eclipse.core.runtime.IPath;
 /**
  * Error that provides information about a failure during the source folder creation
  * operation.
+ * 
+ * @since 3.8.0
  */
 public class SourceFolderCreationError extends WTCHelperError {
     private static final long serialVersionUID = -1316897683022057522L;

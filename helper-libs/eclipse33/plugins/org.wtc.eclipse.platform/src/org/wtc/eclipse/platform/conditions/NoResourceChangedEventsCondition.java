@@ -19,6 +19,8 @@ import java.lang.ref.WeakReference;
  * be true if that timer expires. In other words, wait for all resource change events to
  * stop then wait the given timeout value after the last resource changed event to make
  * sure no new events are broadcast.
+ * 
+ * @since 3.8.0
  */
 public class NoResourceChangedEventsCondition implements ICondition {
     // How long to wait after the last resource changed event before

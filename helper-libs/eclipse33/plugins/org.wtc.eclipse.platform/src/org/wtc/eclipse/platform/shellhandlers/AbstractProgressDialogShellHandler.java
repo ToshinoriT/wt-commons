@@ -18,6 +18,8 @@ import org.wtc.eclipse.platform.conditions.YieldingShellDisposedCondition;
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
  * and is to be disposed without failing the test. This handler will specifically wait
  * until a popped progress dialog is closed
+ * 
+ * @since 3.8.0
  */
 public class AbstractProgressDialogShellHandler extends AbstractShellHandler
     implements IShellConditionHandler {

@@ -12,6 +12,8 @@ import org.wtc.eclipse.platform.PlatformActivator;
 
 /**
  * Yields if the active shell does not match the widget on which we are waiting.
+ * 
+ * @since 3.8.0
  */
 public class YieldingShellDisposedCondition extends WidgetDisposedCondition {
     private final Shell _shell; //cache the shell

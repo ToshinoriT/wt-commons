@@ -15,6 +15,8 @@ import java.text.Collator;
 
 /**
  * Condition to verify that the table item is checked.
+ * 
+ * @since 3.8.0
  */
 public class TableItemCheckedCondition implements ICondition {
     private final Table _source;

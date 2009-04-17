@@ -17,6 +17,8 @@ import org.wtc.eclipse.platform.helpers.IPerspective;
 
 /**
  * Wait until the perspective is active in the active window.
+ * 
+ * @since 3.8.0
  */
 public class PerspectiveActiveCondition implements ICondition {
     private IWorkbench _workbench;

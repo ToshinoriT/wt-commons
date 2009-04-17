@@ -18,6 +18,8 @@ import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 
 /**
  * An SWTWidgetLocator with a backdoor to specify waitForIdle strategy.
+ * 
+ * @since 3.8.0
  */
 public class HackableSWTWidgetLocator extends SWTWidgetLocator {
     private static final long serialVersionUID = -8377938981861371169L;

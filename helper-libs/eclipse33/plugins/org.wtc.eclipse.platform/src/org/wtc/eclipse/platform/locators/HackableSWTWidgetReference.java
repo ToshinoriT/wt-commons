@@ -7,6 +7,9 @@ package org.wtc.eclipse.platform.locators;
 
 import org.eclipse.swt.widgets.Widget;
 
+/**
+ * @since 3.8.0
+ */
 public class HackableSWTWidgetReference extends HackableSWTWidgetLocator {
     private static final long serialVersionUID = -4386416257140138370L;
 

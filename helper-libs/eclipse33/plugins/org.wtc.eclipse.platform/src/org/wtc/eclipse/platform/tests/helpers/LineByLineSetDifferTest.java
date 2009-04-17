@@ -25,6 +25,7 @@ public class LineByLineSetDifferTest extends EclipseUITest {
     /**
      * diffFiles - Execute a LineByLineSet diff on the given file.
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI generated input
      * @param  testFile  - RESOURCES_PATH-relative path to the test file
      */

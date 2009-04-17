@@ -10,6 +10,8 @@ import com.windowtester.runtime.IUIContext;
 /**
  * Helper for additional UI driver macros and UI generated input that is visible to tools
  * and helper implementations.
+ * 
+ * @since 3.8.0
  */
 public interface IUIHelper {
     /**
@@ -18,6 +20,7 @@ public interface IUIHelper {
      * happen, but I don't want to watch the whole test, then I drop this method in right
      * before the interesting part).
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void annoy(IUIContext ui);
@@ -25,6 +28,7 @@ public interface IUIHelper {
     /**
      * arrowDown - Tap the down arrow the given number of times.
      *
+     * @since 3.8.0
      * @param  ui             - Driver for UI generated input
      * @param  numberOfTimes  - Number of times to hit the down arrow
      */
@@ -33,6 +37,7 @@ public interface IUIHelper {
     /**
      * arrowUp - Tap the up arrow the given number of times.
      *
+     * @since 3.8.0
      * @param  ui             - Driver for UI generated input
      * @param  numberOfTimes  - Number of times to hit the up arrow
      */
@@ -43,6 +48,7 @@ public interface IUIHelper {
      * state. May only be called in development (if the prodMode environment variable is
      * set to anything other than "dev", then issue a test case failure)
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void freeze(IUIContext ui);
@@ -50,6 +56,7 @@ public interface IUIHelper {
     /**
      * pressEnter - Simple helper for pressing the enter key.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void pressEnter(IUIContext ui);
@@ -58,6 +65,7 @@ public interface IUIHelper {
      * Take a screenshot with the given title and place it in the harness-specific
      * screenshot output directory.
      *
+     * @since 3.8.0
      * @param  ui     - Driver for UI-generated input
      * @param  title  - Title of the screenshot. The current total screenshot count will
      *                be appended to this title. Extension is not required. Will be output

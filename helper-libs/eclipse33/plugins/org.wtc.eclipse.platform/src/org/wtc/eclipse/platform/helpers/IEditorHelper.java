@@ -12,6 +12,8 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * Helper for manipulating files through the source editor.
+ * 
+ * @since 3.8.0
  */
 public interface IEditorHelper {
     // ------------------------------------------------------------------------
@@ -27,6 +29,7 @@ public interface IEditorHelper {
      * findAndReplaceAll - Open the given file, search for the provided string and replace
      * it with the given replacement value.
      *
+     * @since 3.8.0
      * @param  ui             - Driver for UI generated input
      * @param  filePath       - Full path (project included) of the file to edit. Ex: <i>
      *                        RuntimeTestProject/src/folder/MyFile.jsp</i>
@@ -42,6 +45,7 @@ public interface IEditorHelper {
      * findAndReplaceAll - Open the given file, search for the provided string and replace
      * it with the given replacement value.
      *
+     * @since 3.8.0
      * @param  ui             - Driver for UI generated input
      * @param  filePath       - Full path (project included) of the file to edit. Ex: <i>
      *                        RuntimeTestProject/src/folder/MyFile.jsp</i>
@@ -61,6 +65,7 @@ public interface IEditorHelper {
      * findAndReplaceFirst - Open the given file, search for the provided string and
      * replace it with the given replacement value.
      *
+     * @since 3.8.0
      * @param  ui             - Driver for UI generated input
      * @param  filePath       - Full path (project included) of the file to edit. Ex: <i>
      *                        RuntimeTestProject/src/folder/MyFile.jsp</i>
@@ -76,6 +81,7 @@ public interface IEditorHelper {
      * findAndReplaceOccurrences- Open the given file, search for the provided string and
      * replace it the specified number of times with the given replacement value.
      *
+     * @since 3.8.0
      * @param  ui                   - Driver for UI generated input
      * @param  filePath             - Full path (project included) of the file to edit.
      *                              Ex: <i>RuntimeTestProject/src/folder/MyFile.jsp</i>
@@ -93,6 +99,7 @@ public interface IEditorHelper {
      * findFirst - Use the "Find/Replace" dialog to find the first occurrence of the given
      * search string in the active editor.
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  searchString  - String to find in the active text editor
      */
@@ -121,6 +128,7 @@ public interface IEditorHelper {
      * gotoLine - Use the "Go to Line" to place the cursor at a line location in the
      * active editor.
      *
+     * @since 3.8.0
      * @param  ui    - Driver for UI generated input
      * @param  line  - The line number to place the cursor at. Should be within the bounds
      *               of the length of the file
@@ -134,6 +142,7 @@ public interface IEditorHelper {
      * given search string. This test will issue a TestCase failure if any of the
      * resources cannot be accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  sourcePlugin  - Plugin containing the resource that defines the text to be
      *                       inserted
@@ -162,6 +171,7 @@ public interface IEditorHelper {
      * position. This test will issue a TestCase failure if any of the resources cannot be
      * accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  sourcePlugin  - Plugin containing the resource that defines the text to be
      *                       inserted
@@ -189,6 +199,7 @@ public interface IEditorHelper {
      * given search string. This test will issue a TestCase failure if any of the
      * resources cannot be accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  sourcePlugin  - Plugin containing the resource that defines the text to be
      *                       inserted
@@ -220,6 +231,7 @@ public interface IEditorHelper {
      * position. This test will issue a TestCase failure if any of the resources cannot be
      * accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  sourcePlugin  - Plugin containing the resource that defines the text to be
      *                       inserted
@@ -249,6 +261,7 @@ public interface IEditorHelper {
      * relative to the given search string. This test will issue a TestCase failure if any
      * of the resources cannot be accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  insertText  - the text to insert
      * @param  toFilePath  - Full path (project included) to the file in the workspace
@@ -271,6 +284,7 @@ public interface IEditorHelper {
      * given by a character offset. This test will issue a TestCase failure if any of the
      * resources cannot be accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  insertText  - the text to insert
      * @param  toFilePath  - Full path (project included) to the file in the workspace
@@ -292,6 +306,7 @@ public interface IEditorHelper {
      * relative to the given search string. This test will issue a TestCase failure if any
      * of the resources cannot be accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  insertText  - the text to insert
      * @param  toFilePath  - Full path (project included) to the file in the workspace
@@ -317,6 +332,7 @@ public interface IEditorHelper {
      * given by a line-column position. This test will issue a TestCase failure if any of
      * the resources cannot be accessed for any reason
      *
+     * @since 3.8.0
      * @param  ui          - Driver for UI generated input
      * @param  insertText  - the text to insert
      * @param  toFilePath  - Full path (project included) to the file in the workspace
@@ -338,6 +354,7 @@ public interface IEditorHelper {
     /**
      * Opens a file in a Text Editor view.
      *
+     * @since 3.8.0
      * @param  ui        - Driver for UI-generated input
      * @param  filePath  - Full path (project included) to the file in the workspace that
      *                   is to be opened. Ex: <i>
@@ -350,6 +367,7 @@ public interface IEditorHelper {
      * placeCursor - Set the cursor of the active text editor to the given offset. This
      * method will issue a TestCase failure if there is no active ITextEditor
      *
+     * @since 3.8.0
      * @param  ui      - Driver for UI generated input
      * @param  offset  - the offset position from the beginning of the file
      */
@@ -359,6 +377,7 @@ public interface IEditorHelper {
      * placeCursor - Set the cursor of the active text editor to the given line and
      * column. This method will issue a TestCase failure if there is no active ITextEditor
      *
+     * @since 3.8.0
      * @param  ui      - Driver for UI generated input
      * @param  line    - Line number to place the cursor at. Should be within the bounds
      *                 of the current file length
@@ -372,6 +391,7 @@ public interface IEditorHelper {
      * the given search string. This method will issue a TestCase failure if there is no
      * active ITextEditor
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  searchString  - Text to find in the active source editor
      */

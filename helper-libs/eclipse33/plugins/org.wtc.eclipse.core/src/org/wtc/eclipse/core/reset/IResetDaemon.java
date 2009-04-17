@@ -14,6 +14,8 @@ import org.wtc.eclipse.core.util.Timestamp;
  * the logic to verify that the actions from the provided helper methods are properly
  * cleaned. A reset daemon is scoped by a logical entity within the workspace (ie -
  * projects, preferences, servers, etc) as opposed to a 1:1 relationship with a helper
+ * 
+ * @since 3.8.0
  */
 public interface IResetDaemon {
     /**
@@ -23,6 +25,7 @@ public interface IResetDaemon {
      * should not try to reset preferences, for example. All actions performed within this
      * reset daemon should use Eclipse API calls instead of UI calls if possible
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input and owner of the "wait"
      *                       method
      * @param  resetContext  - Information about the test that was running and needs to be

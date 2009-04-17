@@ -10,6 +10,8 @@ import org.eclipse.swt.widgets.Widget;
 
 /**
  * Generic class to find a widget by index without a parent locator.
+ * 
+ * @since 3.8.0
  */
 public class SWTWidgetByIndexLocator extends SWTWidgetLocator {
     private static final long serialVersionUID = -8628730208864079576L;

@@ -17,6 +17,8 @@ import org.eclipse.swt.widgets.TreeItem;
  * Condition that searches the given tree for a tree item. The item to search for is the
  * item text where sub-items are found by delimiting the tree item path with forward
  * slashes
+ * 
+ * @since 3.8.0
  */
 public class TreeItemExistsCondition implements ICondition {
     private Tree _tree;

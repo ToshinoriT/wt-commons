@@ -11,12 +11,13 @@ import com.windowtester.runtime.IUIContext;
  * Start listening for the Overwrite Files Dialog and click "OK" if it is ever shown. The
  * caller should call stop listening for this dialog
  *
- * @param  ui  - Driver for UI generated input
+ * @since 3.8.0
  */
 public class ConfirmOverwriteFilesDialogShellHandler extends AbstractOKToCloseShellHandler {
     /**
      * Save the UI context.
      *
+     * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public ConfirmOverwriteFilesDialogShellHandler(IUIContext ui) {

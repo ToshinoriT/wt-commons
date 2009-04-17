@@ -13,6 +13,8 @@ import org.eclipse.swt.widgets.TreeItem;
 /**
  * TreeItemCheckedCondition - Condition that tests whether or not a given TreeItem's
  * checked state is equal to the given expected state.
+ * 
+ * @since 3.8.0
  */
 public class TreeItemCheckedCondition implements ICondition {
     private TreeItem _treeItem;
@@ -22,6 +24,7 @@ public class TreeItemCheckedCondition implements ICondition {
     /**
      * TreeItemCheckedCondition.
      *
+     * @since 3.8.0
      * @param  ui            - Driver for UI generated input
      * @param  treeKey       - The key to which the key is registered with in the given UI
      *                       context

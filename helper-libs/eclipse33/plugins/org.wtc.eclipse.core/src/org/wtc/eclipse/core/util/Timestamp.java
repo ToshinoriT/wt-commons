@@ -10,6 +10,8 @@ import java.util.Date;
 
 /**
  * Utility for creating a timestamp string.
+ * 
+ * @since 3.8.0
  */
 public class Timestamp {
     private final String _timestamp;

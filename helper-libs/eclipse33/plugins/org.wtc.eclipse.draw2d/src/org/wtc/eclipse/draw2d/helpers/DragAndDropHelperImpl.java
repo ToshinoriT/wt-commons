@@ -15,12 +15,16 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.wtc.eclipse.draw2d.Draw2DActivator;
 import org.wtc.eclipse.draw2d.tester.FigureTester;
 
+/**
+ * @since 3.8.0 
+ */
 public class DragAndDropHelperImpl {
     /**
      * First scroll the source and target FigureCanvases as needed to ensure the source
      * and target IFigures are showing. Then move the mouse over the source IFigure and
      * drag and drop it on to the target IFigure
      *
+     * @since 3.8.0
      * @param  ui            - driver for ui generated input
      * @param  sourceCanvas  - the FigureCanvas containing the source IFigure
      * @param  source        - the IFigure to be dragged and dropped
