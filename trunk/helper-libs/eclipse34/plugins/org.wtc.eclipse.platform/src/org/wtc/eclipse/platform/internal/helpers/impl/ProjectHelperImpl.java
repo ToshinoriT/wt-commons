@@ -5,20 +5,16 @@
  */
 package org.wtc.eclipse.platform.internal.helpers.impl;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WT;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.locator.IWidgetLocator;
-import com.windowtester.runtime.locator.WidgetReference;
-import com.windowtester.runtime.swt.condition.SWTIdleCondition;
-import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
-import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
-import com.windowtester.runtime.swt.locator.TreeItemLocator;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 import junit.framework.TestCase;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -43,13 +39,20 @@ import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.adapters.ProjectHelperImplAdapter;
 import org.wtc.eclipse.platform.util.FileUtil;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WT;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.locator.IWidgetLocator;
+import com.windowtester.runtime.locator.WidgetReference;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
+import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
+import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
+import com.windowtester.runtime.swt.locator.TreeItemLocator;
 
 /**
  * Helper manipulating IProject elements in the workspace.
@@ -328,8 +331,8 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
             new SWTIdleCondition().waitForIdle();
 
             if (projectName != null) {
-                String projectNodeLabel = projectName + " .*"; //$NON-NLS-1$ //regexep captures project location
-
+                String projectNodeLabel = buildProjectTreeNodeLabelRegexp(projectName);
+                	
                 // Let's wait for the tree to be populated
                 Tree tree = (Tree) ((WidgetReference) treeRef).getWidget();
                 ui.wait(new TreeItemExistsCondition(tree, projectNodeLabel, true));
@@ -356,6 +359,17 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
         workbench.waitNoJobs(ui, timeout, WT.getDefaultWaitInterval());
     }
 
+    
+    /**
+     * Build an import project tree node matching string.
+	 * @param projectName - the name of the project to match
+	 * @return String - a String suitable for matching the project label in the import project tree
+	 * NOTE: public for testing
+	 */
+	public String buildProjectTreeNodeLabelRegexp(String projectName) {
+		return projectName + " .*"; //$NON-NLS-1$ //regexep captures project location;
+	}
+    
     /**
      * @see  org.wtc.eclipse.platform.helpers.IProjectHelper#importExistingProjectFromArchive(com.windowtester.runtime.IUIContext,
      *       org.eclipse.core.runtime.Plugin, org.eclipse.core.runtime.IPath,
