@@ -62,6 +62,9 @@
     <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperSimpleTest">
         <module>wtc.platform</module>
     </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperProjectTreeLabelTest">
+        <module>wtc.platform</module>
+    </test>
     <test class="org.wtc.eclipse.platform.tests.helpers.ResourceHelperCreateSimpleFileTest">
         <module>wtc.platform</module>
     </test>
