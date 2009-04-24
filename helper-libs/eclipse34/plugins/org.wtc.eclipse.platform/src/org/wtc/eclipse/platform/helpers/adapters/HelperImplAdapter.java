@@ -450,8 +450,9 @@ public abstract class HelperImplAdapter {
      *          {@link IUIContext}
      */
     protected IShellMonitor getShellMonitor(IUIContext ui) {
-    	IShellMonitor sm = (IShellMonitor) ui.getAdapter(IShellMonitor.class);
-    	return sm;
+//    	IShellMonitor sm = (IShellMonitor) ui.getAdapter(IShellMonitor.class);
+//    	return sm;
+    	return com.windowtester.runtime.swt.internal.condition.shell.ShellMonitor.getInstance();
     }
 
     /**
