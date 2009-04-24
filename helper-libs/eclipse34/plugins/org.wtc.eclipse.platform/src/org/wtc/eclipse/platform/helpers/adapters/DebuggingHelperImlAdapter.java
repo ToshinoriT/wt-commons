@@ -5,15 +5,8 @@
  */
 package org.wtc.eclipse.platform.helpers.adapters;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.MenuItemLocator;
-import com.windowtester.swt.util.WaitForIdle;
 import junit.framework.TestCase;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.debug.core.DebugException;
@@ -33,6 +26,15 @@ import org.wtc.eclipse.platform.helpers.IEditorHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper.Perspective;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.MenuItemLocator;
 
 /**
  * Common methods for debugging in any file type.
@@ -130,7 +132,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
 
         // Since another breakpoint may be immediately hit, there's not numch
         // we can wait for here
-        new WaitForIdle().waitForIdle();
+        ui.wait(new SWTIdleCondition());
 
         logExit2();
     }
@@ -194,7 +196,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
         IResourceHelper resources = EclipseHelperFactory.getResourceHelper();
         resources.openFile(ui, filePath);
 
-        new WaitForIdle().waitForIdle();
+        ui.wait(new SWTIdleCondition());
     }
 
     /**
