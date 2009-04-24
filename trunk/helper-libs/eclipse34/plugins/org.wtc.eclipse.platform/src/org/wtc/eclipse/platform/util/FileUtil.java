@@ -5,9 +5,18 @@
  */
 package org.wtc.eclipse.platform.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.channels.FileChannel;
+import java.util.regex.Pattern;
+
 import org.eclipse.core.filebuffers.FileBuffers;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
 import org.eclipse.core.filebuffers.ITextFileBufferManager;
+import org.eclipse.core.filebuffers.LocationKind;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -24,13 +33,6 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.text.IDocument;
 import org.osgi.framework.Bundle;
 import org.wtc.eclipse.platform.PlatformActivator;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.channels.FileChannel;
-import java.util.regex.Pattern;
 
 /**
  */
@@ -210,8 +212,8 @@ public class FileUtil {
         ITextFileBufferManager bufferManager = FileBuffers.getTextFileBufferManager();
 
         try {
-            bufferManager.connect(fullPath, null);
-            ITextFileBuffer buff = bufferManager.getTextFileBuffer(fullPath);
+            bufferManager.connect(fullPath, LocationKind.NORMALIZE, null);            
+            ITextFileBuffer buff = bufferManager.getTextFileBuffer(fullPath, LocationKind.NORMALIZE);
 
             assert (buff != null);
 
@@ -225,7 +227,7 @@ public class FileUtil {
                 Job.getJobManager().endRule(rule);
             }
         } finally {
-            bufferManager.disconnect(fullPath, null);
+            bufferManager.disconnect(fullPath, LocationKind.NORMALIZE, null);
         }
 
         return contents;
