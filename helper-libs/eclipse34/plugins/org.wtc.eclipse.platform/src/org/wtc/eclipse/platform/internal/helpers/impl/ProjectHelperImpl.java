@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -45,6 +46,7 @@ import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WT;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.locator.IWidgetLocator;
+import com.windowtester.runtime.locator.IWidgetReference;
 import com.windowtester.runtime.locator.WidgetReference;
 import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
@@ -279,14 +281,13 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
             File importSource = resources.getFileFromPlugin(ui,
                                                             sourcePlugin,
                                                             importPath);
-
             if (isArchive) {
-                ui.click(new ButtonLocator("Select &archive file:")); //$NON-NLS-1$
+            	IWidgetReference clicked = (IWidgetReference) ui.click(new ButtonLocator("Select &archive file:")); //$NON-NLS-1$
 
                 PlatformActivator.logDebug("Entering text, import archive : " + importSource.getAbsolutePath()); //$NON-NLS-1$
 
-                Text archiveText = new WidgetCollector(ui).indexed(Text.class, 2);
-                
+                Text archiveText = new WidgetCollector(ui).successorOf((Control) clicked.getWidget());
+
                 WidgetReference archiveTextLocator = new WidgetReference(archiveText);
                 safeEnterText(ui, archiveTextLocator, importSource.getAbsolutePath());
             } else {
@@ -310,10 +311,10 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
                     TestCase.fail(ioe.getLocalizedMessage());
                 }
 
-                ui.click(new ButtonLocator("Select roo&t directory:")); //$NON-NLS-1$
+                IWidgetReference clicked = (IWidgetReference) ui.click(new ButtonLocator("Select roo&t directory:")); //$NON-NLS-1$
                 PlatformActivator.logDebug("Entering text, import source : " + projectPath.toPortableString()); //$NON-NLS-1$
 
-                Text sourceText = new WidgetCollector(ui).indexed(Text.class, 1);
+                Text sourceText = new WidgetCollector(ui).successorOf((Control) clicked.getWidget());
                 
                 WidgetReference sourceTextLocator = new WidgetReference(sourceText);
                 safeEnterText(ui, sourceTextLocator, projectPath.toPortableString());
