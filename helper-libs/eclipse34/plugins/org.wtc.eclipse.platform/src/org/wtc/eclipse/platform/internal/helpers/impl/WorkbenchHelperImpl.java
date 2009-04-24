@@ -5,19 +5,13 @@
  */
 package org.wtc.eclipse.platform.internal.helpers.impl;
 
-import abbot.swt.eclipse.utils.WorkbenchUtilities;
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.swt.condition.SWTIdleCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
-import com.windowtester.runtime.swt.locator.MenuItemLocator;
-import com.windowtester.runtime.swt.locator.TableItemLocator;
-import com.windowtester.swt.WaitTimedOutException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import junit.framework.TestCase;
+
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -73,10 +67,20 @@ import org.wtc.eclipse.platform.shellhandlers.UserOperationWaitingShellHandler;
 import org.wtc.eclipse.platform.shellhandlers.WrappedWizardClosingShellHandler;
 import org.wtc.eclipse.platform.util.MarkerUtil;
 import org.wtc.eclipse.platform.util.ThreadUtil;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+
+import abbot.swt.eclipse.utils.WorkbenchUtilities;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
+import com.windowtester.runtime.swt.locator.MenuItemLocator;
+import com.windowtester.runtime.swt.locator.TableItemLocator;
+import com.windowtester.swt.WaitTimedOutException;
 
 /**
  * Helper workbench specific tasks.
@@ -830,13 +834,6 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      */
     public void stopListeningForDialogFileContentChanged(IUIContext ui) {
         stopListeningForDialog(ui, new ConfirmFileContentChangedDialog(ui));
-    }
-
-    /**
-     * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#stopListeningForDialogFileContentChanged(com.windowtester.runtime.IUIContext)
-     */
-    public void stopListeningForDialogFileContentChanged(com.windowtester.swt.IUIContext ui) {
-        stopListeningForDialogFileContentChanged(getUI(ui));
     }
 
     /**
