@@ -5,30 +5,16 @@
  */
 package org.wtc.eclipse.platform.helpers.adapters;
 
-import abbot.finder.swt.SWTHierarchy;
-import abbot.finder.swt.TestHierarchy;
-import abbot.tester.swt.ControlTester;
-import abbot.tester.swt.TableItemTester;
-import abbot.tester.swt.TableTester;
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WT;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.locator.IWidgetLocator;
-import com.windowtester.runtime.locator.WidgetReference;
-import com.windowtester.runtime.locator.XYLocator;
-import com.windowtester.runtime.monitor.IUIThreadMonitor;
-import com.windowtester.runtime.swt.condition.SWTIdleCondition;
-import com.windowtester.runtime.swt.condition.shell.IShellCondition;
-import com.windowtester.runtime.swt.condition.shell.IShellMonitor;
-import com.windowtester.runtime.swt.internal.condition.shell.ShellMonitor;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.MenuItemLocator;
-import com.windowtester.runtime.swt.locator.NamedWidgetLocator;
-import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import com.windowtester.swt.UIContext;
-import com.windowtester.tester.swt.TreeItemTester;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import junit.framework.TestCase;
+
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Rectangle;
@@ -46,13 +32,29 @@ import org.osgi.framework.Bundle;
 import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.conditions.RegexTitleShellCondition;
 import org.wtc.eclipse.platform.shellhandlers.IWorkbenchShellHandler;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import abbot.finder.swt.SWTHierarchy;
+import abbot.finder.swt.TestHierarchy;
+import abbot.tester.swt.ControlTester;
+import abbot.tester.swt.TableItemTester;
+import abbot.tester.swt.TableTester;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WT;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.locator.IWidgetLocator;
+import com.windowtester.runtime.locator.WidgetReference;
+import com.windowtester.runtime.locator.XYLocator;
+import com.windowtester.runtime.monitor.IUIThreadMonitor;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
+import com.windowtester.runtime.swt.condition.shell.IShellCondition;
+import com.windowtester.runtime.swt.condition.shell.IShellMonitor;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.MenuItemLocator;
+import com.windowtester.runtime.swt.locator.NamedWidgetLocator;
+import com.windowtester.runtime.swt.locator.TreeItemLocator;
+import com.windowtester.tester.swt.TreeItemTester;
 
 /**
  * Generic methods shared in Helper implementation subclasses.
@@ -302,7 +304,8 @@ public abstract class HelperImplAdapter {
      * @return  the widget - The first instance of a Widget of the given type or <code>
      *          null</code> if no Widget is found
      */
-    protected <T extends Widget> T findFirstWidget(Widget parentWidget, Class<T> widgetClass) {
+    @SuppressWarnings("unchecked")
+	protected <T extends Widget> T findFirstWidget(Widget parentWidget, Class<T> widgetClass) {
         Display display = Display.getDefault();
         TestHierarchy hierarchy = new TestHierarchy(display);
 
@@ -444,24 +447,11 @@ public abstract class HelperImplAdapter {
      *
      * @param   ui  - Driver for UI generated input
      * @return  IShellMonitor - Instance of shell monitor for this
-     *          com.windowtester.swt.IUIContext
+     *          {@link IUIContext}
      */
     protected IShellMonitor getShellMonitor(IUIContext ui) {
-        return ShellMonitor.getInstance();
-    }
-
-    /**
-     * Utility for converting to new style com.windowtester.swt.IUIContext.
-     */
-    public static com.windowtester.runtime.IUIContext getUI(com.windowtester.swt.IUIContext ui) {
-        return (com.windowtester.runtime.IUIContext) ui.getAdapter(com.windowtester.runtime.IUIContext.class);
-    }
-
-    /**
-     * Utility for converting to old style com.windowtester.swt.IUIContext.
-     */
-    public static com.windowtester.swt.IUIContext getUIContext(com.windowtester.runtime.IUIContext ui) {
-        return (com.windowtester.swt.IUIContext) ui.getAdapter(com.windowtester.swt.IUIContext.class);
+    	IShellMonitor sm = (IShellMonitor) ui.getAdapter(IShellMonitor.class);
+    	return sm;
     }
 
     /**
@@ -474,7 +464,7 @@ public abstract class HelperImplAdapter {
      * shouldn't be calling this method.</p>
      */
     protected void handleConditions(IUIContext ui) {
-        ((UIContext) ui).handleConditions();
+    	ui.handleConditions();
     }
 
     /**
@@ -705,36 +695,6 @@ public abstract class HelperImplAdapter {
     }
 
     /**
-     * safeEnterText - Select all of the text in the entry field at the given
-     * com.windowtester.swt.IUIContext key, then type the given String value into that
-     * field.
-     *
-     * @deprecated  Use com.windowtester.runtime.IUIContext instead
-     * @param       ui            - Driver for UI generated input
-     * @param       textFieldKey  - The text field must already be registered to the given
-     *                            com.windowtester.swt.IUIContext with this key
-     * @param       value         - The text to type into the text field
-     * @throws      com.windowtester.swt.WidgetNotFoundException;       - If the text
-     *                                                                  field could not be
-     *                                                                  uniquely found
-     * @throws      com.windowtester.swt.MultipleWidgetsFoundException  - If the text
-     *                                                                  field could not be
-     *                                                                  uniquely found
-     */
-    protected void safeEnterText(final com.windowtester.swt.IUIContext ui,
-                                 String textValueKey,
-                                 String value)
-                          throws com.windowtester.swt.WidgetNotFoundException,
-                                 com.windowtester.swt.MultipleWidgetsFoundException {
-        ui.click(textValueKey);
-        ui.keyClick(SWT.CTRL, 'a');
-
-        if ((value != null) && (value.length() > 0)) {
-            ui.enterText(value);
-        }
-    }
-
-    /**
      * selectAll - Simple helper for sending the keystroke to select all.
      *
      * @since 3.8.0
@@ -932,7 +892,8 @@ public abstract class HelperImplAdapter {
 
         final List<T> control = new ArrayList<T>(1);
         ui.wait(new ICondition() {
-                public boolean test() {
+                @SuppressWarnings("unchecked")
+				public boolean test() {
                     boolean found = false;
                     IWidgetLocator[] references = ui.findAll(controlLocator);
 

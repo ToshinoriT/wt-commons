@@ -5,11 +5,15 @@
  */
 package org.wtc.eclipse.platform.util;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.swt.condition.SWTIdleCondition;
-import com.windowtester.runtime.swt.locator.MenuItemLocator;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import junit.framework.TestCase;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Plugin;
@@ -21,15 +25,13 @@ import org.eclipse.swt.widgets.Display;
 import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IEditorHelper;
-import org.wtc.eclipse.platform.helpers.IEditorHelper.Placement;
-import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import org.wtc.eclipse.platform.helpers.IEditorHelper.Placement;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
+import com.windowtester.runtime.swt.locator.MenuItemLocator;
 
 /**
  * SourceEditorBlockInserter - Internal utility for inserting blocks of text into the
@@ -458,13 +460,11 @@ public class SourceEditorBlockInserter {
 
         int oldLocation = editorHelper.getCursorLocation(ui);
 
-        com.windowtester.swt.IUIContext ui_old = HelperImplAdapter.getUIContext(ui);
-
         char[] ch = keyString.toCharArray();
 
         for (int i = 0; i < ch.length; i++) {
             ui.keyClick(ch[i]);
-            ui_old.waitForIdle();
+            legacyWaitForIdle();
 
             int newLocation = editorHelper.getCursorLocation(ui);
 
@@ -472,7 +472,7 @@ public class SourceEditorBlockInserter {
 
             while (locationDifference > 1) {
                 ui.keyClick(SWT.ARROW_LEFT);
-                ui_old.waitForIdle();
+                legacyWaitForIdle();
                 locationDifference--;
             }
 
@@ -482,14 +482,33 @@ public class SourceEditorBlockInserter {
 
             while ((resources.getFileLength(targetFile) - oldLength) > 1) {
                 ui.keyClick(SWT.DEL);
-                ui_old.waitForIdle();
+                legacyWaitForIdle();
             }
 
             oldLength++;
         }
     }
 
+    
     /**
+	 * A wait for idle implementation that reflects the "OLD" way of doing things
+	 * (e.g., WT's first API implementation).  This OLD way is now deprecated in favor
+	 * of the more modern {@link SWTIdleCondition} implementation. This method should 
+	 * eventually get reimplemented to use a {@link SWTIdleCondition} and tested 
+	 * against existing product tests.
+	 *
+	 * @since 3.8.0
+	 */
+	private void legacyWaitForIdle() {
+		final Display display = Display.getDefault();
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				while(display.readAndDispatch());
+			}
+		});		
+	}
+
+	/**
      * safeNewLine - For some editors, auto-formatting will insert characters to complete
      * a formatting rule as characters are typed. For example, auto-formatting may insert
      * a closing brace when an opening brace is entered into a java file. This method

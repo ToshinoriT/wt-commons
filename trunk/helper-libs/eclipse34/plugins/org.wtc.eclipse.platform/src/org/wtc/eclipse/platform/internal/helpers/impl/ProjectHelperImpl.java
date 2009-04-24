@@ -39,6 +39,7 @@ import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.adapters.ProjectHelperImplAdapter;
 import org.wtc.eclipse.platform.util.FileUtil;
+import org.wtc.eclipse.platform.util.WidgetCollector;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WT;
@@ -284,9 +285,8 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
 
                 PlatformActivator.logDebug("Entering text, import archive : " + importSource.getAbsolutePath()); //$NON-NLS-1$
 
-                com.windowtester.swt.IUIContext ui_old = getUIContext(ui);
-                Text archiveText = (Text) ui_old.find(new com.windowtester.swt.WidgetLocator(Text.class, 1));
-
+                Text archiveText = new WidgetCollector(ui).indexed(Text.class, 2);
+                
                 WidgetReference archiveTextLocator = new WidgetReference(archiveText);
                 safeEnterText(ui, archiveTextLocator, importSource.getAbsolutePath());
             } else {
@@ -312,11 +312,9 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
 
                 ui.click(new ButtonLocator("Select roo&t directory:")); //$NON-NLS-1$
                 PlatformActivator.logDebug("Entering text, import source : " + projectPath.toPortableString()); //$NON-NLS-1$
-//                IWidgetLocator sourceTextLocator = new TextByIndexLocator(0);
 
-                com.windowtester.swt.IUIContext ui_old = getUIContext(ui);
-                Text sourceText = (Text) ui_old.find(new com.windowtester.swt.WidgetLocator(Text.class, 0));
-
+                Text sourceText = new WidgetCollector(ui).indexed(Text.class, 1);
+                
                 WidgetReference sourceTextLocator = new WidgetReference(sourceText);
                 safeEnterText(ui, sourceTextLocator, projectPath.toPortableString());
             }
