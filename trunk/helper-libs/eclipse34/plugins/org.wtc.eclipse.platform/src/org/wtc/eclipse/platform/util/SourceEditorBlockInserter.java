@@ -14,7 +14,6 @@ import java.io.InputStreamReader;
 
 import junit.framework.TestCase;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.swt.SWT;
@@ -30,7 +29,6 @@ import org.wtc.eclipse.platform.helpers.IEditorHelper.Placement;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
 
 /**
@@ -134,71 +132,6 @@ public class SourceEditorBlockInserter {
 
 //        insertBlock(ui, editorHelper, insertBlockPlugin, pathToInsertBlock, fullPathToFile);
         pasteFromFile(ui, editorHelper, insertBlockPlugin, pathToInsertBlock, fullPathToFile);
-    }
-
-    /**
-     * insertBlock - Use keystrokes to enter a block of text into the file at the given
-     * workspace location. Get the block of text from the plugin resource at the given
-     * plugin path. Insert the block into the active editor at the current character
-     * position. This test will issue a TestCase failure if any of the resources cannot be
-     * accessed for any reason
-     *
-     * @since 3.8.0
-     * @param  ui                 - Driver for UI generated input
-     * @param  editorHelper       - Implementation of a helper used in text manipulation
-     * @param  insertBlockPlugin  - Plugin containing the resource that defines the text
-     *                            to be inserted
-     * @param  pathToInsertBlock  - The plugin-relative path to the resource of the text
-     *                            to insert
-     * @param  fullPathToFile     - Full path (project included) to the file in the
-     *                            workspace that is to be edited
-     */
-    private void insertBlock(IUIContext ui,
-                             IEditorHelper editorHelper,
-                             Plugin insertBlockPlugin,
-                             IPath pathToInsertBlock,
-                             IPath fullPathToFile) {
-        TestCase.assertNotNull(ui);
-        TestCase.assertNotNull(editorHelper);
-        TestCase.assertNotNull(insertBlockPlugin);
-        TestCase.assertNotNull(pathToInsertBlock);
-        TestCase.assertTrue(!pathToInsertBlock.isEmpty());
-        TestCase.assertNotNull(fullPathToFile);
-        TestCase.assertTrue(!fullPathToFile.isEmpty());
-
-        IResourceHelper resources = EclipseHelperFactory.getResourceHelper();
-        File insertFromFile = resources.getFileFromPlugin(ui, insertBlockPlugin, pathToInsertBlock);
-        IFile toFile = resources.getFileFromWorkspace(ui, fullPathToFile);
-
-        try {
-            InputStream blockStream = new FileInputStream(insertFromFile);
-
-            try {
-                InputStreamReader blockReader = new InputStreamReader(blockStream);
-                BufferedReader block = new BufferedReader(blockReader);
-
-                String nextLine = block.readLine();
-
-                // Condition: This while goes through the rest of the lines
-                // entering them
-                while (nextLine != null) {
-                    safeKeyString(ui, editorHelper, nextLine, toFile);
-
-                    nextLine = block.readLine();
-
-                    if (nextLine != null) {
-                        safeNewLine(ui, editorHelper, toFile);
-                    }
-                }
-            } finally {
-                if (blockStream != null) {
-                    blockStream.close();
-                }
-            }
-        } catch (IOException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getLocalizedMessage());
-        }
     }
 
     /**
@@ -397,11 +330,11 @@ public class SourceEditorBlockInserter {
         TestCase.assertNotNull(fullPathToFile);
         TestCase.assertTrue(!fullPathToFile.isEmpty());
 
-        IResourceHelper resources = EclipseHelperFactory.getResourceHelper();
-        IFile toFile = resources.getFileFromWorkspace(ui, fullPathToFile);
+//        IResourceHelper resources = EclipseHelperFactory.getResourceHelper();
+//        IFile toFile = resources.getFileFromWorkspace(ui, fullPathToFile);
 
-        String oldContents = resources.getFileContents(toFile);
-        int oldLength = oldContents.length();
+//        String oldContents = resources.getFileContents(toFile);
+//        int oldLength = oldContents.length();
 //        System.err.println("--> OLD LENGTH:" + oldLength);
 
         ui.handleConditions();
@@ -427,140 +360,14 @@ public class SourceEditorBlockInserter {
             TestCase.fail();
         }
 
-        String newContents = resources.getFileContents(toFile);
-        int newLength = newContents.length();
+//        String newContents = resources.getFileContents(toFile);
+//        int newLength = newContents.length();
 //        System.err.println("--> BUFFER LENGTH:" + buffer.length());
 //        System.err.println("--> LINE COUNT:" + lineCount);
 //        System.err.println("--> l:" + l);
 //        System.err.println("--> NEW LENGTH:" + newLength);
 
 //        TestCase.assertEquals(newLength, oldLength + pasteContents.length());
-    }
-
-    /**
-     * safeKeyString - For some editors, auto-formatting will insert characters to
-     * complete a formatting rule as characters are typed. For example, auto-formatting
-     * may insert a closing brace when an opening brace is entered into a java file. This
-     * method ensures that only the characters in the given string are entered.
-     *
-     * @since 3.8.0
-     * @param  ui            - Driver for UI generated input
-     * @param  editorHelper  - Implementation of a helper used in text manipulation
-     * @param  keyString     - Characters to type into the given target file
-     * @param  targetFile    - Enter characters into the current character position of
-     *                       this file
-     */
-    private void safeKeyString(final IUIContext ui,
-                               IEditorHelper editorHelper,
-                               final String keyString,
-                               IFile targetFile) {
-        IResourceHelper resources = EclipseHelperFactory.getResourceHelper();
-        String oldContents = resources.getFileContents(targetFile);
-        int oldLength = oldContents.length();
-
-        int oldLocation = editorHelper.getCursorLocation(ui);
-
-        char[] ch = keyString.toCharArray();
-
-        for (int i = 0; i < ch.length; i++) {
-            ui.keyClick(ch[i]);
-            legacyWaitForIdle();
-
-            int newLocation = editorHelper.getCursorLocation(ui);
-
-            int locationDifference = newLocation - oldLocation;
-
-            while (locationDifference > 1) {
-                ui.keyClick(SWT.ARROW_LEFT);
-                legacyWaitForIdle();
-                locationDifference--;
-            }
-
-            oldLocation++;
-
-            TestCase.assertTrue(resources.getFileLength(targetFile) > 0);
-
-            while ((resources.getFileLength(targetFile) - oldLength) > 1) {
-                ui.keyClick(SWT.DEL);
-                legacyWaitForIdle();
-            }
-
-            oldLength++;
-        }
-    }
-
-    
-    /**
-	 * A wait for idle implementation that reflects the "OLD" way of doing things
-	 * (e.g., WT's first API implementation).  This OLD way is now deprecated in favor
-	 * of the more modern {@link SWTIdleCondition} implementation. This method should 
-	 * eventually get reimplemented to use a {@link SWTIdleCondition} and tested 
-	 * against existing product tests.
-	 *
-	 * @since 3.8.0
-	 */
-	private void legacyWaitForIdle() {
-		final Display display = Display.getDefault();
-		Display.getDefault().syncExec(new Runnable() {
-			public void run() {
-				while(display.readAndDispatch());
-			}
-		});		
-	}
-
-	/**
-     * safeNewLine - For some editors, auto-formatting will insert characters to complete
-     * a formatting rule as characters are typed. For example, auto-formatting may insert
-     * a closing brace when an opening brace is entered into a java file. This method
-     * ensures that only a newline in the given string is entered.
-     *
-     * @since 3.8.0
-     * @param  ui            - Driver for UI generated input
-     * @param  editorHelper  - Implementation of a helper used in text manipulation
-     * @param  targetFile    - Enter characters into the current character position of
-     *                       this file
-     */
-    private void safeNewLine(IUIContext ui,
-                             IEditorHelper editorHelper,
-                             IFile targetFile) {
-        TestCase.assertNotNull(ui);
-        TestCase.assertNotNull(editorHelper);
-        TestCase.assertNotNull(targetFile);
-
-        IResourceHelper resources = EclipseHelperFactory.getResourceHelper();
-        String oldContents = resources.getFileContents(targetFile);
-        int oldLength = oldContents.length();
-
-        int oldLocation = editorHelper.getCursorLocation(ui);
-
-        ui.keyClick(SWT.CR);
-        new SWTIdleCondition().waitForIdle();
-
-        int newLocation = editorHelper.getCursorLocation(ui);
-
-        String newContents = resources.getFileContents(targetFile);
-
-        int tempLocation = oldLocation;
-        int difference = 1;
-
-        while (newContents.charAt(tempLocation) != '\n') {
-            tempLocation++;
-            difference++;
-        }
-
-        while (newLocation > (tempLocation + 1)) {
-            ui.keyClick(SWT.ARROW_LEFT);
-            new SWTIdleCondition().waitForIdle();
-
-            newLocation = editorHelper.getCursorLocation(ui);
-        }
-
-        TestCase.assertTrue(resources.getFileLength(targetFile) > 0);
-
-        while ((resources.getFileLength(targetFile) - oldLength) > difference) {
-            ui.keyClick(SWT.DEL);
-            new SWTIdleCondition().waitForIdle();
-        }
     }
 
     /**
