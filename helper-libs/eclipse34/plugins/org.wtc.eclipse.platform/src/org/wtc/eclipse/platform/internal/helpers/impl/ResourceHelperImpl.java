@@ -5,28 +5,23 @@
  */
 package org.wtc.eclipse.platform.internal.helpers.impl;
 
-import abbot.tester.swt.ButtonTester;
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.locator.IWidgetLocator;
-import com.windowtester.runtime.locator.WidgetReference;
-import com.windowtester.runtime.swt.condition.SWTIdleCondition;
-import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
-import com.windowtester.runtime.swt.condition.eclipse.FolderExistsCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
-import com.windowtester.runtime.swt.locator.LabeledLocator;
-import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
-import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+
 import junit.framework.Assert;
 import junit.framework.TestCase;
+
 import org.eclipse.core.filebuffers.FileBuffers;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
 import org.eclipse.core.filebuffers.ITextFileBufferManager;
+import org.eclipse.core.filebuffers.LocationKind;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -80,15 +75,25 @@ import org.wtc.eclipse.platform.util.diff.LineByLineRegexDiffer;
 import org.wtc.eclipse.platform.util.diff.LineByLineRexexIgnoreDiffer;
 import org.wtc.eclipse.platform.util.diff.LineByLineSetDiffer;
 import org.wtc.eclipse.platform.util.diff.StringExistsFileDiffer;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
+
+import abbot.tester.swt.ButtonTester;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.locator.IWidgetLocator;
+import com.windowtester.runtime.locator.WidgetReference;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
+import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
+import com.windowtester.runtime.swt.condition.eclipse.FolderExistsCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
+import com.windowtester.runtime.swt.locator.LabeledLocator;
+import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
+import com.windowtester.runtime.swt.locator.TreeItemLocator;
+import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
 
 /**
  * Helper for manipulating files and folders at a low level.
@@ -561,8 +566,8 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
 
         try {
             try {
-                bufferManager.connect(fullPath, null);
-                ITextFileBuffer buff = bufferManager.getTextFileBuffer(fullPath);
+                bufferManager.connect(fullPath, LocationKind.NORMALIZE,null);
+                ITextFileBuffer buff = bufferManager.getTextFileBuffer(fullPath, LocationKind.NORMALIZE);
 
                 TestCase.assertNotNull(buff);
 
@@ -576,7 +581,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                     Job.getJobManager().endRule(rule);
                 }
             } finally {
-                bufferManager.disconnect(fullPath, null);
+                bufferManager.disconnect(fullPath, LocationKind.NORMALIZE, null);
             }
         } catch (CoreException ce) {
             TestCase.fail(ce.getLocalizedMessage());
