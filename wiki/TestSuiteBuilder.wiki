@@ -1,10 +1,10 @@
-#summary TestSuiteBuilder is a way to use Eclipse's plugin extensions to build JUnit TestSuites declaratively in an XML file.
+#summary TestSuiteBuilder is a way to use Eclipse's plugin extensions to build JUnit test suites declaratively in an XML file.
 
 = Introduction to TestSuiteBuilder =
 
-TestSuiteBuilder is a way to use Eclipse's plugin extensions to build JUnit TestSuites declaratively in an XML file. It is a class defined in the org.wtc.eclipse.core Helper Library plugin. See [http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/core/tsb/TestSuiteBuilder.html TestSuiteBuilder], though this class should only be referred to in JUnit test runner arguments and not programatically (this class is not meant to be subclassed). 
+TestSuiteBuilder is a way to use Eclipse's plugin extensions to build JUnit test suites declaratively in an XML file. It is a class defined in the org.wtc.eclipse.core Helper Library plugin. See [http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/core/tsb/TestSuiteBuilder.html TestSuiteBuilder], though this class should only be referred to in JUnit test runner arguments and not programatically (this class is not meant to be subclassed). 
 
-Why build TestSuites programatically? For large Eclipse projects, tests are often split out by plugin but should be part of the same JUnit TestSuite. As an example, let's assume I have two teams working on components for the same Eclipse feature. In this scenario, the teams each work within their own modules in source, each with their own production plugin and accompanying test plugin:
+Why build test suites programatically? For large Eclipse projects, tests are often split out by plugin but should be part of the same JUnit test suite. As an example, let's assume I have two teams working on components for the same Eclipse feature. In this scenario, the teams each work within their own modules in source, each with their own production plugin and accompanying test plugin:
 {{{
 project/
    moduleA/
@@ -27,11 +27,11 @@ The teams chose to split the production code and test code into separate plugins
 
 The team decides that they will run automated checkin tests before each checkin. More specifically, the automated tests to be run will reflect the tets for the modules. For example, if a change is made to module A, then the module A checkin tests will be run. 
 
-But if module B depends on module A, then module B is a downstream dependency on module A. The teams decide that, in addition to the API tests module A might run on checkin, a subset of the module B checkin tests will be run as integration tests for each checkin. Since A cannot depend on B (which would introduce a dependency cycle), how will the module B tests be added to the module A checkin TestSuite? There are a few options:
-  # Build a TestSuite in B that includes tests from A. This is undesirable because a) now the module A checkin TestSuite must be maintained outside of module B and b) this solution doesn't scale as the number of modules grows larger.
-  # Build a common test plugin that contains one, giant, TestSuite. This solution is undesirable because this all-containing test plugin must depend on every plugin in order to run the tests. In that case, module A's developers would then have to import module B to get the test plugin to compile and modularity is lost.
+But if module B depends on module A, then module B is a downstream dependency on module A. The teams decide that, in addition to the API tests module A might run on checkin, a subset of the module B checkin tests will be run as integration tests for each checkin. Since A cannot depend on B (which would introduce a dependency cycle), how will the module B tests be added to the module A checkin test suite? There are a few options:
+  # Build a test suite in B that includes tests from A. This is undesirable because a) now the module A checkin test suite must be maintained outside of module B and b) this solution doesn't scale as the number of modules grows larger.
+  # Build a common test plugin that contains one, giant, test suite. This solution is undesirable because this all-containing test plugin must depend on every plugin in order to run the tests. In that case, module A's developers would then have to import module B to get the test plugin to compile and modularity is lost.
   # Have everyone run all of the tests, all the time. But what about extended performance tests? Will a developer really want to run a 5-day uptime and memory test for each check in? No...
-  # Use Eclipse's plugin loaders and extension points to your advantage. Create a way to flag certain tests with keys and run a test that builds a TestSuite from tests marked with those keywords. This is the TestSuiteBuilder.
+  # Use Eclipse's plugin loaders and extension points to your advantage. Create a way to flag certain tests with keys and run a test that builds a test suite from tests marked with those keywords. This is the TestSuiteBuilder.
 
 =TestSuiteBuilder Components=
 
