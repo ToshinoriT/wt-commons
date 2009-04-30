@@ -120,7 +120,7 @@ To run TestSuiteBuilder in an Eclipse environment (instruction written using Ecl
   # Right-click on the *JUnit Plug-in Test* item and select *New...*
   # Check the *Run a single test* radio button
   # On the *Test* tab, set the *Project:* text field to _org.wtc.eclipse.core_
-  # On the *Test* tab, set the *Test class:" text field to _org.wtc.eclipse.core.tsb.TestSuiteBuilder_
+  # On the *Test* tab, set the *Test class:* text field to _org.wtc.eclipse.core.tsb.TestSuiteBuilder_
   # On the *Arguments* tab, add the TestSuiteBuilder arguments into the *VM Arguments* text are as system properties (See examples above)
-  # Click *Apply* to save the run configuration and click *Run*
-  # If you're test is not running as expected, enable tracing on the run configuration and enable the *logging*/*testsuitemodel* debug option from the *Tracing* tab. At runtime, the TestSuiteBuidler will show a listing of exactly why each test was or was not loaded into the suite to execute.
+  # Click *Apply* to save the run configuration and click the *Run* button.
+  # If your test is not running as expected, enable tracing on the run configuration and enable the *logging/testsuitemodel* debug option from the *Tracing* tab. At runtime, the TestSuiteBuidler will show a listing of exactly why each test was or was not loaded into the suite to execute.
