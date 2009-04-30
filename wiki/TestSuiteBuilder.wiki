@@ -106,17 +106,9 @@ For the following test registry file:
 }}}
 
 || *SYSTEM PROPERTIES* || *TESTS RUN* ||
-|| -Dtsb.modules=checkinA || 
-  # project.modulea.Test1
-  # project.modulea.Test2 ||
-|| -Dtsb.modules=checkinA,checkinD || 
-  # project.modulea.Test1
-  # project.modulea.Test2
-  # project.modulea.subpack.Test1 ||
-|| -Dtsb.tests=project.modulea.Test1 ||
-  # project.modulea.Test1 ||
-|| -Dtsb.tests=Test1 ||
-  # project.modulea.Test1
-  # project.modulea.subpack.Test1 ||
+|| -Dtsb.modules=checkinA || # project.modulea.Test1 # project.modulea.Test2 ||
+|| -Dtsb.modules=checkinA,checkinD || # project.modulea.Test1 # project.modulea.Test2 # project.modulea.subpack.Test1 ||
+|| -Dtsb.tests=project.modulea.Test1 || # project.modulea.Test1 ||
+|| -Dtsb.tests=Test1 || # project.modulea.Test1 # project.modulea.subpack.Test1 ||
 || -Dtsb.modules=checkinA -Dtsb.plugins=bogus.plugin.id || {nothing run} ||
 || -Dtsb.modules=checkinE || {nothing run} ||
