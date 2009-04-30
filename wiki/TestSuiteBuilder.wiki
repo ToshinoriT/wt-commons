@@ -113,7 +113,7 @@ For the following test registry file:
 || -Dtsb.modules=checkinA -Dtsb.plugins=bogus.plugin.id || {nothing run} ||
 || -Dtsb.modules=checkinE || {nothing run} ||
 
-=Running TestSuiteBuilderTests In Eclipse=
+=Running TestSuiteBuilder Tests In Eclipse=
 To run TestSuiteBuilder in an Eclipse environment (instruction written using Eclipse 3.3):
   # Import the org.wtc.eclipse.core plugin into your workspace as a binary plugin using *File* -> *Import...* -> *Plug-in Development* / *Plug-ins and Features*
   # Open the run configurations dialog with *Run* -> *Open Run Dialog...*
