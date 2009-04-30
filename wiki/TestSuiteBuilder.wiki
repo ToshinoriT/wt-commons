@@ -1,4 +1,4 @@
-TestSuiteBuilder is a way to use Eclipse's plugin extensions to build JUnit TestSuites declaratively in an XML file. 
+#summary TestSuiteBuilder is a way to use Eclipse's plugin extensions to build JUnit TestSuites declaratively in an XML file.
 
 = Introduction to TestSuiteBuilder =
 
