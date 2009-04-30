@@ -36,7 +36,7 @@ But if module B depends on module A, then module B is a downstream dependency on
 =TestSuiteBuilder Components=
 
 There are three parts to TestSuiteBuidler:
-  # *The org.wtc.eclipse.tsb.TestSuiteBuilder Class*: The TestSuitebuilder class extends junit.framework.TestCase and so is run directly when running tests. This class is not meant to be subclassed. The tests added to its suite do not have any requirements over the requirements for building JUnit tests (TestCases, TestSuites, etc), though when run with the Helper Libraries, it is best to extend [http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/platform/tests/EclipseUITest.html org.wtc.eclipse.platform.tests.EclipseUITest] and [http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/core/tests/ManagedTestSuite.html org.wtc.eclipse.core.tests.ManagedTestSuite], respectively.
+  # *The org.wtc.eclipse.core.tsb.TestSuiteBuilder Class*: The TestSuitebuilder class extends junit.framework.TestCase and so is run directly when running tests. This class is not meant to be subclassed. The tests added to its suite do not have any requirements over the requirements for building JUnit tests (TestCases, TestSuites, etc), though when run with the Helper Libraries, it is best to extend [http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/platform/tests/EclipseUITest.html org.wtc.eclipse.platform.tests.EclipseUITest] and [http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/core/tests/ManagedTestSuite.html org.wtc.eclipse.core.tests.ManagedTestSuite], respectively.
   # *The org.wtc.eclipse.core.testSuiteBuilder Extension Point*: This extension point is declares test registry files for a plugin and is loaded by the TestSuiteBuidler class at runtime. A DTD for this extension is shown below.  NOTE: testSuiteBuilder/registry/@path is a plugin-relative path to a test registry XML file. See the testSuiteBuidler extension point [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.core/schema/testSuiteBuilder.exsd source] for more details.
   # *The Test Registry XML File*: This file declares the test classes that a plugin can contribute and the modules, or keywords, that those tests are associated with. A DTD is shown below. NOTE: test-project/test/@class is the fully-qualified class name of a JUnit test to run. This class may be a TestCase or TestSuite (TestDecorators are not supported at this time). The test-project/test/module value is any alpha-numeric string. See [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.core/schema/testproject.xsd testProject.xsd] for more information.
 
@@ -106,9 +106,21 @@ For the following test registry file:
 }}}
 
 || *SYSTEM PROPERTIES* || *TESTS RUN* ||
-|| -Dtsb.modules=checkinA || # project.modulea.Test1 # project.modulea.Test2 ||
-|| -Dtsb.modules=checkinA,checkinD || # project.modulea.Test1 # project.modulea.Test2 # project.modulea.subpack.Test1 ||
-|| -Dtsb.tests=project.modulea.Test1 || # project.modulea.Test1 ||
-|| -Dtsb.tests=Test1 || # project.modulea.Test1 # project.modulea.subpack.Test1 ||
+|| -Dtsb.modules=checkinA || project.modulea.Test1, project.modulea.Test2 ||
+|| -Dtsb.modules=checkinA,checkinD || project.modulea.Test1, project.modulea.Test2, project.modulea.subpack.Test1 ||
+|| -Dtsb.tests=project.modulea.Test1 || project.modulea.Test1 ||
+|| -Dtsb.tests=Test1 || project.modulea.Test1, project.modulea.subpack.Test1 ||
 || -Dtsb.modules=checkinA -Dtsb.plugins=bogus.plugin.id || {nothing run} ||
 || -Dtsb.modules=checkinE || {nothing run} ||
+
+=Running TestSuiteBuilderTests In Eclipse=
+To run TestSuiteBuilder in an Eclipse environment (instruction written using Eclipse 3.3):
+  # Import the org.wtc.eclipse.core plugin into your workspace as a binary plugin using *File* -> *Import...* -> *Plug-in Development* / *Plug-ins and Features*
+  # Open the run configurations dialog with *Run* -> *Open Run Dialog...*
+  # Right-click on the *JUnit Plug-in Test* item and select *New...*
+  # Check the *Run a single test* radio button
+  # On the *Test* tab, set the *Project:* text field to _org.wtc.eclipse.core_
+  # On the *Test* tab, set the *Test class:" text field to _org.wtc.eclipse.core.tsb.TestSuiteBuilder_
+  # On the *Arguments* tab, add the TestSuiteBuilder arguments into the *VM Arguments* text are as system properties (See examples above)
+  # Click *Apply* to save the run configuration and click *Run*
+  # If you're test is not running as expected, enable tracing on the run configuration and enable the *logging/testsuitemodel* debug option from the *Tracing* tab. At runtime, the TestSuiteBuidler will show a listing of exactly why each test was or was not loaded into the suite to execute.
