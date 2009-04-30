@@ -37,15 +37,19 @@ But if module B depends on module A, then module B is a downstream dependency on
 
 There are three parts to TestSuiteBuidler:
   # *The org.wtc.eclipse.tsb.TestSuiteBuilder Class*: The TestSuitebuilder class extends junit.framework.TestCase and so is run directly when running tests. This class is not meant to be subclassed. The tests added to its suite do not have any requirements over the requirements for building JUnit tests (TestCases, TestSuites, etc), though when run with the Helper Libraries, it is best to extend [http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/platform/tests/EclipseUITest.html org.wtc.eclipse.platform.tests.EclipseUITest] and [http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/core/tests/ManagedTestSuite.html org.wtc.eclipse.core.tests.ManagedTestSuite], respectively.
-  # *The org.wtc.eclipse.core.testSuiteBuilder Extension Point*: This extension point is declares test registry files for a plugin and is loaded by the TestSuiteBuidler class at runtime. A DTD for this extension is:
+  # *The org.wtc.eclipse.core.testSuiteBuilder Extension Point*: This extension point is declares test registry files for a plugin and is loaded by the TestSuiteBuidler class at runtime. A DTD for this extension is shown below.  NOTE: testSuiteBuilder/registry/@path is a plugin-relative path to a test registry XML file. See the testSuiteBuidler extension point [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.core/schema/testSuiteBuilder.exsd source] for more details.
+  # *The Test Registry XML File*: This file declares the test classes that a plugin can contribute and the modules, or keywords, that those tests are associated with. A DTD is shown below. NOTE: test-project/test/@class is the fully-qualified class name of a JUnit test to run. This class may be a TestCase or TestSuite (TestDecorators are not supported at this time). The test-project/test/module value is any alpha-numeric string. See [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.core/schema/testproject.xsd testProject.xsd] for more information.
+
+===DTD For org.wtc.eclipse.core.testSuiteBuilder Extension Point===
 {{{
 <!ELEMENT testSuiteBuilder (registry)+ >
 <!ELEMENT registry >
 <!ATTLIST registry
     path CDATA #REQURIED 
 >
-}}} Where testSuiteBuilder/registry/@path is a plugin-relative path to a test registry XML file. See the testSuiteBuidler extension point [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.core/schema/testSuiteBuilder.exsd source] for more details.
-  # *The Test Registry XML File*: This file declares the test classes that a plugin can contribute and the modules, or keywords, that those tests are associated with. A DTD is:
+}}}
+
+===DTD Test Registry XML File===
 {{{
 <!ELEMENT test-project (test)* >
 <!ELEMENT test (module)+ >
@@ -54,4 +58,4 @@ There are three parts to TestSuiteBuidler:
    owner CDATA #IMPLIED
 >
 <!ELEMENT module #PCDATA>
-}}} Where test-project/test/@class is the fully-qualified class name of a JUnit test to run. This class may be a TestCase or TestSuite (TestDecorators are not supported at this time). The test-project/test/module value is any alpha-numeric string. See [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.core/schema/testproject.xsd testProject.xsd] for more information.
+}}}
