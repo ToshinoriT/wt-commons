@@ -32,3 +32,28 @@ But if module B depends on module A, then module B is a downstream dependency on
  # Build a common test plugin that contains one, giant, TestSuite. This solution is undesirable because this all-containing test plugin must depend on every plugin in order to run the tests. In that case, module A's developers would then have to import module B to get the test plugin to compile and modularity is lost.
  # Have everyone run all of the tests, all the time. But what about extended performance tests? Will a developer really want to run a 5-day uptime and memory test for each check in? No...
  # Use Eclipse's plugin loaders and extension points to your advantage. Create a way to flag certain tests with keys and run a test that builds a TestSuite from tests marked with those keywords. This is the TestSuiteBuilder.
+
+=TestSuiteBuilder Components=
+
+There are three parts to TestSuiteBuidler:
+ # *The org.wtc.eclipse.tsb.TestSuiteBuilder Class*: The TestSuitebuilder class extends junit.framework.TestCase and so is run directly when running tests. This class is not meant to be subclassed. The tests added to its suite do not have any requirements over the requirements for building JUnit tests (TestCases, TestSuites, etc), though when run with the Helper Libraries, it is best to extend [http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/platform/tests/EclipseUITest.html org.wtc.eclipse.platform.tests.EclipseUITest] and [http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/core/tests/ManagedTestSuite.html org.wtc.eclipse.core.tests.ManagedTestSuite], respectively.
+ # *The org.wtc.eclipse.core.testSuiteBuilder Extension Point*: This extension point is declares test registry files for a plugin and is loaded by the TestSuiteBuidler class at runtime. A DTD for this extension is:
+{{{
+<!ELEMENT testSuiteBuilder (registry)+ >
+<!ELEMENT registry >
+<!ATTLIST registry
+    path CDATA #REQURIED 
+>
+}}} 
+Where testSuiteBuilder/registry/@path is a plugin-relative path to a test registry XML file. See the testSuiteBuidler extension point [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.core/schema/testSuiteBuilder.exsd source] for more details.
+ # *The Test Registry XML File*: This file declares the test classes that a plugin can contribute and the modules, or keywords, that those tests are associated with. A DTD is:
+{{{
+<!ELEMENT test-project (test)* >
+<!ELEMENT test (module)+ >
+<!ATTLIST test
+   class CDATA #REQUIRED
+   owner CDATA #IMPLIED
+>
+<!ELEMENT module #PCDATA>
+}}}
+Where test-project/test/@class is the fully-qualified class name of a JUnit test to run. This class may be a TestCase or TestSuite (TestDecorators are not supported at this time). The test-project/test/module value is any alpha-numeric string. See [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.core/schema/testproject.xsd testProject.xsd] for more information.
