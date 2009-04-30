@@ -2,7 +2,7 @@
 
 = Introduction to TestSuiteBuilder =
 
-TestSuiteBuilder is a way to use Eclipse's plugin extensions to build JUnit TestSuites declaratively in an XML file. It is a class defined in the org.wtc.eclipse.core Helper Library plugin. See TestSuiteBuidler [http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/core/tsb/TestSuiteBuilder.html], though this class should only be referred to in JUnit test runner arguments and not programatically (this class is not meant to be subclassed). 
+TestSuiteBuilder is a way to use Eclipse's plugin extensions to build JUnit TestSuites declaratively in an XML file. It is a class defined in the org.wtc.eclipse.core Helper Library plugin. See TestSuiteBuilder[http://wt-commons.googlecode.com/svn/docs/html/reference/javadoc/helper-libs/org/wtc/eclipse/core/tsb/TestSuiteBuilder.html], though this class should only be referred to in JUnit test runner arguments and not programatically (this class is not meant to be subclassed). 
 
 Why build TestSuites programatically? For large Eclipse projects, tests are often split out by plugin but should be part of the same JUnit TestSuite. As an example, let's assume I have two teams working on components for the same Eclipse feature. In this scenario, the teams each work within their own modules in source, each with their own production plugin and accompanying test plugin:
 {{
