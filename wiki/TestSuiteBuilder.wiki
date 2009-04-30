@@ -10,17 +10,17 @@ project/
    moduleA/
       src/
           plugins/
-              project.example.modulea/
+              project.modulea/
       test/
           plugins/
-              project.example.modulea.test/
+              project.modulea.test/
    moduleB/
       src/
           plugins/
-              project.example.moduleb/
+              project.moduleb/
       test/
           plugins/
-              project.example.moduleb.test/
+              project.moduleb.test/
 }}}
 
 The teams chose to split the production code and test code into separate plugins to make sure that the resources delivered to customers contained only the required dependencies for the project (for example, the production plugins should not depend on Window Tester test harness plugins). 
@@ -68,4 +68,55 @@ The [http://code.google.com/p/wt-commons/source/browse/#svn/trunk/helper-libs/ec
   # Fourth, the plugin implements the testSuiteBuidler extension point in its plugin.xml to point to the test registry XML file in its root directory: [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.platform/plugin.xml#10 SOURCE]
   # Finally, don't forget to export the test registry file with builds and exports of the test plugin: [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.platform/build.properties#8 SOURCE]
 
-=Test Suite Builder Options=
+=Special Test Registry Modules+
+There are certain reserved modules names that will keep a test from running when marked with that module. The purpose of these modules is to disable a test from all TestSuiteBuilder suites in the test registry file. They are:
+|| *MODULE* || *DESCRIPTION* ||
+|| failure  || Disable a test. Do not run that test under any conditions ||
+|| nolinux  || Disable a test on Linux operating systems only ||
+
+=TestSuiteBuilder Runtime Options=
+TestSuiteBuilder offers different options for running tests, options that are passed as system properties at test runtime.
+|| *OPTION*    || *TYPE* || *DESCRIPTION* ||
+|| tsb.modules || Comma-separated list of module names || Run the tests that have at least one of these modules declared for that test ||
+|| tsb.tests   || Comma-separated list of fully-qualified or short names of tests || Tests to run ||
+|| tsb.plugins || Comma-separated list of plugin IDs || Only run tests in these plugins and that match tsb.modules and/or tsb.tests criteria ||
+|| tsb.loops || Integer || Loop the build test suite N number of times ||
+
+==Examples==
+For the following test registry file:
+{{{
+<test-project>
+   <test class="project.modulea.Test1">
+      <module>checkinA</module>
+      <module>checkinB</module>
+   </test>
+   <test class="project.modulea.Test2">
+      <module>checkinA</module>
+      <module>checkinC</module>
+   </test>
+   <test class="project.modulea.subpack.Test1">
+      <module>checkinD</module>
+   </test>
+   <test class="project.modulea.Test3">
+      <module>checkinA</module>
+      <module>checkinE</module>
+      <module>failure</module>
+   </test>
+</test-project>
+}}}
+
+|| *SYSTEM PROPERTIES* || *TESTS RUN* ||
+|| -Dtsb.modules=checkinA || 
+  # project.modulea.Test1
+  # project.modulea.Test2 ||
+|| -Dtsb.modules=checkinA,checkinD || 
+  # project.modulea.Test1
+  # project.modulea.Test2
+  # project.modulea.subpack.Test1 ||
+|| -Dtsb.tests=project.modulea.Test1 ||
+  # project.modulea.Test1 ||
+|| -Dtsb.tests=Test1 ||
+  # project.modulea.Test1
+  # project.modulea.subpack.Test1 ||
+|| -Dtsb.modules=checkinA -Dtsb.plugins=bogus.plugin.id || {nothing run} ||
+|| -Dtsb.modules=checkinE || {nothing run} ||
