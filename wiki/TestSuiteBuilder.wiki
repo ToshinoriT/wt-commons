@@ -59,3 +59,13 @@ There are three parts to TestSuiteBuidler:
 >
 <!ELEMENT module #PCDATA>
 }}}
+
+==Example of Test Suite Builder Set Up===
+The [http://code.google.com/p/wt-commons/source/browse/#svn/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.platform org.wtc.eclipse.platform project] uses TestSuiteBuilder to build its test suites. Let's look at an example:
+  # First, the plugin manifest adds a dependency on the org.wtc.eclipse.core plugin: [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.platform/META-INF/MANIFEST.MF#22 SOURCE]
+  # Next, the plugin creates a series of test case classes extending EclipseUITestCase: [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.platform/src/org/wtc/eclipse/platform/tests/helpers SOURCE]
+  # Third, the plugin registers these tests in a test registry XML file: [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.platform/testregistry.xml SOURCE]
+  # Fourth, the plugin implements the testSuiteBuidler extension point in its plugin.xml to point to the test registry XML file in its root directory: [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.platform/plugin.xml#10 SOURCE]
+  # Finally, don't forget to export the test registry file with builds and exports of the test plugin: [http://code.google.com/p/wt-commons/source/browse/trunk/helper-libs/eclipse33/plugins/org.wtc.eclipse.platform/build.properties#8 SOURCE]
+
+=Test Suite Builder Options=
