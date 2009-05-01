@@ -468,8 +468,6 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
     }
 
     /**
-     * TODO: Rob Frost should doc this
-     *
      * @param   project
      * @param   reportOnlyErrors
      * @return
