@@ -5,7 +5,6 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
 
 /**
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
@@ -21,7 +20,7 @@ public class LicenseAgreementDialogShellHandler extends AbstractButtonToCloseShe
      * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
-    public LicenseAgreementDialogShellHandler(IUIContext ui) {
-        super(ui, "License Agreement", true, "I Agree"); //$NON-NLS-1$ //$NON-NLS-2$
+    public LicenseAgreementDialogShellHandler() {
+        super("License Agreement", true, "I Agree"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 }

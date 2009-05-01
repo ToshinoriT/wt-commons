@@ -5,23 +5,11 @@
  */
 package org.wtc.eclipse.platform.internal.helpers.impl;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WidgetLocator;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.locator.IWidgetLocator;
-import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
-import com.windowtester.runtime.swt.locator.LabeledLocator;
-import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
-import com.windowtester.runtime.swt.locator.TabItemLocator;
-import com.windowtester.runtime.swt.locator.TableItemLocator;
-import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import junit.framework.TestCase;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -51,8 +39,23 @@ import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 import org.wtc.eclipse.platform.shellhandlers.SourceFolderAddedShellHandler;
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WidgetLocator;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.locator.IWidgetLocator;
+import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
+import com.windowtester.runtime.swt.locator.LabeledLocator;
+import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
+import com.windowtester.runtime.swt.locator.TabItemLocator;
+import com.windowtester.runtime.swt.locator.TableItemLocator;
+import com.windowtester.runtime.swt.locator.TreeItemLocator;
+import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
 
 /**
  * Helper for java-specific actions.
@@ -320,7 +323,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
             clickOK(ui);
             ui.wait(new ShellDisposedCondition(nestedTitle));
 
-            listenForDialog(ui, new SourceFolderAddedShellHandler(ui));
+            listenForDialog(ui, new SourceFolderAddedShellHandler());
 
             clickOK(ui);
             ui.wait(new ShellDisposedCondition(title));

@@ -15,13 +15,12 @@ import com.windowtester.runtime.swt.locator.ButtonLocator;
  * Handler for the Resource Exists Dialog.  Click "Continue" to close if it is ever shown.
  */
 public class MovedResourceExistsShellHandler extends AbstractContinueToCloseShellHandler {
+
     /**
-     * Save the UI context.
-     *
-     * @param  ui  - Driver for UI generated input
+     * Create an instance.
      */
-    public MovedResourceExistsShellHandler(IUIContext ui) {
-        super(ui, "Move Resources", true); //$NON-NLS-1$
+    public MovedResourceExistsShellHandler() {
+        super("Move Resources", true); //$NON-NLS-1$
     }
     
     

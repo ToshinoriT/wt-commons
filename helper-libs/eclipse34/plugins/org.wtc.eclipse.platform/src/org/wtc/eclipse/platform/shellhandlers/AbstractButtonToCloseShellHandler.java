@@ -5,11 +5,13 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
+import junit.framework.TestCase;
+
+import org.wtc.eclipse.platform.PlatformActivator;
+
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.swt.locator.ButtonLocator;
-import junit.framework.TestCase;
-import org.wtc.eclipse.platform.PlatformActivator;
 
 /**
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
@@ -24,11 +26,10 @@ public class AbstractButtonToCloseShellHandler extends AbstractShellHandler {
     /**
      * Save the data members.
      */
-    public AbstractButtonToCloseShellHandler(IUIContext ui,
-                                             String shellTitle,
+    public AbstractButtonToCloseShellHandler(String shellTitle,
                                              boolean isModal,
                                              String buttonLabel) {
-        super(ui, shellTitle, isModal);
+        super(shellTitle, isModal);
 
         _buttonLabel = buttonLabel;
     }
