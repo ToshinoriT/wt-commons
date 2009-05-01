@@ -5,7 +5,6 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
 
 /**
  * Start listening for the Confirm Delete Dialog and click "Yes To All" (or "Yes") if it
@@ -20,7 +19,7 @@ public class ConfirmDeleteDialogShellHandler extends AbstractYesToCloseShellHand
      * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
-    public ConfirmDeleteDialogShellHandler(IUIContext ui) {
-        super(ui, "Confirm Resource Delete", true); //$NON-NLS-1$
+    public ConfirmDeleteDialogShellHandler() {
+        super("Confirm Resource Delete", true); //$NON-NLS-1$
     }
 }

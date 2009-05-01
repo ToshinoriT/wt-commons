@@ -5,14 +5,15 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.swt.condition.shell.IShellCondition;
-import com.windowtester.runtime.swt.condition.shell.IShellConditionHandler;
-import com.windowtester.runtime.swt.condition.shell.ShellCondition;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.conditions.YieldingShellDisposedCondition;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.swt.condition.shell.IShellCondition;
+import com.windowtester.runtime.swt.condition.shell.IShellConditionHandler;
+import com.windowtester.runtime.swt.condition.shell.ShellCondition;
 
 /**
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
@@ -33,9 +34,8 @@ public class AbstractProgressDialogShellHandler extends AbstractShellHandler
     /**
      * Save the data members.
      */
-    public AbstractProgressDialogShellHandler(IUIContext ui,
-                                              String title) {
-        super(ui, title, true);
+    public AbstractProgressDialogShellHandler(String title) {
+        super(title, true);
 
         _title = title;
         _condition = new ProgressDialogShellCondition();

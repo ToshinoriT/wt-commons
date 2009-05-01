@@ -5,7 +5,6 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
 
 /**
  * Shell handler that listens for the "Rename Compilation Unit" dialog and clicks
@@ -17,7 +16,7 @@ public class RenameCompilationUnitDialogShellHandler extends AbstractButtonToClo
     /**
      * Save the data members.
      */
-    public RenameCompilationUnitDialogShellHandler(IUIContext ui) {
-        super(ui, "Rename Compilation Unit", true, "Con&tinue"); //$NON-NLS-1$ //$NON-NLS-2$
+    public RenameCompilationUnitDialogShellHandler() {
+        super("Rename Compilation Unit", true, "Con&tinue"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 }

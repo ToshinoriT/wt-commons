@@ -5,7 +5,6 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
 
 /**
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
@@ -18,7 +17,7 @@ public class UserOperationWaitingShellHandler extends AbstractProgressDialogShel
     /**
      * Save the data members.
      */
-    public UserOperationWaitingShellHandler(IUIContext ui) {
-        super(ui, "User Operation is Waiting"); //$NON-NLS-1$
+    public UserOperationWaitingShellHandler() {
+        super("User Operation is Waiting"); //$NON-NLS-1$
     }
 }

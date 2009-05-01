@@ -5,7 +5,6 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
 
 /**
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
@@ -18,9 +17,8 @@ public class AbstractNoToCloseShellHandler extends AbstractButtonToCloseShellHan
     /**
      * Save the data members.
      */
-    public AbstractNoToCloseShellHandler(IUIContext ui,
-                                         String title,
+    public AbstractNoToCloseShellHandler(String title,
                                          boolean isModal) {
-        super(ui, title, isModal, "&No"); //$NON-NLS-1$
+        super(title, isModal, "&No"); //$NON-NLS-1$
     }
 }
