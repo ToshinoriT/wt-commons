@@ -39,15 +39,15 @@ import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 
 /**
  * Helper for creating and manipulating projects.
- * 
- * @since 3.8.0
+ *
+ * @since  3.8.0
  */
 public abstract class ProjectHelperImplAdapter extends HelperImplAdapter {
     /**
      * addProjectBuildDependency - Open the project properties for a given project and add
      * a project dependency to another given project.
      *
-     * @since 3.8.0
+     * @since  3.8.0
      * @param  ui  - Driver for UI generated input
      */
     public void addProjectBuildDependency(IUIContext ui,
@@ -84,7 +84,7 @@ public abstract class ProjectHelperImplAdapter extends HelperImplAdapter {
     /**
      * Delete the given project from the workspace.
      *
-     * @since 3.8.0
+     * @since  3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Should adhere to project name validation rules (not null,
      *                      not the empty string, legal characters, etc)
@@ -97,7 +97,7 @@ public abstract class ProjectHelperImplAdapter extends HelperImplAdapter {
     /**
      * Delete the given project from the workspace.
      *
-     * @since 3.8.0
+     * @since  3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - Should adhere to project name validation rules (not null,
      *                      not the empty string, legal characters, etc)
@@ -144,7 +144,7 @@ public abstract class ProjectHelperImplAdapter extends HelperImplAdapter {
      * <p>invokeProjecPropertiesDialog - Show the properties dialog for the project with
      * the given name</p>
      *
-     * @since 3.8.0
+     * @since  3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  projectName  - The project whose properties dialog is to be shown
      */
