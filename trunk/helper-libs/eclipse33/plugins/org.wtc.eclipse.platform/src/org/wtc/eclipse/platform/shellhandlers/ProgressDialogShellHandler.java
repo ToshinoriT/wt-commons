@@ -5,7 +5,6 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
 
 /**
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
@@ -18,7 +17,7 @@ public class ProgressDialogShellHandler extends AbstractProgressDialogShellHandl
     /**
      * Save the data members.
      */
-    public ProgressDialogShellHandler(IUIContext ui) {
-        super(ui, "Progress Information"); //$NON-NLS-1$
+    public ProgressDialogShellHandler() {
+        super("Progress Information"); //$NON-NLS-1$
     }
 }

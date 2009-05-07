@@ -5,7 +5,6 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
 
 /**
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
@@ -18,8 +17,8 @@ public class SettingBuildPathShellHandler extends AbstractProgressDialogShellHan
     /**
      * Save the data members.
      */
-    public SettingBuildPathShellHandler(IUIContext ui) {
-        super(ui, "Setting build path"); //$NON-NLS-1$
+    public SettingBuildPathShellHandler() {
+        super("Setting build path"); //$NON-NLS-1$
     }
 
 }

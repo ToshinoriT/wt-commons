@@ -5,7 +5,6 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
 
 /**
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
@@ -18,7 +17,7 @@ public class RebuildingShellHandler extends AbstractProgressDialogShellHandler {
     /**
      * Save the data members.
      */
-    public RebuildingShellHandler(IUIContext ui) {
-        super(ui, "Rebuilding"); //$NON-NLS-1$
+    public RebuildingShellHandler() {
+        super("Rebuilding"); //$NON-NLS-1$
     }
 }

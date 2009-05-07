@@ -320,7 +320,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
             clickOK(ui);
             ui.wait(new ShellDisposedCondition(nestedTitle));
 
-            listenForDialog(ui, new SourceFolderAddedShellHandler(ui));
+            listenForDialog(ui, new SourceFolderAddedShellHandler());
 
             clickOK(ui);
             ui.wait(new ShellDisposedCondition(title));
