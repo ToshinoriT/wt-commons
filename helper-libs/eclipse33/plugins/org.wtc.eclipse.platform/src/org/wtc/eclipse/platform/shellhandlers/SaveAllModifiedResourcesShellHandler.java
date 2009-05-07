@@ -5,9 +5,9 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.swt.condition.shell.IShellCondition;
 import org.eclipse.swt.widgets.Shell;
+
+import com.windowtester.runtime.swt.condition.shell.IShellCondition;
 
 /**
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
@@ -18,14 +18,12 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class SaveAllModifiedResourcesShellHandler extends AbstractOKToCloseShellHandler
     implements IShellCondition {
-    /**
-     * Save the UI context.
-     *
+	/**
+     * Create an instance.
      * @since 3.8.0
-     * @param  ui  - Driver for UI generated input
      */
-    public SaveAllModifiedResourcesShellHandler(IUIContext ui) {
-        super(ui, "Save All Modified Resources", false); //$NON-NLS-1$
+    public SaveAllModifiedResourcesShellHandler() {
+        super("Save All Modified Resources", false); //$NON-NLS-1$
     }
 
     //TO DO: CR292770 - Save All Modified Resources dialog is not

@@ -550,42 +550,42 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogConfirmDelete(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogConfirmDelete(IUIContext ui) {
-        listenForDialog(ui, new ConfirmDeleteDialogShellHandler(ui));
+        listenForDialog(ui, new ConfirmDeleteDialogShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogFileContentChanged(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogFileContentChanged(IUIContext ui) {
-        listenForDialog(ui, new ConfirmFileContentChangedDialog(ui));
+        listenForDialog(ui, new ConfirmFileContentChangedDialog());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogFileDeleted(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogFileDeleted(IUIContext ui) {
-        listenForDialog(ui, new FileDeletedShellHandler(ui));
+        listenForDialog(ui, new FileDeletedShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogLicenceAgreement(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogLicenceAgreement(IUIContext ui) {
-        listenForDialog(ui, new LicenseAgreementDialogShellHandler(ui));
+        listenForDialog(ui, new LicenseAgreementDialogShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogOpenPerspective(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogOpenPerspective(IUIContext ui) {
-        listenForDialog(ui, new OpenPerspectiveShellHandler(ui));
+        listenForDialog(ui, new OpenPerspectiveShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogOverwriteFiles(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogOverwriteFiles(IUIContext ui) {
-        listenForDialog(ui, new ConfirmOverwriteFilesDialogShellHandler(ui));
+        listenForDialog(ui, new ConfirmOverwriteFilesDialogShellHandler());
     }
 
     /**
@@ -594,11 +594,11 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
     public void listenForDialogProgress(IUIContext ui) {
         TestCase.assertNotNull(ui);
 
-        ProgressDialogShellHandler progressHandler = new ProgressDialogShellHandler(ui);
+        ProgressDialogShellHandler progressHandler = new ProgressDialogShellHandler();
         listenForDialog(ui, progressHandler, progressHandler);
 
         UserOperationWaitingShellHandler operationWaitingHandler =
-            new UserOperationWaitingShellHandler(ui);
+            new UserOperationWaitingShellHandler();
         listenForDialog(ui, operationWaitingHandler, operationWaitingHandler);
     }
 
@@ -606,21 +606,21 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogRebuilding(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogRebuilding(IUIContext ui) {
-        listenForDialog(ui, new RebuildingShellHandler(ui));
+        listenForDialog(ui, new RebuildingShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogRenameCompilationUnit(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogRenameCompilationUnit(IUIContext ui) {
-        listenForDialog(ui, new RenameCompilationUnitDialogShellHandler(ui));
+        listenForDialog(ui, new RenameCompilationUnitDialogShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogResourceExists(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogResourceExists(IUIContext ui) {
-        listenForDialog(ui, new ResourceExistsShellHandler(ui));
+        listenForDialog(ui, new ResourceExistsShellHandler());
     }
 
     /**
@@ -631,7 +631,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
         //modal like it should be. The following is a workaround to the fact
         //that the short version of listenForDialog() checks modality.
         //This version does not.
-        SaveAllModifiedResourcesShellHandler temp = new SaveAllModifiedResourcesShellHandler(ui);
+        SaveAllModifiedResourcesShellHandler temp = new SaveAllModifiedResourcesShellHandler();
         listenForDialog(ui, temp, temp);
     }
 
@@ -639,29 +639,29 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogSaveResource(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogSaveResource(IUIContext ui) {
-        listenForDialog(ui, new SaveResourceShellHandler(ui));
-        listenForDialog(ui, new SaveResourceShellHandler2(ui));
+        listenForDialog(ui, new SaveResourceShellHandler());
+        listenForDialog(ui, new SaveResourceShellHandler2());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogSaveResources(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogSaveResources(IUIContext ui) {
-        listenForDialog(ui, new SaveResourcesShellHandler(ui));
+        listenForDialog(ui, new SaveResourcesShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogSettingBuildPath(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogSettingBuildPath(IUIContext ui) {
-        listenForDialog(ui, new SettingBuildPathShellHandler(ui));
+        listenForDialog(ui, new SettingBuildPathShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogWizardClosing(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogWizardClosing(IUIContext ui) {
-        WrappedWizardClosingShellHandler handler = new WrappedWizardClosingShellHandler(ui);
+        WrappedWizardClosingShellHandler handler = new WrappedWizardClosingShellHandler();
         listenForDialog(ui, handler, handler.getShellCondition());
     }
 
@@ -813,56 +813,49 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#stopListeningForDialogConfirmDelete(com.windowtester.runtime.IUIContext)
      */
     public void stopListeningForDialogConfirmDelete(IUIContext ui) {
-        stopListeningForDialog(ui, new ConfirmDeleteDialogShellHandler(ui));
+        stopListeningForDialog(ui, new ConfirmDeleteDialogShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#stopListeningForDialogConfirmOverwrite(com.windowtester.runtime.IUIContext)
      */
     public void stopListeningForDialogConfirmOverwrite(IUIContext ui) {
-        stopListeningForDialog(ui, new ConfirmOverwriteFilesDialogShellHandler(ui));
+        stopListeningForDialog(ui, new ConfirmOverwriteFilesDialogShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#stopListeningForDialogFileContentChanged(com.windowtester.runtime.IUIContext)
      */
     public void stopListeningForDialogFileContentChanged(IUIContext ui) {
-        stopListeningForDialog(ui, new ConfirmFileContentChangedDialog(ui));
-    }
-
-    /**
-     * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#stopListeningForDialogFileContentChanged(com.windowtester.runtime.IUIContext)
-     */
-    public void stopListeningForDialogFileContentChanged(com.windowtester.swt.IUIContext ui) {
-        stopListeningForDialogFileContentChanged(getUI(ui));
+        stopListeningForDialog(ui, new ConfirmFileContentChangedDialog());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#stopListeningForDialogFileDeleted(com.windowtester.runtime.IUIContext)
      */
     public void stopListeningForDialogFileDeleted(IUIContext ui) {
-        stopListeningForDialog(ui, new FileDeletedShellHandler(ui));
+        stopListeningForDialog(ui, new FileDeletedShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#stopListeningForDialogRebuilding(com.windowtester.runtime.IUIContext)
      */
     public void stopListeningForDialogRebuilding(IUIContext ui) {
-        stopListeningForDialog(ui, new RebuildingShellHandler(ui));
+        stopListeningForDialog(ui, new RebuildingShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#stopListeningForDialogRenameCompilationUnit(com.windowtester.runtime.IUIContext)
      */
     public void stopListeningForDialogRenameCompilationUnit(IUIContext ui) {
-        stopListeningForDialog(ui, new RenameCompilationUnitDialogShellHandler(ui));
+        stopListeningForDialog(ui, new RenameCompilationUnitDialogShellHandler());
     }
 
     /**
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#stopListeningForDialogSaveAllModifiedResources(com.windowtester.runtime.IUIContext)
      */
     public void stopListeningForDialogSaveAllModifiedResources(IUIContext ui) {
-        stopListeningForDialog(ui, new SaveAllModifiedResourcesShellHandler(ui));
+        stopListeningForDialog(ui, new SaveAllModifiedResourcesShellHandler());
     }
 
     /**

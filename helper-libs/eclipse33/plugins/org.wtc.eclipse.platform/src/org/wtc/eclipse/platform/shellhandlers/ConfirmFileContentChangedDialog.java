@@ -5,7 +5,6 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
 
 /**
  * Shell handler for the Shell Monitor that will handle a shell that may or may not pop
@@ -21,7 +20,7 @@ public final class ConfirmFileContentChangedDialog extends AbstractYesToCloseShe
      * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
-    public ConfirmFileContentChangedDialog(IUIContext ui) {
-        super(ui, "File Changed", true); //$NON-NLS-1$
+    public ConfirmFileContentChangedDialog() {
+        super("File Changed", true); //$NON-NLS-1$
     }
 }

@@ -5,13 +5,15 @@
  */
 package org.wtc.eclipse.platform.handlers;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.condition.IConditionHandler;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.wtc.eclipse.platform.internal.handlers.FocusFixingConditionRegistry;
-import java.util.HashSet;
-import java.util.Set;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.condition.IConditionHandler;
 
 /**
  * A special handler whose job it is to fix drifting focus issues in GTK.
@@ -31,11 +33,6 @@ import java.util.Set;
  *         HAVE THESE ISSUES FIXED
  *
  * </pre>
- *
- * <p>Copyright (c) 2006, Instantiations, Inc.<br>
- * All Rights Reserved</p>
- *
- * @author  Phil Quitslund
  * @since 3.8.0
  */
 public class FocusFixingConditionHandler implements IConditionHandler {

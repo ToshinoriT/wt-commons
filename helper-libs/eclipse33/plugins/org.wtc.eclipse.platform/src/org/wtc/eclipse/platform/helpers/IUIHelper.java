@@ -44,7 +44,7 @@ public interface IUIHelper {
     public void arrowUp(IUIContext ui, int numberOfTimes);
 
     /**
-     * freeze - Stop the UI driver. Do not exist the test. Leave the UI in the current
+     * freeze - Stop the UI driver. Do not exit the test. Leave the UI in the current
      * state. May only be called in development (if the prodMode environment variable is
      * set to anything other than "dev", then issue a test case failure)
      *

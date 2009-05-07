@@ -5,8 +5,6 @@
  */
 package org.wtc.eclipse.platform.util;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jdt.core.JavaConventions;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -15,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jdt.core.JavaConventions;
 
 /**
  * This class contains utility methods for dealing with <code>String</code>s.
@@ -295,9 +296,9 @@ public class StringUtil {
      * Returns a string containing the given pieces glued together with the given
      * delimiter in between.
      */
-    public static String join(List parts, char delim) {
+    public static String join(List<Object> parts, char delim) {
         StringBuffer buf = new StringBuffer(128);
-        Iterator iter = parts.iterator();
+        Iterator<Object> iter = parts.iterator();
 
         while (iter.hasNext()) {
             buf.append(iter.next()).append(delim);
@@ -560,10 +561,13 @@ public class StringUtil {
      * @param   message
      * @return  whether the passed in string is a valid java identifier
      */
-    public static boolean validateJavaIdentifier(String id,
+    @SuppressWarnings("deprecation")
+	public static boolean validateJavaIdentifier(String id,
                                                  StringBuffer message) {
         boolean validID = true;
 
+        //This method call is deprecated (3.4+).  We'd like to call the preferred version, but can't since the constant
+        //values we want to pass in are defined in an internal class (org.eclipse.jdt.internal.compiler.impl.CompilerOptions).
         IStatus result = JavaConventions.validateIdentifier(id);
 
         if (!result.isOK()) {

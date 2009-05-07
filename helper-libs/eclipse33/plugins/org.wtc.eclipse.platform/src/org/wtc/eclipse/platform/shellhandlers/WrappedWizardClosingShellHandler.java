@@ -21,8 +21,8 @@ public class WrappedWizardClosingShellHandler extends AbstractShellHandler {
     /**
      * Save the data members.
      */
-    public WrappedWizardClosingShellHandler(IUIContext ui) {
-        super(ui, "Wizard Closing", true); //$NON-NLS-1$
+    public WrappedWizardClosingShellHandler() {
+        super("Wizard Closing", true); //$NON-NLS-1$
 
         _wizardClosingShellHandler = new WizardClosingShellHandler();
     }

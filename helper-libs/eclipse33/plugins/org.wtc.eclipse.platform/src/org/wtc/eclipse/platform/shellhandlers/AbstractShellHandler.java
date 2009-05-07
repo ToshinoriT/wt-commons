@@ -5,7 +5,6 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import com.windowtester.runtime.IUIContext;
 import junit.framework.TestCase;
 
 /**
@@ -15,9 +14,9 @@ import junit.framework.TestCase;
  * @since 3.8.0
  */
 public abstract class AbstractShellHandler implements IWorkbenchShellHandler {
-    private final String _title;
+    
+	private final String _title;
     private final boolean _isModal;
-
     private final int _hashCode;
 
     /**
@@ -26,10 +25,8 @@ public abstract class AbstractShellHandler implements IWorkbenchShellHandler {
      * @since 3.8.0
      * @param  ui  - Driver for UI generated input
      */
-    protected AbstractShellHandler(IUIContext ui,
-                                   String title,
+    protected AbstractShellHandler(String title,
                                    boolean isModal) {
-        TestCase.assertNotNull(ui);
         TestCase.assertNotNull(title);
 
         _title = title;

@@ -69,7 +69,6 @@ public class HackableSWTWidgetLocator extends SWTWidgetLocator {
      * @see com.windowtester.runtime.swt.locator.SWTWidgetLocator#doContextClick(org.eclipse.swt.widgets.Widget,
      *      java.awt.Point, java.lang.String)
      */
-    @SuppressWarnings("deprecation")
     @Override
     protected Widget doContextClick(Widget w, Point offset, String menuItemPath)
                              throws WidgetNotFoundException, MultipleWidgetsFoundException {
