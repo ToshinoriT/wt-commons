@@ -566,7 +566,7 @@ public class StringUtil {
                                                  StringBuffer message) {
         boolean validID = true;
 
-        //This method call is deprecated.  We'd like to call the preferred version, but can't since the constant
+        //This method call is deprecated (3.4+).  We'd like to call the preferred version, but can't since the constant
         //values we want to pass in are defined in an internal class (org.eclipse.jdt.internal.compiler.impl.CompilerOptions).
         IStatus result = JavaConventions.validateIdentifier(id);
 
