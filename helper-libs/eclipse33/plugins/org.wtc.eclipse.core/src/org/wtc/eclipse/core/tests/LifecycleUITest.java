@@ -5,11 +5,11 @@
  */
 package org.wtc.eclipse.core.tests;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.swt.UITestCaseSWT;
-import com.windowtester.runtime.util.ScreenCapture;
-import junit.framework.TestCase;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -19,13 +19,14 @@ import org.wtc.eclipse.core.internal.preprocess.PreprocessorManager;
 import org.wtc.eclipse.core.internal.reset.ResetDaemonRegistry;
 import org.wtc.eclipse.core.reset.IResetDaemon;
 import org.wtc.eclipse.core.reset.IResetDaemon.ResetContext;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.swt.UITestCaseSWT;
+import com.windowtester.runtime.util.ScreenCapture;
 
 /**
- * ExtendedUITest - All UI Tests should extend this test. Container of context factories
+ * LifecycleUITest - All UI Tests should extend this test. Container of context factories
  */
 public abstract class LifecycleUITest extends UITestCaseSWT {
     static final String ONETIME_SETUP = "classSetUp"; //$NON-NLS-1$
@@ -81,19 +82,6 @@ public abstract class LifecycleUITest extends UITestCaseSWT {
         }
 
         return current;
-    }
-
-    /**
-     * Used for existing tests written in Window Tester 1.6.1.
-     *
-     * @deprecated  - Use getUI() instead
-     */
-    protected com.windowtester.swt.IUIContext getUIContext() {
-        IUIContext ui = getUI();
-        Object oldUI = ui.getAdapter(com.windowtester.swt.IUIContext.class);
-        TestCase.assertTrue(oldUI instanceof com.windowtester.swt.IUIContext);
-
-        return (com.windowtester.swt.IUIContext) oldUI;
     }
 
     /**
