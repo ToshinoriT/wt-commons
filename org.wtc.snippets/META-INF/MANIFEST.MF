@@ -6,7 +6,9 @@ Bundle-Version: 0.0.0.qualifier
 Bundle-Vendor: WT Commons
 Require-Bundle: com.windowtester.swt.runtime,
  org.eclipse.swt,
- com.windowtester.swing.runtime
+ com.windowtester.swing.runtime,
+ org.eclipse.ui.console,
+ org.eclipse.ui
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.wtc.snippets.eclipse
 Bundle-ClassPath: lib/ktable_2.1.3.jar,
