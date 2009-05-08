@@ -35,3 +35,6 @@ To contribute a new snippet, create a snippet contribution report in our [http:/
    * [http://code.google.com/p/wt-commons/source/browse/trunk/org.wtc.snippets/src/org/wtc/snippets/eclipse/Snippet006CustomBrowserLocator.java A sample custom Browser Widget Locator.]
 
    * [http://code.google.com/p/wt-commons/source/browse/trunk/org.wtc.snippets/src/org/wtc/snippets/eclipse/Snippet007EmbeddedSwing.java Interacting with an embedded Swing/AWT component.]
+
+
+   * [http://code.google.com/p/wt-commons/source/browse/trunk/org.wtc.snippets/src/org/wtc/snippets/eclipse/Snippet008ConsoleViewHasTextAssertion.java Accessing Console view text contents.]
