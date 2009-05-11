@@ -462,12 +462,14 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
             ui.contextClick(new TreeItemLocator(relPath.toPortableString(), new ViewLocator(IWorkbenchHelper.View.BASIC_NAVIGATOR.getViewID())),
                             "&Delete"); //$NON-NLS-1$
 
-            ui.wait(new ShellShowingCondition("(Delete Resources|Confirm Delete)"), 30000); //$NON-NLS-1$
+            String shellTitle = Eclipse.VERSION.is(3, 3) ? "Confirm Resource Delete" : "Delete Resources"; //$NON-NLS-1$ //$NON-NLS-2$
+            
+            ui.wait(new ShellShowingCondition(shellTitle), 30000);
             if (Eclipse.VERSION.is(3, 3))
     	        clickYes(ui);
             else
 	            clickOK(ui);
-            ui.wait(new ShellDisposedCondition("(Delete Resources|Confirm Delete)"), 30000); //$NON-NLS-1$
+            ui.wait(new ShellDisposedCondition(shellTitle), 30000);
 
             verifyFileExists(ui, path, false);
         } catch (WidgetSearchException e) {

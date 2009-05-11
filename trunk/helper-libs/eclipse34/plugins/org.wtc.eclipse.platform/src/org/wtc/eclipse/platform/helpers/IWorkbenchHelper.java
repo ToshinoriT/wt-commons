@@ -12,6 +12,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
+import org.wtc.eclipse.core.util.Eclipse;
 import org.wtc.eclipse.platform.shellhandlers.IWorkbenchShellHandler;
 
 import com.windowtester.runtime.IUIContext;
@@ -58,7 +59,7 @@ public interface IWorkbenchHelper {
         }
     }
 
-    
+    static String PDE_CATEGORY_PATH = Eclipse.VERSION.is(3, 3) ? "PDE Runtime" : "General"; //$NON-NLS-1$ //$NON-NLS-2$
    
     // Eclipse common views
     public static enum View implements IView { 	
@@ -86,7 +87,7 @@ public interface IWorkbenchHelper {
             "org.eclipse.debug.ui.BreakpointView"), //$NON-NLS-1$
         JAVA_PACKAGEEXPLORER("Java/Package Explorer", //$NON-NLS-1$
             "org.eclipse.jdt.ui.PackageExplorer"), //$NON-NLS-1$
-        PDERUNTIME_ERRORLOG("(PDE Runtime|General)/Error Log", //$NON-NLS-1$
+        PDERUNTIME_ERRORLOG(PDE_CATEGORY_PATH + "/Error Log", //$NON-NLS-1$
             "org.eclipse.pde.runtime.LogView"); //$NON-NLS-1$
 
         private String _viewSelectionPath;
