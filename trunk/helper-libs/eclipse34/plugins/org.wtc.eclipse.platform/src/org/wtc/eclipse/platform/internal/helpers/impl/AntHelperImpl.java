@@ -5,8 +5,14 @@
  */
 package org.wtc.eclipse.platform.internal.helpers.impl;
 
-import com.windowtester.runtime.IUIContext;
+import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import junit.framework.TestCase;
+
 import org.eclipse.ant.core.AntRunner;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -24,12 +30,9 @@ import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IAntHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
 
-import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.windowtester.runtime.IUIContext;
 
 /**
  * Helper with interacting with and executing Ant build files.
@@ -67,8 +70,7 @@ public class AntHelperImpl extends HelperImplAdapter implements IAntHelper {
             });
 
         if (exceptions[0] != null) {
-            PlatformActivator.logException(exceptions[0]);
-            TestCase.fail(exceptions[0].getLocalizedMessage());
+        	ExceptionHandler.handle(exceptions[0]);
         }
 
         logExit2();

@@ -32,6 +32,7 @@ import org.osgi.framework.Bundle;
 import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.conditions.RegexTitleShellCondition;
 import org.wtc.eclipse.platform.shellhandlers.IWorkbenchShellHandler;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
 
 import abbot.finder.swt.SWTHierarchy;
 import abbot.finder.swt.TestHierarchy;
@@ -85,8 +86,7 @@ public abstract class HelperImplAdapter {
             waitForControlEnabled(ui, buttonLoc, Button.class);
             ui.click(buttonLoc);
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
     }
 
@@ -103,9 +103,8 @@ public abstract class HelperImplAdapter {
         try {
             ui.click(new NamedWidgetLocator(buttonName));
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
             PlatformActivator.logError("FAILED TO CLICK BUTTON BY NAME [" + buttonName + "]"); //$NON-NLS-1$ //$NON-NLS-2$
-            TestCase.fail(e.getMessage());
+            ExceptionHandler.handle(e);
         }
     }
 
@@ -750,8 +749,7 @@ public abstract class HelperImplAdapter {
         try {
             ui.click(new MenuItemLocator(root + "/" + menuItem)); //$NON-NLS-1$
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getLocalizedMessage());
+        	ExceptionHandler.handle(wse);
         }
     }
 

@@ -20,12 +20,12 @@ import org.eclipse.debug.core.model.IThread;
 import org.eclipse.jdt.debug.core.IJavaBreakpoint;
 import org.eclipse.jdt.debug.core.IJavaLineBreakpoint;
 import org.eclipse.jdt.debug.core.IJavaStratumLineBreakpoint;
-import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IEditorHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper.Perspective;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WaitTimedOutException;
@@ -59,8 +59,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
         try {
             ui.click(new MenuItemLocator("&Run/" + menuItem)); //$NON-NLS-1$
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getLocalizedMessage());
+        	ExceptionHandler.handle(wse);
         }
     }
 
@@ -98,8 +97,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
             ui.click(new ButtonLocator("&Yes")); //$NON-NLS-1$
             ui.wait(new ShellDisposedCondition("Remove All Breakpoints")); //$NON-NLS-1$
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getLocalizedMessage());
+            ExceptionHandler.handle(wse);
         }
 
         final IBreakpointManager breakpointManager =

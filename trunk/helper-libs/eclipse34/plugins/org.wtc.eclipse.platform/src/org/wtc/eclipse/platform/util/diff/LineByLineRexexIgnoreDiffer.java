@@ -5,10 +5,6 @@
  */
 package org.wtc.eclipse.platform.util.diff;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
-import junit.framework.TestCase;
-import org.wtc.eclipse.platform.PlatformActivator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +15,13 @@ import java.text.Collator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
+import junit.framework.TestCase;
+
+import org.wtc.eclipse.platform.util.ExceptionHandler;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
 
 /**
  * LineByLineRexexIgnoreDiffer - File comparison utility that checks that two files are
@@ -89,8 +92,7 @@ public class LineByLineRexexIgnoreDiffer implements IFileDiffer {
             try {
                 ignore = Pattern.compile(ignorePattern);
             } catch (PatternSyntaxException pse) {
-                PlatformActivator.logException(pse);
-                TestCase.fail("====> " + expectedFile.getAbsolutePath() + " LINE(" + ignorePattern + "):" + pse.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            	ExceptionHandler.handle(pse, "====> " + expectedFile.getAbsolutePath() + " LINE(" + ignorePattern + "): "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
         }
 
@@ -153,8 +155,7 @@ public class LineByLineRexexIgnoreDiffer implements IFileDiffer {
                 }
             }
         } catch (IOException ioe) {
-            PlatformActivator.logException(ioe);
-            TestCase.fail(ioe.getMessage());
+        	ExceptionHandler.handle(ioe);
         }
     }
 

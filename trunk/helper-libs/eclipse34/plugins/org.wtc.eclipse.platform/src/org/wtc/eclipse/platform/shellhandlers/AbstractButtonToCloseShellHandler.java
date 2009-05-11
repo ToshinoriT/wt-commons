@@ -5,9 +5,8 @@
  */
 package org.wtc.eclipse.platform.shellhandlers;
 
-import junit.framework.TestCase;
-
 import org.wtc.eclipse.platform.PlatformActivator;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
@@ -43,8 +42,7 @@ public class AbstractButtonToCloseShellHandler extends AbstractShellHandler {
         try {
             ui.click(new ButtonLocator(_buttonLabel));
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getLocalizedMessage());
+        	ExceptionHandler.handle(e);
         }
     }
     

@@ -5,10 +5,6 @@
  */
 package org.wtc.eclipse.platform.util.diff;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
-import junit.framework.TestCase;
-import org.wtc.eclipse.platform.PlatformActivator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +16,13 @@ import java.text.Collator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
+import junit.framework.TestCase;
+
+import org.wtc.eclipse.platform.util.ExceptionHandler;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
 
 /**
  * LineByLineRegexDiffer - File comparison utility that compiles the lines of a given
@@ -76,8 +79,7 @@ public class LineByLineRegexDiffer implements IFileDiffer {
                 }
             }
         } catch (IOException ioe) {
-            PlatformActivator.logException(ioe);
-            TestCase.fail(ioe.getMessage());
+            ExceptionHandler.handle(ioe);
         }
     }
 
@@ -158,8 +160,7 @@ public class LineByLineRegexDiffer implements IFileDiffer {
                 }
             }
         } catch (IOException ioe) {
-            PlatformActivator.logException(ioe);
-            TestCase.fail(ioe.getMessage());
+        	ExceptionHandler.handle(ioe);
         }
     }
 
@@ -221,8 +222,7 @@ public class LineByLineRegexDiffer implements IFileDiffer {
                 nextActualLine = actual.readLine();
                 line++;
             } catch (PatternSyntaxException pse) {
-                PlatformActivator.logException(pse);
-                TestCase.fail("====> " + " LINE(" + line + "):" + pse.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            	ExceptionHandler.handle(pse, "====> " + " LINE(" + line + "): "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
         }
     }

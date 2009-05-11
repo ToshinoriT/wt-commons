@@ -5,13 +5,15 @@
  */
 package org.wtc.eclipse.platform.helpers.adapters;
 
+import junit.framework.TestCase;
+
+import org.wtc.eclipse.platform.util.ExceptionHandler;
+
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import junit.framework.TestCase;
-import org.wtc.eclipse.platform.PlatformActivator;
 
 /**
  * Helper adapter for actions that manipulate preferences.
@@ -45,8 +47,7 @@ public abstract class PreferencesHelperAdapter extends HelperImplAdapter {
             ui.wait(new ShellShowingCondition("Preferences")); //$NON-NLS-1$
             ui.click(new TreeItemLocator(categoryName));
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getLocalizedMessage());
+        	ExceptionHandler.handle(wse);
         }
     }
 }

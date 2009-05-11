@@ -40,6 +40,7 @@ import org.wtc.eclipse.platform.helpers.IProjectHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.adapters.ProjectHelperImplAdapter;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
 import org.wtc.eclipse.platform.util.FileUtil;
 import org.wtc.eclipse.platform.util.WidgetCollector;
 
@@ -87,8 +88,7 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
             description.setNatureIds(newNatures);
             project.setDescription(description, null);
         } catch (CoreException ce) {
-            PlatformActivator.logException(ce);
-            TestCase.fail(ce.getLocalizedMessage());
+        	ExceptionHandler.handle(ce);
         }
 
         IWorkbenchHelper workbench = EclipseHelperFactory.getWorkbenchHelper();
@@ -178,8 +178,7 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
             File archiveAsFile = archivePath.toFile();
             ui.wait(new FileExistsCondition(archiveAsFile, true));
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getMessage());
+            ExceptionHandler.handle(wse);
         }
 
         logExit2();
@@ -308,8 +307,7 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
                 try {
                     FileUtil.copyFiles(importSource, projectFile);
                 } catch (IOException ioe) {
-                    PlatformActivator.logException(ioe);
-                    TestCase.fail(ioe.getLocalizedMessage());
+                	ExceptionHandler.handle(ioe);
                 }
 
                 IWidgetReference clicked = (IWidgetReference) ui.click(new ButtonLocator("Select roo&t directory:")); //$NON-NLS-1$
@@ -549,12 +547,10 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
         try {
             wmo.run(null);
         } catch (InterruptedException ie) {
-            PlatformActivator.logException(ie);
-            TestCase.fail(ie.getLocalizedMessage());
+        	ExceptionHandler.handle(ie);
         } catch (InvocationTargetException ite) {
             Throwable cause = ite.getCause();
-            PlatformActivator.logException(cause);
-            TestCase.fail(cause.getLocalizedMessage());
+            ExceptionHandler.handle(cause);
         }
 
         waitForProjectOpen(ui, projectName, open);
