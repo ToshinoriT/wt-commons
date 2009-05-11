@@ -50,6 +50,7 @@ import com.windowtester.runtime.monitor.IUIThreadMonitor;
 import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.condition.shell.IShellCondition;
 import com.windowtester.runtime.swt.condition.shell.IShellMonitor;
+import com.windowtester.runtime.swt.internal.condition.shell.ShellMonitor;
 import com.windowtester.runtime.swt.locator.ButtonLocator;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
 import com.windowtester.runtime.swt.locator.NamedWidgetLocator;
@@ -450,9 +451,15 @@ public abstract class HelperImplAdapter {
      *          {@link IUIContext}
      */
     protected IShellMonitor getShellMonitor(IUIContext ui) {
+    	/*
+    	 * This is how we *want* to access the shell monitor but doing so breaks some
+    	 * test lifecycle assumptions.
+    	 * 
+    	 * http://code.google.com/p/wt-commons/issues/detail?id=25
+    	 */
 //    	IShellMonitor sm = (IShellMonitor) ui.getAdapter(IShellMonitor.class);
 //    	return sm;
-    	return com.windowtester.runtime.swt.internal.condition.shell.ShellMonitor.getInstance();
+    	return ShellMonitor.getInstance();
     }
 
     /**

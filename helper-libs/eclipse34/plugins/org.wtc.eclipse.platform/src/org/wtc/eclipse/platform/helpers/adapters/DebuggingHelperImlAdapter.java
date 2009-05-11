@@ -28,6 +28,7 @@ import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper.Perspective;
 
 import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WaitTimedOutException;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.ICondition;
 import com.windowtester.runtime.swt.condition.SWTIdleCondition;
@@ -130,12 +131,25 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
 
         clickRunMenuItem(ui, "Resu&me.*"); //$NON-NLS-1$
 
-        // Since another breakpoint may be immediately hit, there's not numch
+        // Since another breakpoint may be immediately hit, there's not much
         // we can wait for here
-        ui.wait(new SWTIdleCondition());
+        waitForIdle(ui);
 
         logExit2();
     }
+
+	/**
+	 * Wait for SWT Idle.
+	 * @since 3.8.0
+	 */
+	protected void waitForIdle(IUIContext ui) throws WaitTimedOutException {
+		/*
+		 * This condition replaces earlier deprecated wait for idle strategies.
+		 * Since idle waits have historically been a hotspot for timing issues
+		 * this is a good place to look if we see timing-related regressions.
+		 */
+		ui.wait(new SWTIdleCondition());
+	}
 
     /**
      * setLineBreakpoint - Add a breakpoint to the given file on the given line.
@@ -196,7 +210,7 @@ public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
         IResourceHelper resources = EclipseHelperFactory.getResourceHelper();
         resources.openFile(ui, filePath);
 
-        ui.wait(new SWTIdleCondition());
+        waitForIdle(ui);
     }
 
     /**

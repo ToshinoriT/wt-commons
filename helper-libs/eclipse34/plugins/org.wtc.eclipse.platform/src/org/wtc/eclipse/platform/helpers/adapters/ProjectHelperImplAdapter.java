@@ -5,19 +5,8 @@
  */
 package org.wtc.eclipse.platform.helpers.adapters;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.swt.condition.eclipse.ProjectExistsCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
-import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
-import com.windowtester.runtime.swt.locator.TabItemLocator;
-import com.windowtester.runtime.swt.locator.TableItemLocator;
-import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
 import junit.framework.TestCase;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.viewers.ISelection;
@@ -33,9 +22,24 @@ import org.eclipse.ui.IWorkbenchSite;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PropertyDialogAction;
+import org.wtc.eclipse.core.util.Eclipse;
 import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
+import org.wtc.eclipse.platform.helpers.IProjectHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.swt.condition.eclipse.ProjectExistsCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
+import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
+import com.windowtester.runtime.swt.locator.TabItemLocator;
+import com.windowtester.runtime.swt.locator.TableItemLocator;
+import com.windowtester.runtime.swt.locator.TreeItemLocator;
+import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
 
 /**
  * Helper for creating and manipulating projects.
@@ -43,7 +47,8 @@ import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
  * @since  3.8.0
  */
 public abstract class ProjectHelperImplAdapter extends HelperImplAdapter {
-    private static final String CONFIRM_PROJECT_DELETE_SHELL_TITLE = "Delete Resources"; //$NON-NLS-1$
+	
+    private static final String CONFIRM_PROJECT_DELETE_SHELL_TITLE = Eclipse.VERSION.is(3, 3) ? "Confirm Project Delete" : "Delete Resources" ; //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * addProjectBuildDependency - Open the project properties for a given project and add
@@ -120,15 +125,23 @@ public abstract class ProjectHelperImplAdapter extends HelperImplAdapter {
                                                 new SWTWidgetLocator(Tree.class,
                                                                      new ViewLocator(IWorkbenchHelper.View.JAVA_PACKAGEEXPLORER.getViewID()))),
                             "&Delete\tDelete"); //$NON-NLS-1$
+                            
             ui.wait(new ShellShowingCondition(CONFIRM_PROJECT_DELETE_SHELL_TITLE));
 
-            if (deleteContents) {
-                ui.click(new ButtonLocator("&Delete project contents on disk.*")); //$NON-NLS-1$
-            }
-
-            clickOK(ui);
+        	if (Eclipse.VERSION.is(3, 3)) {
+        		if (deleteContents) {
+        			ui.click(new ButtonLocator("&Also delete.*")); //$NON-NLS-1$
+        		} else {
+        			ui.click(new ButtonLocator("&Do not delete.*")); //$NON-NLS-1$
+        		}
+        		clickYes(ui);
+        	} else  {
+            	ui.click(new ButtonLocator("&Delete project contents on disk.*")); //$NON-NLS-1$
+            	clickOK(ui);
+        	}
 
             ui.wait(new ShellDisposedCondition(CONFIRM_PROJECT_DELETE_SHELL_TITLE));
+            
             waitForProjectExists(ui, projectName, false);
         } catch (WidgetSearchException wse) {
             PlatformActivator.logException(wse);

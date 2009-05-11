@@ -55,6 +55,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.ide.misc.ContainerSelectionGroup;
 import org.osgi.framework.Bundle;
+import org.wtc.eclipse.core.util.Eclipse;
 import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.conditions.FileOpenCondition;
 import org.wtc.eclipse.platform.conditions.JobExistsCondition;
@@ -462,7 +463,10 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                             "&Delete"); //$NON-NLS-1$
 
             ui.wait(new ShellShowingCondition("(Delete Resources|Confirm Delete)"), 30000); //$NON-NLS-1$
-            clickOK(ui);
+            if (Eclipse.VERSION.is(3, 3))
+    	        clickYes(ui);
+            else
+	            clickOK(ui);
             ui.wait(new ShellDisposedCondition("(Delete Resources|Confirm Delete)"), 30000); //$NON-NLS-1$
 
             verifyFileExists(ui, path, false);
@@ -968,26 +972,29 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
         IPath newPath = targetPath.append(new Path(filePath.lastSegment()));
         IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
         IFile resource = (IFile) root.getFile(newPath);
-        boolean alreadyExists = resource.exists();
+        
 
+		String shellTitle = Eclipse.VERSION.is(3, 3) ? "Folder Selection" : "Move Resources";//$NON-NLS-1$//$NON-NLS-2$
         try {
             ui.contextClick(new TreeItemLocator(filePath.makeRelative().toPortableString(), new ViewLocator(IWorkbenchHelper.View.BASIC_NAVIGATOR.getViewID())),
                             "Mo&ve..."); //$NON-NLS-1$
-            ui.wait(new ShellShowingCondition("Move Resources")); //$NON-NLS-1$
+            ui.wait(new ShellShowingCondition(shellTitle)); 
 
             ui.click(new TreeItemLocator(targetPath.makeRelative().toPortableString()));
 
             clickOK(ui);
 
-            /*
-             * In the clobber case, "Continue" needs to be pressed
-             */
-            if (alreadyExists) {
-                ui.wait(new ButtonLocator("Continue").isVisible()); //$NON-NLS-1$
-                ui.click(new ButtonLocator("Continue")); //$NON-NLS-1$
-            }
-
-            ui.wait(new ShellDisposedCondition("Move Resources")); //$NON-NLS-1$
+			if (Eclipse.VERSION.isAtLeast(3,4)) {
+				boolean alreadyExists = resource.exists();
+            	/*
+             	 * In the clobber case, "Continue" needs to be pressed
+             	 */
+            	if (alreadyExists) {
+                	ui.wait(new ButtonLocator("Continue").isVisible()); //$NON-NLS-1$
+                	ui.click(new ButtonLocator("Continue")); //$NON-NLS-1$
+            	}
+			}
+            ui.wait(new ShellDisposedCondition(shellTitle));
 
         } catch (WidgetSearchException wse) {
             PlatformActivator.logException(wse);
