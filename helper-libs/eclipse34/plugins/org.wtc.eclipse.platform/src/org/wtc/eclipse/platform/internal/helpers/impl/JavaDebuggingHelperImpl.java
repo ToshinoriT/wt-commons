@@ -18,12 +18,12 @@ import org.eclipse.jdt.debug.core.IJavaMethodEntryBreakpoint;
 import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IEditorHelper;
 import org.wtc.eclipse.platform.helpers.IJavaDebuggingHelper;
-import org.wtc.eclipse.platform.helpers.adapters.DebuggingHelperImlAdapter;
+import org.wtc.eclipse.platform.helpers.adapters.DebuggingHelperImplAdapter;
 
-public class JavaDebuggingHelperImpl extends DebuggingHelperImlAdapter
+public class JavaDebuggingHelperImpl extends DebuggingHelperImplAdapter
     implements IJavaDebuggingHelper {
     /**
-     * @see  DebuggingHelperImlAdapter#getEditorHelper(IPath)
+     * @see  DebuggingHelperImplAdapter#getEditorHelper(IPath)
      */
     @Override
     protected IEditorHelper getEditorHelper(IPath filePath) {

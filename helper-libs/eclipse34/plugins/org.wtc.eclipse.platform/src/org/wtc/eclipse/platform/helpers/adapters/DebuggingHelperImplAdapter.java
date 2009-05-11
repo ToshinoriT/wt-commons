@@ -42,7 +42,7 @@ import com.windowtester.runtime.swt.locator.MenuItemLocator;
  * 
  * @since 3.8.0
  */
-public abstract class DebuggingHelperImlAdapter extends HelperImplAdapter {
+public abstract class DebuggingHelperImplAdapter extends HelperImplAdapter {
     protected static final int DEFAULT_BREAKPOINT_TIMEOUT = 120000; // Two minutes
 
     /**
