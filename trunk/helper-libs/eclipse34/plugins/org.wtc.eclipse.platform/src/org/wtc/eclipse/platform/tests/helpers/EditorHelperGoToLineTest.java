@@ -62,7 +62,6 @@ public class EditorHelperGoToLineTest extends EclipseUITest {
         resources.openFile(ui, fullFilePath);
 
         IEditorHelper editor = EclipseHelperFactory.getEditorHelper();
-        System.out.println("EditorHelperGoToLineTest.testGoToLine() -- pre goto"); //$NON-NLS-1$
         editor.gotoLine(ui, 4);
         editor.gotoLine(ui, 1);
     }
