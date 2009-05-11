@@ -21,7 +21,6 @@ import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Display;
-import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IEditorHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
@@ -312,8 +311,7 @@ public class SourceEditorBlockInserter {
                 }
             }
         } catch (IOException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getLocalizedMessage());
+        	ExceptionHandler.handle(e);
         }
 
         pasteIntoFile(ui, fullPathToFile, buffer.toString());

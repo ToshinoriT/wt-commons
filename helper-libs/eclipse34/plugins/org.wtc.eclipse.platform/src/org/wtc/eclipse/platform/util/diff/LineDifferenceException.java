@@ -5,13 +5,15 @@
  */
 package org.wtc.eclipse.platform.util.diff;
 
-import junit.framework.TestCase;
-import org.wtc.eclipse.platform.PlatformActivator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
+import junit.framework.TestCase;
+
+import org.wtc.eclipse.platform.util.ExceptionHandler;
 
 /**
  * LineDifferenceException - Exception thrown when a line-by-line file comparison finds a
@@ -264,8 +266,7 @@ public class LineDifferenceException extends DifferenceException {
             io_buffer.append(file.getAbsolutePath());
             io_buffer.append(" WAS NOT FOUND !!!!!\n"); //$NON-NLS-1$
         } catch (IOException ioe) {
-            PlatformActivator.logException(ioe);
-            TestCase.fail(ioe.getLocalizedMessage());
+        	ExceptionHandler.handle(ioe);
         }
 
         io_buffer.append("---------------- </"); //$NON-NLS-1$

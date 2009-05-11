@@ -39,6 +39,7 @@ import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
 import org.wtc.eclipse.platform.shellhandlers.SourceFolderAddedShellHandler;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetLocator;
@@ -237,8 +238,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
             ui.wait(new ShellDisposedCondition(title));
 
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getLocalizedMessage());
+        	ExceptionHandler.handle(wse);
         }
 
         workbench.waitNoJobs(ui);
@@ -363,8 +363,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
                 javaProject.setRawClasspath(newEntries, null);
             }
         } catch (JavaModelException jme) {
-            PlatformActivator.logException(jme);
-            TestCase.fail(jme.getLocalizedMessage());
+        	ExceptionHandler.handle(jme);
         }
     }
 
@@ -404,8 +403,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
                                      typeExists);
             }
         } catch (CoreException ce) {
-            PlatformActivator.logException(ce);
-            TestCase.fail(ce.getLocalizedMessage());
+        	ExceptionHandler.handle(ce);
         }
 
         logExit2();
@@ -473,8 +471,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
 
             ui.wait(new ShellDisposedCondition("New Java Class")); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         // verify the new file exists
@@ -522,8 +519,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
 
             ui.wait(new ShellDisposedCondition("New Java Package")); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         // next verify the package folder was created
@@ -583,8 +579,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
             ui.wait(new ShellDisposedCondition("Properties for " + sourceProject)); //$NON-NLS-1$
 
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getLocalizedMessage());
+        	ExceptionHandler.handle(wse);
         }
 
         ui.wait(new ICondition() {
@@ -630,8 +625,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
                 }
             }
         } catch (JavaModelException jme) {
-            PlatformActivator.logException(jme);
-            TestCase.fail(jme.getLocalizedMessage());
+        	ExceptionHandler.handle(jme);
         }
 
         return foundEntry;
@@ -711,8 +705,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
                 }
             }
         } catch (JavaModelException jme) {
-            PlatformActivator.logException(jme);
-            TestCase.fail(jme.getLocalizedMessage());
+        	ExceptionHandler.handle(jme);
         }
 
         return false;
@@ -737,8 +730,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
 
             javaProject.setRawClasspath(new IClasspathEntry[] {}, null);
         } catch (JavaModelException jme) {
-            PlatformActivator.logException(jme);
-            TestCase.fail(jme.getLocalizedMessage());
+        	ExceptionHandler.handle(jme);
         }
 
         IWorkbenchHelper workbench = EclipseHelperFactory.getWorkbenchHelper();
@@ -784,8 +776,7 @@ public class JavaHelperImpl extends HelperImplAdapter implements IJavaHelper {
 
             ui.wait(new ShellDisposedCondition("Rename Compilation Unit")); //$NON-NLS-1$
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getMessage());
+        	ExceptionHandler.handle(wse);
         } finally {
             workbenchHelper.listenForDialogRenameCompilationUnit(ui);
         }

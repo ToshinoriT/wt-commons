@@ -5,9 +5,6 @@
  */
 package org.wtc.eclipse.platform.util.diff;
 
-import com.windowtester.runtime.IUIContext;
-import junit.framework.TestCase;
-import org.wtc.eclipse.platform.PlatformActivator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +12,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.Collator;
+
+import junit.framework.TestCase;
+
+import org.wtc.eclipse.platform.util.ExceptionHandler;
+
+import com.windowtester.runtime.IUIContext;
 
 /**
  * FileBlockDiffer - Utility that searches a file for the existence of a block of text (by
@@ -123,8 +126,7 @@ public class FileBlockDiffer implements IFileDiffer {
                 }
             }
         } catch (IOException ioe) {
-            PlatformActivator.logException(ioe);
-            TestCase.fail(ioe.getMessage());
+        	ExceptionHandler.handle(ioe);
         }
 
     }

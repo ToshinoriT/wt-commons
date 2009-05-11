@@ -65,6 +65,7 @@ import org.wtc.eclipse.platform.shellhandlers.SaveResourcesShellHandler;
 import org.wtc.eclipse.platform.shellhandlers.SettingBuildPathShellHandler;
 import org.wtc.eclipse.platform.shellhandlers.UserOperationWaitingShellHandler;
 import org.wtc.eclipse.platform.shellhandlers.WrappedWizardClosingShellHandler;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
 import org.wtc.eclipse.platform.util.MarkerUtil;
 import org.wtc.eclipse.platform.util.ThreadUtil;
 
@@ -148,8 +149,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
 
             ui.wait(new ShellDisposedCondition("clean")); //$NON-NLS-1$
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getLocalizedMessage());
+        	ExceptionHandler.handle(wse);
         }
 
         cleanAllProjectsAfterUI(ui);
@@ -217,8 +217,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             // close the active perspective
             ui.click(new MenuItemLocator("&Window/&Close Perspective")); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -316,8 +315,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             description = workspace.getDescription();
             TestCase.assertFalse("Failed to disable Build Automatically.", description.isAutoBuilding()); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -337,8 +335,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             try {
                 workspace.setDescription(description);
             } catch (CoreException ce) {
-                PlatformActivator.logException(ce);
-                TestCase.fail("Failed to disable auto-build"); //$NON-NLS-1$
+            	ExceptionHandler.handle(ce,"Failed to disable auto-build: "); //$NON-NLS-1$
             }
         }
 
@@ -365,8 +362,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             description = workspace.getDescription();
             TestCase.assertTrue("Failed to set disable Build Automatically.", description.isAutoBuilding()); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -387,8 +383,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             try {
                 workspace.setDescription(description);
             } catch (CoreException ce) {
-                PlatformActivator.logException(ce);
-                TestCase.fail("Failed to enable auto-build"); //$NON-NLS-1$
+            	ExceptionHandler.handle(ce, "Failed to enable auto-build: "); //$NON-NLS-1$
             }
         }
 
@@ -498,9 +493,8 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
                 markers = updatedMarkers.toArray(markers);
             }
         } catch (CoreException ce) {
-            PlatformActivator.logException(ce);
-            TestCase.fail("Error retrieving problem markers for project " //$NON-NLS-1$
-                          + project + ": " + ce.getLocalizedMessage()); //$NON-NLS-1$
+        	ExceptionHandler.handle(ce,"Error retrieving problem markers for project " //$NON-NLS-1$
+                          + project + ": "); //$NON-NLS-1$
         }
 
         return markers;
@@ -516,8 +510,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
         try {
             ui.click(new MenuItemLocator("&Edit/&Redo.*")); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -533,8 +526,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
         try {
             ui.click(new MenuItemLocator("&Edit/&Undo.*")); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -712,8 +704,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             ui.wait(new ShellDisposedCondition("Open Perspective")); //$NON-NLS-1$
 
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         verifyPerspectiveOpen(ui, type, true);
@@ -753,8 +744,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             });
 
         if (pie[0] != null) {
-            PlatformActivator.logException(pie[0]);
-            TestCase.fail(pie[0].getLocalizedMessage());
+        	ExceptionHandler.handle(pie[0]);
         }
 
         if (shouldActivate[0]) {
@@ -764,8 +754,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
                 ui.click(new FilteredTreeItemLocator(view.getViewPath()));
                 clickOK(ui);
             } catch (WidgetSearchException e) {
-                PlatformActivator.logException(e);
-                TestCase.fail(e.getMessage());
+            	ExceptionHandler.handle(e);
             }
 
             verifyViewOpen(ui, view, true);
@@ -942,8 +931,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
                 }
             }
         } catch (CoreException ce) {
-            PlatformActivator.logException(ce);
-            TestCase.fail(ce.getLocalizedMessage());
+        	ExceptionHandler.handle(ce);
         }
 
         logExit2();
@@ -1036,8 +1024,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
                 }
             }
         } catch (CoreException ce) {
-            PlatformActivator.logException(ce);
-            TestCase.fail(ce.getLocalizedMessage());
+        	ExceptionHandler.handle(ce);
         }
 
         if (shouldHaveMarkers) {

@@ -5,22 +5,8 @@
  */
 package org.wtc.eclipse.platform.helpers.adapters;
 
-import abbot.tester.swt.ButtonTester;
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.locator.IWidgetLocator;
-import com.windowtester.runtime.locator.WidgetReference;
-import com.windowtester.runtime.swt.condition.SWTIdleCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.LabeledLocator;
-import com.windowtester.runtime.swt.locator.MenuItemLocator;
-import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
-import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
 import junit.framework.TestCase;
+
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.jface.text.ITextSelection;
@@ -35,13 +21,30 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.texteditor.ITextEditor;
-import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IEditorHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper.View;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
 import org.wtc.eclipse.platform.util.SourceEditorBlockInserter;
+
+import abbot.tester.swt.ButtonTester;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.locator.IWidgetLocator;
+import com.windowtester.runtime.locator.WidgetReference;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.LabeledLocator;
+import com.windowtester.runtime.swt.locator.MenuItemLocator;
+import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
+import com.windowtester.runtime.swt.locator.TreeItemLocator;
+import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
 
 /**
  * Helper for manipulating files through the source editor. Adapter for any text-based
@@ -177,8 +180,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
                 ui.wait(new ShellDisposedCondition("Find/Replace")); //$NON-NLS-1$
             }
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         IWorkbenchHelper workbench = EclipseHelperFactory.getWorkbenchHelper();
@@ -323,8 +325,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
                 ui.wait(new ShellDisposedCondition("Find/Replace")); //$NON-NLS-1$
             }
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -407,8 +408,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
 
             ui.wait(new ShellDisposedCondition("Go to Line")); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -705,8 +705,7 @@ public class GenericEditorHelperImplAdapter extends HelperImplAdapter implements
         }
 
         if (lastWSE != null) {
-            PlatformActivator.logException(lastWSE);
-            TestCase.fail(lastWSE.getLocalizedMessage());
+        	ExceptionHandler.handle(lastWSE);
         }
 
         logExit2();

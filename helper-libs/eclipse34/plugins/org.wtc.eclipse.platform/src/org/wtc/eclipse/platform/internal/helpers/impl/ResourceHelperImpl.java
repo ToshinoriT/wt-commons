@@ -15,7 +15,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.eclipse.core.filebuffers.FileBuffers;
@@ -65,6 +64,7 @@ import org.wtc.eclipse.platform.helpers.IProjectHelper;
 import org.wtc.eclipse.platform.helpers.IResourceHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
 import org.wtc.eclipse.platform.helpers.adapters.HelperImplAdapter;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
 import org.wtc.eclipse.platform.util.FileUtil;
 import org.wtc.eclipse.platform.util.StringUtil;
 import org.wtc.eclipse.platform.util.ZipFileUtil;
@@ -151,8 +151,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
             });
 
         if (exceptions[0] != null) {
-            PlatformActivator.logException(exceptions[0]);
-            TestCase.fail(exceptions[0].getLocalizedMessage());
+        	ExceptionHandler.handle(exceptions[0]);
         }
 
         ui.wait(new FileOpenCondition(ui, filePath, false));
@@ -202,8 +201,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
             });
 
         if (thrown[0] != null) {
-            PlatformActivator.logException(thrown[0]);
-            TestCase.fail(thrown[0].getLocalizedMessage());
+        	ExceptionHandler.handle(thrown[0]);
         }
 
         verifyFileExists(ui, destinationFilePath, true);
@@ -252,15 +250,13 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                         10000,
                         1000);
             } catch (CoreException ce) {
-                PlatformActivator.logException(ce);
-                TestCase.fail(ce.getMessage());
+            	ExceptionHandler.handle(ce);
             } finally {
                 inStream.close();
             }
 
         } catch (IOException ioe) {
-            PlatformActivator.logException(ioe);
-            TestCase.fail(ioe.getMessage());
+        	ExceptionHandler.handle(ioe);
         }
 
         IWorkbenchHelper workbench = EclipseHelperFactory.getWorkbenchHelper();
@@ -299,9 +295,8 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
             clickFinish(ui);
             ui.wait(new ShellDisposedCondition("New Folder")); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail("Failed to create Folder [" //$NON-NLS-1$
-                          + folderPath + "]:" + e.getLocalizedMessage()); //$NON-NLS-1$
+        	ExceptionHandler.handle(e, "Failed to create Folder [" //$NON-NLS-1$
+                          + folderPath + "]: "); //$NON-NLS-1$
         }
 
         ui.wait(new FolderExistsCondition(folderPath, true));
@@ -351,10 +346,9 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                     }
                 }
             } catch (CoreException ce) {
-                PlatformActivator.logException(ce);
-                TestCase.fail("Failed to create Folder [" //$NON-NLS-1$
+            	ExceptionHandler.handle(ce, "Failed to create Folder [" //$NON-NLS-1$
                               + relativeFolderPath + "] in project [" //$NON-NLS-1$
-                              + projectName + "]"); //$NON-NLS-1$
+                              + projectName + "]: "); //$NON-NLS-1$
             }
         }
 
@@ -396,8 +390,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
             fullPath = outputPath.append(new Path(fileName));
             verifyFileExists(ui, fullPath, true);
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         IWorkbenchHelper workbench = EclipseHelperFactory.getWorkbenchHelper();
@@ -473,8 +466,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
 
             verifyFileExists(ui, path, false);
         } catch (WidgetSearchException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         workbench.waitNoJobs(ui);
@@ -503,8 +495,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
         try {
             resource.delete(true, null);
         } catch (CoreException ce) {
-            Assert.fail(ce.getMessage());
-            PlatformActivator.logException(ce);
+        	ExceptionHandler.handle(ce);
         }
 
         IWorkbenchHelper workbench = EclipseHelperFactory.getWorkbenchHelper();
@@ -538,15 +529,13 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
 
             return builder.toString();
         } catch (IOException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getLocalizedMessage());
+        	ExceptionHandler.handle(e);
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException ioe) {
-                    PlatformActivator.logException(ioe);
-                    TestCase.fail(ioe.getLocalizedMessage());
+                	ExceptionHandler.handle(ioe);
                 }
             }
         }
@@ -999,8 +988,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
             ui.wait(new ShellDisposedCondition(shellTitle));
 
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getLocalizedMessage());
+        	ExceptionHandler.handle(wse);
         }
 
         verifyFileExists(ui, filePath, false);
@@ -1038,8 +1026,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                     try {
                         IDE.openEditor(page, file);
                     } catch (PartInitException e) {
-                        PlatformActivator.logException(e);
-                        TestCase.fail("Error opening file in editor: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                    	ExceptionHandler.handle(e, "Error opening file in editor: "); //$NON-NLS-1$
                     }
                 }
             });
@@ -1081,11 +1068,9 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                 sourceInput.close();
             }
         } catch (CoreException ce) {
-            PlatformActivator.logException(ce);
-            TestCase.fail(ce.getLocalizedMessage());
+        	ExceptionHandler.handle(ce);
         } catch (IOException ioe) {
-            PlatformActivator.logException(ioe);
-            TestCase.fail(ioe.getLocalizedMessage());
+        	ExceptionHandler.handle(ioe);
         }
 
         IWorkbenchHelper workbench = EclipseHelperFactory.getWorkbenchHelper();
@@ -1118,8 +1103,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                                            baselineFilePath,
                                            filePath);
         } catch (DifferenceException de) {
-            PlatformActivator.logException(de);
-            TestCase.fail(de.getLocalizedMessage());
+        	ExceptionHandler.handle(de);
         }
 
         logExit2();
@@ -1180,8 +1164,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                                           baselineFilePath,
                                           filePath);
         } catch (DifferenceException de) {
-            PlatformActivator.logException(de);
-            TestCase.fail(de.getLocalizedMessage());
+        	ExceptionHandler.handle(de);
         }
 
         logExit2();
@@ -1211,8 +1194,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                                              baselineFilePath,
                                              filePath);
         } catch (DifferenceException de) {
-            PlatformActivator.logException(de);
-            TestCase.fail(de.getLocalizedMessage());
+        	ExceptionHandler.handle(de);
         }
 
         logExit2();
@@ -1241,8 +1223,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                                              baselineFilePath,
                                              actualLines);
         } catch (DifferenceException de) {
-            PlatformActivator.logException(de);
-            TestCase.fail(de.getLocalizedMessage());
+        	ExceptionHandler.handle(de);
         }
 
         logExit2();
@@ -1355,8 +1336,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                                                      filePath,
                                                      ignorePattern);
         } catch (DifferenceException de) {
-            PlatformActivator.logException(de);
-            TestCase.fail(de.getLocalizedMessage());
+        	ExceptionHandler.handle(de);
         }
 
         logExit2();
@@ -1420,8 +1400,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                                                baselineFilePath,
                                                filePath);
         } catch (DifferenceException de) {
-            PlatformActivator.logException(de);
-            TestCase.fail(de.getLocalizedMessage());
+        	ExceptionHandler.handle(de);
         }
 
         logExit2();
@@ -1473,8 +1452,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                                             filePath,
                                             exists);
         } catch (DifferenceException de) {
-            PlatformActivator.logException(de);
-            TestCase.fail(de.getLocalizedMessage());
+        	ExceptionHandler.handle(de);
         }
 
         logExit2();
@@ -1726,8 +1704,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                                                      baselineFilePath,
                                                      contents);
         } catch (DifferenceException de) {
-            PlatformActivator.logException(de);
-            TestCase.fail(de.getLocalizedMessage());
+        	ExceptionHandler.handle(de);
         }
     }
 
@@ -1791,8 +1768,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                 fileWriter.close();
             }
         } catch (IOException ioe) {
-            PlatformActivator.logException(ioe);
-            TestCase.fail(ioe.getLocalizedMessage());
+        	ExceptionHandler.handle(ioe);
         }
 
         verifyFileExists(ui, filePath, true);

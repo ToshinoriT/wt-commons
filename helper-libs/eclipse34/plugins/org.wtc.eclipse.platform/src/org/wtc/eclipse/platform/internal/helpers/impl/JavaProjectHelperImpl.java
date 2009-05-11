@@ -5,6 +5,15 @@
  */
 package org.wtc.eclipse.platform.internal.helpers.impl;
 
+import junit.framework.TestCase;
+
+import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
+import org.wtc.eclipse.platform.helpers.IJavaProjectHelper;
+import org.wtc.eclipse.platform.helpers.IProjectHelperConstants;
+import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
+import org.wtc.eclipse.platform.helpers.adapters.ProjectHelperImplAdapter;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
+
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.locator.IWidgetLocator;
@@ -13,13 +22,6 @@ import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
 import com.windowtester.runtime.swt.locator.ButtonLocator;
 import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
 import com.windowtester.runtime.swt.locator.LabeledTextLocator;
-import junit.framework.TestCase;
-import org.wtc.eclipse.platform.PlatformActivator;
-import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
-import org.wtc.eclipse.platform.helpers.IJavaProjectHelper;
-import org.wtc.eclipse.platform.helpers.IProjectHelperConstants;
-import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
-import org.wtc.eclipse.platform.helpers.adapters.ProjectHelperImplAdapter;
 
 /**
  * Helper for creating and manipulating java projects.
@@ -75,8 +77,7 @@ public class JavaProjectHelperImpl extends ProjectHelperImplAdapter implements I
             waitForProjectExists(ui, projectName, true);
             workbench.waitNoResourceChangeEvents(ui);
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getLocalizedMessage());
+        	ExceptionHandler.handle(wse);
         }
 
         workbench.waitNoJobs(ui);

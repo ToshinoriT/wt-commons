@@ -5,10 +5,6 @@
  */
 package org.wtc.eclipse.platform.util.diff;
 
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
-import junit.framework.TestCase;
-import org.wtc.eclipse.platform.PlatformActivator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +14,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import junit.framework.TestCase;
+
+import org.wtc.eclipse.platform.util.ExceptionHandler;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
 
 /**
  * LineByLineSetDiffer - File comparison utility that checks that two files are the same
@@ -142,8 +145,7 @@ public class LineByLineSetDiffer implements IFileDiffer {
             }
 
         } catch (IOException e) {
-            PlatformActivator.logException(e);
-            TestCase.fail(e.getMessage());
+        	ExceptionHandler.handle(e);
         }
 
         return sourceFileLineSet;

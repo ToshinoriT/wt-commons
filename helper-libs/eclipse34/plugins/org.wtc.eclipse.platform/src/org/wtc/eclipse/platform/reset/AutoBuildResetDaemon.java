@@ -5,14 +5,14 @@
  */
 package org.wtc.eclipse.platform.reset;
 
-import com.windowtester.runtime.IUIContext;
-import junit.framework.TestCase;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceDescription;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.wtc.eclipse.core.reset.IResetDaemon;
-import org.wtc.eclipse.platform.PlatformActivator;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
+
+import com.windowtester.runtime.IUIContext;
 
 /**
  * Reset daemon that makes sure that workspace auto build is turned on.
@@ -32,8 +32,7 @@ public class AutoBuildResetDaemon implements IResetDaemon {
             try {
                 workspace.setDescription(description);
             } catch (CoreException e) {
-                PlatformActivator.logException(e);
-                TestCase.fail(e.getLocalizedMessage());
+            	ExceptionHandler.handle(e);
             }
         }
     }

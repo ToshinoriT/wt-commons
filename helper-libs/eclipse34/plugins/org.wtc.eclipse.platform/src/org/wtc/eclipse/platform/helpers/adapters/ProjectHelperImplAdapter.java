@@ -23,10 +23,10 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PropertyDialogAction;
 import org.wtc.eclipse.core.util.Eclipse;
-import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.helpers.EclipseHelperFactory;
 import org.wtc.eclipse.platform.helpers.IProjectHelper;
 import org.wtc.eclipse.platform.helpers.IWorkbenchHelper;
+import org.wtc.eclipse.platform.util.ExceptionHandler;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
@@ -81,8 +81,7 @@ public abstract class ProjectHelperImplAdapter extends HelperImplAdapter {
 
             ui.wait(new ShellDisposedCondition("Properties for " + sourceProject)); //$NON-NLS-1$
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getLocalizedMessage());
+        	ExceptionHandler.handle(wse);
         }
 
         logExit2();
@@ -144,8 +143,7 @@ public abstract class ProjectHelperImplAdapter extends HelperImplAdapter {
             
             waitForProjectExists(ui, projectName, false);
         } catch (WidgetSearchException wse) {
-            PlatformActivator.logException(wse);
-            TestCase.fail(wse.getLocalizedMessage());
+        	ExceptionHandler.handle(wse);
         }
 
         logExit2();
