@@ -30,6 +30,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.wtc.eclipse.core.util.Eclipse;
 import org.wtc.eclipse.core.util.Timestamp;
 import org.wtc.eclipse.platform.PlatformActivator;
 import org.wtc.eclipse.platform.conditions.ProjectOpenCondition;
@@ -366,6 +367,8 @@ public class ProjectHelperImpl extends ProjectHelperImplAdapter implements IProj
 	 * NOTE: public for testing
 	 */
 	public String buildProjectTreeNodeLabelRegexp(String projectName) {
+		if (Eclipse.VERSION.is(3, 3))
+			return projectName;
 		return projectName + " \\(.*"; //$NON-NLS-1$ //regexep captures project location;
 	}
     

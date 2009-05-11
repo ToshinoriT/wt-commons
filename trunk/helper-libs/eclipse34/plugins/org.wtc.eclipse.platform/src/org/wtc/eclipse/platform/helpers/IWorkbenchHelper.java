@@ -5,14 +5,16 @@
  */
 package org.wtc.eclipse.platform.helpers;
 
-import com.windowtester.runtime.IUIContext;
+import java.util.regex.Pattern;
+
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
 import org.wtc.eclipse.platform.shellhandlers.IWorkbenchShellHandler;
-import java.util.regex.Pattern;
+
+import com.windowtester.runtime.IUIContext;
 
 /**
  * Helper workbench specific tasks.
@@ -56,8 +58,10 @@ public interface IWorkbenchHelper {
         }
     }
 
+    
+   
     // Eclipse common views
-    public static enum View implements IView {
+    public static enum View implements IView { 	
         BASIC_CONSOLE("(General|Basic)/Console", //$NON-NLS-1$
             "org.eclipse.ui.console.ConsoleView"), //$NON-NLS-1$
         BASIC_INTERNALWEBBROWSER("(General|Basic)/Internal Web Browser", //$NON-NLS-1$
@@ -82,7 +86,7 @@ public interface IWorkbenchHelper {
             "org.eclipse.debug.ui.BreakpointView"), //$NON-NLS-1$
         JAVA_PACKAGEEXPLORER("Java/Package Explorer", //$NON-NLS-1$
             "org.eclipse.jdt.ui.PackageExplorer"), //$NON-NLS-1$
-        PDERUNTIME_ERRORLOG("General/Error Log", //$NON-NLS-1$
+        PDERUNTIME_ERRORLOG("(PDE Runtime|General)/Error Log", //$NON-NLS-1$
             "org.eclipse.pde.runtime.LogView"); //$NON-NLS-1$
 
         private String _viewSelectionPath;
