@@ -2,7 +2,7 @@
 
 ===API===
 
-Google-code does not as of yet (12/2008) have an [http://code.google.com/p/support/issues/detail?id=148 API for the issue tracker].
+Google-code does not as of yet (05/2009) have an [http://code.google.com/p/support/issues/detail?id=148 API for the issue tracker].
 
 
 ===Web Connector===
@@ -15,3 +15,7 @@ Example repository properties are as follows:
   * *Label:*  wt-commons
   * *Query Request URL:* `${serverUrl}/csv?can=1&colspec=ID+Status+Type+Owner+Summary`
   * *Query Pattern:*     `"({Id}[0-9]+?)","({Status}.+?)","({Type}.+?)","({Owner}.+?)","({Description}.+?)"\s`
+
+====Refined Searches====
+
+Tweaking search parameters is handy if you want to refine/filter your search.  Look at to this [http://alblue.blogspot.com/2009/04/google-code-and-mylyn-redux.html blog entry] to see some of the the secrets of google [http://code.google.com/p/objectiveclipse/issues/searchtips search operators] revealed.  
