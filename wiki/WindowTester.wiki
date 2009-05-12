@@ -1,4 +1,4 @@
-A JUnit-based UI-testing framework for testing Eclipse/RCP, SWT and Swing applications.
+#summary A JUnit-based UI-testing framework for testing Eclipse/RCP, SWT and Swing applications.
 
 = Introduction =
 
