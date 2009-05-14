@@ -28,10 +28,8 @@ import org.wtc.eclipse.platform.helpers.IWorkbenchHelper.Perspective;
 import org.wtc.eclipse.platform.util.ExceptionHandler;
 
 import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WaitTimedOutException;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
 import com.windowtester.runtime.swt.locator.ButtonLocator;
@@ -135,19 +133,6 @@ public abstract class DebuggingHelperImplAdapter extends HelperImplAdapter {
 
         logExit2();
     }
-
-	/**
-	 * Wait for SWT Idle.
-	 * @since 3.8.0
-	 */
-	protected void waitForIdle(IUIContext ui) throws WaitTimedOutException {
-		/*
-		 * This condition replaces earlier deprecated wait for idle strategies.
-		 * Since idle waits have historically been a hotspot for timing issues
-		 * this is a good place to look if we see timing-related regressions.
-		 */
-		ui.wait(new SWTIdleCondition());
-	}
 
     /**
      * setLineBreakpoint - Add a breakpoint to the given file on the given line.

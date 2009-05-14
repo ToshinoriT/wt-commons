@@ -42,6 +42,7 @@ import abbot.tester.swt.TableTester;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WT;
+import com.windowtester.runtime.WaitTimedOutException;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.ICondition;
 import com.windowtester.runtime.locator.IWidgetLocator;
@@ -1016,5 +1017,18 @@ public abstract class HelperImplAdapter {
 
         return control;
     }
+    
+	/**
+	 * Wait for SWT Idle.
+	 * @since 3.8.0
+	 */
+	protected static void waitForIdle(IUIContext ui) throws WaitTimedOutException {
+		/*
+		 * This condition replaces earlier deprecated wait for idle strategies.
+		 * Since idle waits have historically been a hotspot for timing issues
+		 * this is a good place to look if we see timing-related regressions.
+		 */
+		ui.wait(new SWTIdleCondition());
+	}
 
 }
