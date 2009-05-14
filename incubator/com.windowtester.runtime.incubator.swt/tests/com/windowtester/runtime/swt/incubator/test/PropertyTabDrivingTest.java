@@ -3,7 +3,7 @@ package com.windowtester.runtime.swt.incubator.test;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.incubator.swt.locator.PropertyTabItemLocator;
-import com.windowtester.runtime.incubator.swt.locator.PropertyTabReference;
+import com.windowtester.runtime.incubator.swt.locator.PropertyTabItemReference;
 import com.windowtester.runtime.incubator.swt.locator.TabbedPropertyListLocator;
 import com.windowtester.runtime.incubator.swt.locator.TabbedPropertyListReference;
 import com.windowtester.runtime.swt.UITestCaseSWT;
@@ -68,8 +68,8 @@ public class PropertyTabDrivingTest extends UITestCaseSWT {
 		IUIContext ui = getUI();
 
 		TabbedPropertyListReference tabListRef = (TabbedPropertyListReference) ui.find(new TabbedPropertyListLocator());
-		PropertyTabReference[] tabs = tabListRef.getTabs();
-		for (PropertyTabReference ref : tabs) {
+		PropertyTabItemReference[] tabs = tabListRef.getTabs();
+		for (PropertyTabItemReference ref : tabs) {
 			ui.click(ref);
 			//ui.pause(1000); //pause for visual confirmation
 		}
