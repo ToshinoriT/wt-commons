@@ -73,7 +73,7 @@ import org.wtc.eclipse.platform.util.diff.FileBlockDiffer;
 import org.wtc.eclipse.platform.util.diff.IFileDiffer;
 import org.wtc.eclipse.platform.util.diff.LineByLineDiffer;
 import org.wtc.eclipse.platform.util.diff.LineByLineRegexDiffer;
-import org.wtc.eclipse.platform.util.diff.LineByLineRexexIgnoreDiffer;
+import org.wtc.eclipse.platform.util.diff.LineByLineRegexIgnoreDiffer;
 import org.wtc.eclipse.platform.util.diff.LineByLineSetDiffer;
 import org.wtc.eclipse.platform.util.diff.StringExistsFileDiffer;
 
@@ -1373,7 +1373,7 @@ public class ResourceHelperImpl extends HelperImplAdapter implements IResourceHe
                                 plugin,
                                 baselineFilePath,
                                 filePath,
-                                new LineByLineRexexIgnoreDiffer(ignorePattern));
+                                new LineByLineRegexIgnoreDiffer(ignorePattern));
     }
 
     /**

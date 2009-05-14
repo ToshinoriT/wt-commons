@@ -27,20 +27,20 @@ import com.windowtester.runtime.swt.condition.eclipse.FileExistsCondition;
  * LineByLineRexexIgnoreDiffer - File comparison utility that checks that two files are
  * the same line by line and ignores any lines that match a given regex pattern.
  */
-public class LineByLineRexexIgnoreDiffer implements IFileDiffer {
+public class LineByLineRegexIgnoreDiffer implements IFileDiffer {
     private final String _ignorePattern;
 
     /**
      * Save the data members.
      */
-    public LineByLineRexexIgnoreDiffer() {
+    public LineByLineRegexIgnoreDiffer() {
         this(null);
     }
 
     /**
      * Save the data members.
      */
-    public LineByLineRexexIgnoreDiffer(String ignorePattern) {
+    public LineByLineRegexIgnoreDiffer(String ignorePattern) {
         _ignorePattern = ignorePattern;
     }
 
