@@ -452,7 +452,7 @@ public abstract class HelperImplAdapter {
      */
     protected IShellMonitor getShellMonitor(IUIContext ui) {
     	/*
-    	 * This is how we *want* to access the shell monitor but doing so breaks some
+    	 * FIXME: This is how we *want* to access the shell monitor but doing so breaks some
     	 * test lifecycle assumptions.
     	 * 
     	 * http://code.google.com/p/wt-commons/issues/detail?id=25
