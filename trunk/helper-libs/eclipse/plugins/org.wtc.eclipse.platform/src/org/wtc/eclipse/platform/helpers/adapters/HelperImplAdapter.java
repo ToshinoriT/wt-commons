@@ -104,7 +104,6 @@ public abstract class HelperImplAdapter {
         try {
             ui.click(new NamedWidgetLocator(buttonName));
         } catch (WidgetSearchException e) {
-            PlatformActivator.logError("FAILED TO CLICK BUTTON BY NAME [" + buttonName + "]"); //$NON-NLS-1$ //$NON-NLS-2$
             ExceptionHandler.handle(e);
         }
     }
