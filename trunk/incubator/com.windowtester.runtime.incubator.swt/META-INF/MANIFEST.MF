@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: WindowTester SWT Runtime Incubator Plug-in
+Bundle-SymbolicName: com.windowtester.runtime.incubator.swt
+Bundle-Version: 0.0.1
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.wtc.eclipse.core;bundle-version="1.0.0",
+ org.wtc.eclipse.platform;bundle-version="1.0.0",
+ com.windowtester.runtime;bundle-version="0.0.0",
+ com.windowtester.swt.runtime;bundle-version="0.0.0",
+ org.eclipse.swt
+Bundle-Vendor: WTC
