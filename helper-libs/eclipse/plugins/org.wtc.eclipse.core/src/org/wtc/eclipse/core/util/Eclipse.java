@@ -32,8 +32,8 @@ public class Eclipse {
 
 	public static class Version {
 		
-		private final int major;
-		private final int minor;
+		private final int _major;
+		private final int _minor;
 		
 		Version() {
 			this(parseVersion());
@@ -44,22 +44,22 @@ public class Eclipse {
 		}
 		
 		Version(int major, int minor) {
-			this.major = major;
-			this.minor = minor;
+			_major = major;
+			_minor = minor;
 		}
 		
 		/**
 		 * @return the major version number
 		 */
 		public int getMajor() {
-			return major;
+			return _major;
 		}
 		
 		/**
 		 * @return the minor version number
 		 */
 		public int getMinor() {
-			return minor;
+			return _minor;
 		}
 		
 		/**
