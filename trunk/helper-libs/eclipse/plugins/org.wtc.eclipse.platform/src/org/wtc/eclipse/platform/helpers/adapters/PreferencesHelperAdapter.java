@@ -42,7 +42,7 @@ public abstract class PreferencesHelperAdapter extends HelperImplAdapter {
         TestCase.assertNotNull(categoryName);
 
         try {
-            ui.click(new MenuItemLocator("&Window/&Preferences...")); //$NON-NLS-1$
+            ui.click(new MenuItemLocator("&Window/&Preferences(...)?")); //$NON-NLS-1$
 
             ui.wait(new ShellShowingCondition("Preferences")); //$NON-NLS-1$
             ui.click(new TreeItemLocator(categoryName));
