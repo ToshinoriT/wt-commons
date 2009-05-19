@@ -8,6 +8,7 @@ package org.wtc.eclipse.platform.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.core.runtime.internal.adaptor.PluginParser.Prerequisite;
 import org.wtc.eclipse.core.tests.ManagedTestSuite;
 import org.wtc.eclipse.platform.tests.helpers.AntHelperTest;
 import org.wtc.eclipse.platform.tests.helpers.EditorHelperFindReplaceAllTest;
@@ -20,6 +21,7 @@ import org.wtc.eclipse.platform.tests.helpers.JavaHelperCreatePackageTest;
 import org.wtc.eclipse.platform.tests.helpers.JavaHelperCreateSourceFolderTest;
 import org.wtc.eclipse.platform.tests.helpers.LineByLineRegexDifferTest;
 import org.wtc.eclipse.platform.tests.helpers.LineByLineSetDifferTest;
+import org.wtc.eclipse.platform.tests.helpers.PreferencesHelperTest;
 import org.wtc.eclipse.platform.tests.helpers.ProjectHelperDeleteTest;
 import org.wtc.eclipse.platform.tests.helpers.ProjectHelperExportTest;
 import org.wtc.eclipse.platform.tests.helpers.ProjectHelperExportToArchiveTest;
@@ -66,6 +68,7 @@ public class PlatformHelperTestSuite extends EclipseUITest {
         suite.addTest(new ManagedTestSuite(JavaHelperCreateSourceFolderTest.class));
         suite.addTest(new ManagedTestSuite(LineByLineRegexDifferTest.class));
         suite.addTest(new ManagedTestSuite(LineByLineSetDifferTest.class));
+        suite.addTest(new ManagedTestSuite(PreferencesHelperTest.class));
         suite.addTest(new ManagedTestSuite(ProjectHelperDeleteTest.class));
         suite.addTest(new ManagedTestSuite(ProjectHelperExportTest.class));
         suite.addTest(new ManagedTestSuite(ProjectHelperExportToArchiveTest.class));
@@ -75,6 +78,7 @@ public class PlatformHelperTestSuite extends EclipseUITest {
         suite.addTest(new ManagedTestSuite(ProjectHelperOpenCloseTest.class));
         suite.addTest(new ManagedTestSuite(ProjectHelperProjectDependencyTest.class));
         suite.addTest(new ManagedTestSuite(ProjectHelperSimpleTest.class));
+        suite.addTest(new ManagedTestSuite(ProjectHelperProjectTreeLabelTest.class));
         suite.addTest(new ManagedTestSuite(ResourceHelperCreateSimpleFileTest.class));
         suite.addTest(new ManagedTestSuite(ResourceHelperDeleteFileTest.class));
         suite.addTest(new ManagedTestSuite(ResourceHelperGetFileFormPluginTest.class));
@@ -89,7 +93,6 @@ public class PlatformHelperTestSuite extends EclipseUITest {
         suite.addTest(new ManagedTestSuite(WorkbenchHelperOpenViewPerspectiveTest.class));
         suite.addTest(new ManagedTestSuite(WorkbenchHelperSwitchPerspectiveDialogTest.class));
         suite.addTest(new ManagedTestSuite(WorkbenchHelperVerifyMarkersTest.class));
-        suite.addTest(new ManagedTestSuite(ProjectHelperProjectTreeLabelTest.class));
 
         return suite;
     }

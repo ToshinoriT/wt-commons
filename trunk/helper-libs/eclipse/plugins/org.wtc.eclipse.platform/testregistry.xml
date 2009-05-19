@@ -35,6 +35,9 @@
     <test class="org.wtc.eclipse.platform.tests.helpers.LineByLineSetDifferTest">
         <module>wtc.platform</module>
     </test>
+    <test class="org.wtc.eclipse.platform.tests.helpers.PreferencesHelperTest">
+        <module>wtc.platform</module>
+    </test>
     <test class="org.wtc.eclipse.platform.tests.helpers.ProjectHelperDeleteTest">
         <module>wtc.platform</module>
     </test>
