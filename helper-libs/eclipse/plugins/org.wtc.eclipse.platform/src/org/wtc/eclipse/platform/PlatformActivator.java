@@ -1,3 +1,4 @@
+/**
  * WT Commons Project 2008-2009
  *
  * http://code.google.com/p/wt-commons/wiki/WTSamples
