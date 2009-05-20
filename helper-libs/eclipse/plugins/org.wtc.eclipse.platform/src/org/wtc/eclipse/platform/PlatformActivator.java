@@ -1,4 +1,3 @@
-/**
  * WT Commons Project 2008-2009
  *
  * http://code.google.com/p/wt-commons/wiki/WTSamples
@@ -261,6 +260,7 @@ public class PlatformActivator extends AbstractUIPlugin {
     public static void logError(String message) {
         log(new Status(IStatus.ERROR, PLUGIN_ID, IStatus.ERROR, (message == null) ? "" : message, //$NON-NLS-1$
                        null));
+        System.err.println(message);
     }
 
     public static void logException(Throwable ex) {
