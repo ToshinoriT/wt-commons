@@ -86,15 +86,15 @@ public class DefaultShellHandlersRegistry {
                     continue;
                 }
 
-                Constructor ctor = null;
+                Constructor<?> ctor = null;
 
                 try {
-                    ctor = loadedClass.getConstructor(new Class[] { IUIContext.class });
+                    ctor = loadedClass.getConstructor(new Class[] {});
                 } catch (SecurityException ex) {
                     PlatformActivator.logException(ex);
                     String message = MessageFormat.format("ERROR - THE BUNDLE <{0}> " //$NON-NLS-1$
                                                           + "> DECLARED A DEFAULT SHELL HANDLER <{1}> " //$NON-NLS-1$
-                                                          + "THAT DOES NOT A CONSTRUCTOR WITH ONLY THE IUIContext PARAMETER; " //$NON-NLS-1$
+                                                          + "THAT DOES HAVE A DEFAULT CONSTRUCTOR; " //$NON-NLS-1$
                                                           + "THE HANDLER WILL BE IGNORED", //$NON-NLS-1$
                                                           new Object[] {
                             bundleID, shellHandlerClassString
@@ -106,7 +106,7 @@ public class DefaultShellHandlersRegistry {
                     PlatformActivator.logException(ex);
                     String message = MessageFormat.format("ERROR - THE BUNDLE <{0}> " //$NON-NLS-1$
                                                           + "> DECLARED A DEFAULT SHELL HANDLER <{1}> " //$NON-NLS-1$
-                                                          + "THAT DOES NOT A CONSTRUCTOR WITH ONLY THE IUIContext PARAMETER; " //$NON-NLS-1$
+                                                          + "THAT DOES HAVE A DEFAULT CONSTRUCTOR; " //$NON-NLS-1$
                                                           + "THE HANDLER WILL BE IGNORED", //$NON-NLS-1$
                                                           new Object[] {
                             bundleID, shellHandlerClassString
@@ -119,13 +119,13 @@ public class DefaultShellHandlersRegistry {
                 AbstractShellHandler loadedHandler = null;
 
                 try {
-                    loadedHandler = (AbstractShellHandler) ctor.newInstance(new Object[] { ui });
+                    loadedHandler = (AbstractShellHandler) ctor.newInstance(new Object[] {});
                 } catch (InstantiationException ex) {
                     PlatformActivator.logException(ex);
 
                     String message = MessageFormat.format("ERROR - THE BUNDLE <{0}> " //$NON-NLS-1$
                                                           + "> DECLARED A DEFAULT SHELL HANDLER <{1}> " //$NON-NLS-1$
-                                                          + "THAT DOES NOT A CONSTRUCTOR WITH ONLY THE IUIContext PARAMETER; " //$NON-NLS-1$
+                                                          + "THAT DOES HAVE A DEFAULT CONSTRUCTOR; " //$NON-NLS-1$
                                                           + "THE HANDLER WILL BE IGNORED", //$NON-NLS-1$
                                                           new Object[] {
                             bundleID, shellHandlerClassString
