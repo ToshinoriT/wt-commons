@@ -1,4 +1,0 @@
-SEARCH_INDEX0 this is a line of text for searching this is a line of text for searching
-this is a line of text for searching SEARCH_MIDDLE this is a line of text for searching
-this is a line of text for searching this is a line of text for searching
-this is a line of text for searching this is a line of text for searchingSEARCH_LASTINDEX

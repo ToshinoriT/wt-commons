@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="antHelperTest" default="run" basedir=".">
-	
-	<target name="run">
-		<echo message="--RUNNING antHelperTest.run: ${destination} --"/>
-		<copy file="antHelperTest.copy" tofile="${destination}"/>
-	</target>
-	
-</project>

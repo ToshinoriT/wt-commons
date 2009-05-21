@@ -1,7 +1,0 @@
-public java.lang.String ejbCreate(String visitorName)
-{
-    setVisitorName(visitorName);
-    setVisitNumber(1);
-
-    return null;
-}

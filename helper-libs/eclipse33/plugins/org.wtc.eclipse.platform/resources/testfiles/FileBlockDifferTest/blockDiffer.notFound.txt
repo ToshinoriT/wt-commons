@@ -1,4 +1,0 @@
-<test>
-    <noBlockDiffer>There is no occurrence of the blockDiffer.block in this file</noBlockDiffer>
-    <description>Note - actual blocks to diff don't need to be XML</description>
-</test>
