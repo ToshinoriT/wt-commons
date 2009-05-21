@@ -1,5 +1,0 @@
-REPLACEME test char(0)
-test end of line REPLACEME
-test middle (REPLACEME) of line
-test close but no cigar (REPLACE)
-test last chars REPLACEME
