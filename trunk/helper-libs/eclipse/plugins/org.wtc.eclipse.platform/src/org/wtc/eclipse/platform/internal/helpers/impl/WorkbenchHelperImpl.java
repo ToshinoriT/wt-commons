@@ -750,7 +750,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
         if (shouldActivate[0]) {
             try {
                 ui.pause(500);
-                ui.click(new MenuItemLocator("&Window/Show &View/&Other.*")); //$NON-NLS-1$
+                ui.click(new MenuItemLocator("Window/Show View/Other.*")); //$NON-NLS-1$
                 ui.click(new FilteredTreeItemLocator(view.getViewPath()));
                 clickOK(ui);
             } catch (WidgetSearchException e) {
