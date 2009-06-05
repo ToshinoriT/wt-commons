@@ -1,7 +1,7 @@
 Bundle-ManifestVersion: 2
-Bundle-Name: WT Commons for Eclipse Platform
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.wtc.eclipse.platform;singleton:=true
-Bundle-Version: 3.4.0.qualifier
+Bundle-Version: 3.8.0.qualifier
 Bundle-Activator: org.wtc.eclipse.platform.PlatformActivator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -36,3 +36,5 @@ Export-Package: org.wtc.eclipse.platform,
  org.wtc.eclipse.platform.util,
  org.wtc.eclipse.platform.util.diff
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
+Bundle-Vendor: %providerName
