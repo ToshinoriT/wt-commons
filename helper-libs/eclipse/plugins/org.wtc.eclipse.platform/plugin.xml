@@ -40,6 +40,7 @@
             priority="25"
             triggerLevel="10"/>
    </extension>
+   <!-- 
    <extension
          point="org.wtc.eclipse.platform.conditionHandlers">
       <conditionHandler class="org.wtc.eclipse.platform.handlers.FocusFixingConditionHandler"/>
@@ -48,6 +49,7 @@
          point="org.wtc.eclipse.platform.focusFixingShells">
       <shell title="Open Associated Perspective?"/>
    </extension>
+   -->
    <extension
          point="org.wtc.eclipse.platform.defaultPerspective">
       <perspective
