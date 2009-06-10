@@ -29,7 +29,7 @@ public class PreprocessorManager {
     // -------------------------------------------------------------
     // EXTENSION POINT ELEMENTS
     // -------------------------------------------------------------
-    private static final String PREPROCESSOR_EXTENSION_POINT_ID = "org.wtc.eclipse.core.preprocess"; //$NON-NLS-1$
+    private static final String PREPROCESSOR_EXTENSION_POINT_ID = "org.wtc.eclipse.core.preprocessor"; //$NON-NLS-1$
 
     private static final String ELEMENT_PREPROCESSOR = "preprocessor"; //$NON-NLS-1$
     private static final String ELEMENTATTR_PREPROCESSOR_CLASS = "class"; //$NON-NLS-1$
