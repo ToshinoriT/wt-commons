@@ -22,7 +22,7 @@ public class WaitForJobsRegistry {
     // ------------------------------------------------------------------------
     // DEFAULT JOBS THAT WE'LL ALLOW TO RUN
     // ------------------------------------------------------------------------
-    public static String JOB_JAVA_INDEXING  = "Java indexing in progress"; //$NON-NLS-1$
+    public static String JOB_JAVA_INDEXING  = "Java indexing.*"; //$NON-NLS-1$
     public static String UDC_EVENT_CONSUMER = "Usage Data Event consumer"; //$NON-NLS-1$
     public static String FLUSHING_CACHE     = "Flush Cache Job";           //$NON-NLS-1$
     public static String OPEN_NOTICATIONS   = "Open Notification Job";     //$NON-NLS-1$

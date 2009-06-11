@@ -14,20 +14,22 @@ import org.wtc.eclipse.platform.internal.helpers.impl.WaitForJobsRegistry;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * JobExistsCondition - Condition that polls the eclipse job manager and tests if there
  * are any running jobs. Will return false (condition not met) when there are WAITING or
  * RUNNING jobs. Can be passed a list of exceptions (jobs that can be RUNNING or WAITING
  * and still meet this condition)
- * 
- * @since 3.8.0
+ *
+ * @since  3.8.0
  */
 public class JobExistsCondition implements ICondition {
     // default to waiting 6 minutes
     public static long DEFAULT_WAIT_FOR_JOBS_TIMEOUT = 360000;
 
-    private final Set<String> _exceptions;
+    private final Set<Pattern> _exceptions;
 
     private boolean _hasLogged = false;
 
@@ -46,13 +48,24 @@ public class JobExistsCondition implements ICondition {
      *                     be met
      */
     public JobExistsCondition(Collection<String> exceptions) {
-        _exceptions = new HashSet<String>();
+        _exceptions = new HashSet<Pattern>();
 
         if (exceptions != null) {
-            _exceptions.addAll(exceptions);
+            compileExceptions(exceptions);
         }
 
-        _exceptions.addAll(WaitForJobsRegistry.getExpectedJobs());
+        Collection<String> expectedPatterns = WaitForJobsRegistry.getExpectedJobs();
+        compileExceptions(expectedPatterns);
+    }
+
+    /**
+     * Compile regex patterns into the exceptions list.
+     */
+    private void compileExceptions(Collection<String> exceptions) {
+        for (String nextPatternString : exceptions) {
+            Pattern nextPattern = Pattern.compile(nextPatternString);
+            _exceptions.add(nextPattern);
+        }
     }
 
     /**
@@ -86,12 +99,13 @@ public class JobExistsCondition implements ICondition {
         for (Job nextJob : allJobs) {
             String stateString = "?? UNKNOWN STATE ??"; //$NON-NLS-1$
             int state = nextJob.getState();
+            String jobName = nextJob.getName();
 
             switch (state) {
                 case Job.RUNNING: {
                     stateString = "RUNNING"; //$NON-NLS-1$
 
-                    if (!_exceptions.contains(nextJob.getName())) {
+                    if (!isExpected(jobName)) {
                         isIdle = false;
                     }
 
@@ -101,7 +115,7 @@ public class JobExistsCondition implements ICondition {
                 case Job.WAITING: {
                     stateString = "WAITING"; //$NON-NLS-1$
 
-                    if (!_exceptions.contains(nextJob.getName())) {
+                    if (!isExpected(jobName)) {
                         isIdle = false;
                     }
 
@@ -133,6 +147,21 @@ public class JobExistsCondition implements ICondition {
         PlatformActivator.logDebug(runningJobs.toString());
 
         return isIdle;
+    }
+    
+    /**
+     * Is the given job an expected exception?
+     */
+    private boolean isExpected(String jobName) {
+        
+        for(Pattern nextPattern : _exceptions) {
+            Matcher m = nextPattern.matcher(jobName);
+            if(m.matches()) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     /**
