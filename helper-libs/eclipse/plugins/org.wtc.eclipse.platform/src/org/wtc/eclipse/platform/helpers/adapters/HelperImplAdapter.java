@@ -561,7 +561,7 @@ public abstract class HelperImplAdapter {
 
             message.append(") ]]"); //$NON-NLS-1$
 
-            PlatformActivator.logDebug(message.toString(), DEBUG_OPTION_ENTRY_EXIT);
+            PlatformActivator.logDebug(message.toString());
         }
     }
 
@@ -624,7 +624,7 @@ public abstract class HelperImplAdapter {
             }
 
             message.append("]]"); //$NON-NLS-1$
-            PlatformActivator.logDebug(DEBUG_OPTION_ENTRY_EXIT, message.toString());
+            PlatformActivator.logDebug(message.toString());
         }
     }
 
