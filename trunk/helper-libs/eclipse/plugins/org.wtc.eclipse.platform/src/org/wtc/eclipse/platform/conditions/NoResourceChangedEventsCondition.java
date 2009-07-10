@@ -86,7 +86,7 @@ public class NoResourceChangedEventsCondition implements ICondition {
             // First, let's clean up after ourselves
             NoResourceChangedEventsCondition condition = _parent.get();
 
-            if (_parent == null) {
+            if (condition == null) {
                 IWorkspace ws = ResourcesPlugin.getWorkspace();
                 ws.removeResourceChangeListener(this);
             } else {
