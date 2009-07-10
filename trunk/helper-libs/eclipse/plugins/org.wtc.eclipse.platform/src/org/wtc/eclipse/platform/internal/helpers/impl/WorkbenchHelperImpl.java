@@ -1300,7 +1300,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#waitNoResourceChangeEvents(com.windowtester.runtime.IUIContext)
      */
     public void waitNoResourceChangeEvents(IUIContext ui) {
-        waitNoResourceChangeEvents(ui, 6);
+        waitNoResourceChangeEvents(ui, 6000);
     }
 
     /**
