@@ -11,6 +11,8 @@ import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.wtc.eclipse.platform.PlatformActivator;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -36,6 +38,13 @@ public class NoResourceChangedEventsCondition implements ICondition {
     public NoResourceChangedEventsCondition(int timeout) {
         TestCase.assertTrue(timeout > 0);
         _timeout = timeout;
+        
+        // Initialize
+        eventReceived();
+        
+        StoppingResourceChangeEventListener listener = new StoppingResourceChangeEventListener(this);
+        IWorkspace ws = ResourcesPlugin.getWorkspace();
+        ws.addResourceChangeListener(listener);
     }
 
     /**
@@ -51,6 +60,7 @@ public class NoResourceChangedEventsCondition implements ICondition {
     public synchronized boolean test() {
         long now = System.currentTimeMillis();
 
+        PlatformActivator.logDebug("NoResourceChangedEventsCondition: test<" + now + ", " + _lastEventTime + ", " + _timeout + ">");  //$NON-NLS-1$  //$NON-NLS-2$  //$NON-NLS-3$  //$NON-NLS-4$
         return (now - _lastEventTime) >= _timeout;
     }
 
@@ -80,6 +90,7 @@ public class NoResourceChangedEventsCondition implements ICondition {
                 IWorkspace ws = ResourcesPlugin.getWorkspace();
                 ws.removeResourceChangeListener(this);
             } else {
+                PlatformActivator.logDebug("NoResourceChangedEventsCondition: eventRecieved");  //$NON-NLS-1$
                 condition.eventReceived();
             }
         }

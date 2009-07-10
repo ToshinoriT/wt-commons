@@ -19,6 +19,7 @@ import java.util.regex.PatternSyntaxException;
  * @since 3.8.0
  */
 public class RegexTitleShellCondition extends ShellCondition {
+    private static final String DEBUG_OPTION = "/shellconditions";  //$NON-NLS-1$
     private Pattern _titlePattern;
     private String _rawTitle;
 
@@ -61,7 +62,7 @@ public class RegexTitleShellCondition extends ShellCondition {
                                                   new Object[] {
                     _rawTitle, shellTitle, Boolean.toString(textMatch), Boolean.toString(matches)
                 });
-            PlatformActivator.logDebug(message);
+            PlatformActivator.logDebug(message, DEBUG_OPTION);
         }
 
         return matches;
