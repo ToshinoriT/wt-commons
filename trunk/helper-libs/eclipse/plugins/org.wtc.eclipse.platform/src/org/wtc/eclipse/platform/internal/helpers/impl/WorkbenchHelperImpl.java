@@ -68,8 +68,7 @@ import org.wtc.eclipse.platform.shellhandlers.WrappedWizardClosingShellHandler;
 import org.wtc.eclipse.platform.util.ExceptionHandler;
 import org.wtc.eclipse.platform.util.MarkerUtil;
 import org.wtc.eclipse.platform.util.ThreadUtil;
-
-import abbot.swt.eclipse.utils.WorkbenchUtilities;
+import org.wtc.eclipse.platform.util.WorkbenchUtil;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
@@ -111,8 +110,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      */
     public void bringToFront(IUIContext ui) {
         handleConditions(ui);
-        WorkbenchUtilities.bringWorkbenchToFront();
-
+        WorkbenchUtil.bringWorkbenchToFront();
     }
 
     /**
