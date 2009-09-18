@@ -1,0 +1,14 @@
+# If enabled, look for deadlocks in the application
+org.wtc.eclipse.tools.deadlockmonitor/deadlockmonitor/enabled=true
+# Deadlock polling interval in minutes
+org.wtc.eclipse.tools.deadlockmonitor/deadlockmonitor/interval=5
+
+# If enabled, trace all log statements with level 'debug'
+org.wtc.eclipse.tools.deadlockmonitor/logging/debug=false
+
+# If enabled, debug statements will be placed on the console. 
+# Debug tracing must first be enabled for this option to apply
+org.wtc.eclipse.tools.deadlockmonitor/logging/debug/console=false
+
+# If enabled, print out a thread dump when the workbench closes
+org.wtc.eclipse.tools.deadlockmonitor/disposeWatcher=false

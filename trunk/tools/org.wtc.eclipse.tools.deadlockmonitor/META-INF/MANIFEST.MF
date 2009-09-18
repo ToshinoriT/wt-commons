@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.wtc.eclipse.tools.deadlockmonitor;singleton:=true
+Bundle-Version: 3.8.0.qualifier
+Bundle-ClassPath: deadlockmonitor.jar
+Bundle-Activator: org.wtc.eclipse.tools.deadlockmonitor.DeadlockMonitorPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Export-Package: org.wtc.eclipse.tools.deadlockmonitor,
+ org.wtc.eclipse.tools.deadlockmonitor.thread
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources
