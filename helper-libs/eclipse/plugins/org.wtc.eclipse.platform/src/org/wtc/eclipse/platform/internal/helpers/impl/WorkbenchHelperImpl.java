@@ -71,6 +71,7 @@ import org.wtc.eclipse.platform.util.ThreadUtil;
 import org.wtc.eclipse.platform.util.WorkbenchUtil;
 
 import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WaitTimedOutException;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.ICondition;
 import com.windowtester.runtime.swt.condition.SWTIdleCondition;
@@ -80,7 +81,6 @@ import com.windowtester.runtime.swt.locator.ButtonLocator;
 import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
 import com.windowtester.runtime.swt.locator.TableItemLocator;
-import com.windowtester.swt.WaitTimedOutException;
 
 /**
  * Helper workbench specific tasks.
