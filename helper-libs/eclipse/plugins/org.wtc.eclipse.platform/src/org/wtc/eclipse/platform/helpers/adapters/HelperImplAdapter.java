@@ -673,10 +673,10 @@ public abstract class HelperImplAdapter {
      * @param   textFieldLocator  - The text field must be found with this locator. See
      *                            WidgetLocator or SWTWdigetLocator
      * @param   value             - The text to type into the text field
-     * @throws  com.windowtester.swt.WidgetNotFoundException;       - If the text field
+     * @throws  com.windowtester.runtime.WidgetNotFoundException;       - If the text field
      *                                                              could not be uniquely
      *                                                              found
-     * @throws  com.windowtester.swt.MultipleWidgetsFoundException  - If the text field
+     * @throws  com.windowtester.runtime.MultipleWidgetsFoundException  - If the text field
      *                                                              could not be uniquely
      *                                                              found
      */
