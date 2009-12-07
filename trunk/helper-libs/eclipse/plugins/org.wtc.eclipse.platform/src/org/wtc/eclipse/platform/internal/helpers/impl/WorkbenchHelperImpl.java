@@ -5,13 +5,18 @@
  */
 package org.wtc.eclipse.platform.internal.helpers.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WaitTimedOutException;
+import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.swt.condition.SWTIdleCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
+import com.windowtester.runtime.swt.locator.MenuItemLocator;
+import com.windowtester.runtime.swt.locator.TableItemLocator;
 import junit.framework.TestCase;
-
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -69,18 +74,10 @@ import org.wtc.eclipse.platform.util.ExceptionHandler;
 import org.wtc.eclipse.platform.util.MarkerUtil;
 import org.wtc.eclipse.platform.util.ThreadUtil;
 import org.wtc.eclipse.platform.util.WorkbenchUtil;
-
-import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.WaitTimedOutException;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.condition.ICondition;
-import com.windowtester.runtime.swt.condition.SWTIdleCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
-import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
-import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
-import com.windowtester.runtime.swt.locator.MenuItemLocator;
-import com.windowtester.runtime.swt.locator.TableItemLocator;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Helper workbench specific tasks.
@@ -147,7 +144,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
 
             ui.wait(new ShellDisposedCondition("clean")); //$NON-NLS-1$
         } catch (WidgetSearchException wse) {
-        	ExceptionHandler.handle(wse);
+            ExceptionHandler.handle(wse);
         }
 
         cleanAllProjectsAfterUI(ui);
@@ -160,7 +157,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      * auto build job to finish. Subclasses should implement this method for any post-UI
      * operations
      *
-     * @since 3.8.0
+     * @since  3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void cleanAllProjectsAfterUI(IUIContext ui) {
@@ -172,7 +169,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      * Called just before the UI operations on cleanAllProjects. By default, do nothing.
      * Subclasses should implement this method for any pre-UI operations
      *
-     * @since 3.8.0
+     * @since  3.8.0
      * @param  ui  - Driver for UI generated input
      */
     protected void cleanAllProjectsBeforeUI(IUIContext ui) {
@@ -215,7 +212,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             // close the active perspective
             ui.click(new MenuItemLocator("&Window/&Close Perspective")); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-        	ExceptionHandler.handle(e);
+            ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -293,8 +290,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
         logExit2();
     }
 
-    /*
-     * (non-Javadoc)
+    /**
      * @see org.wtc.eclipse.platform.helpers.IWorkbenchHelper#disableAutoBuild(com.windowtester.runtime.IUIContext)
      */
     public void disableAutoBuild(IUIContext ui) {
@@ -313,7 +309,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             description = workspace.getDescription();
             TestCase.assertFalse("Failed to disable Build Automatically.", description.isAutoBuilding()); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-        	ExceptionHandler.handle(e);
+            ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -333,15 +329,14 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             try {
                 workspace.setDescription(description);
             } catch (CoreException ce) {
-            	ExceptionHandler.handle(ce,"Failed to disable auto-build: "); //$NON-NLS-1$
+                ExceptionHandler.handle(ce, "Failed to disable auto-build: "); //$NON-NLS-1$
             }
         }
 
         logExit2();
     }
 
-    /*
-     * (non-Javadoc)
+    /**
      * @see org.wtc.eclipse.platform.helpers.IWorkbenchHelper#enableAutoBuild(com.windowtester.runtime.IUIContext)
      */
     public void enableAutoBuild(IUIContext ui) {
@@ -360,7 +355,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             description = workspace.getDescription();
             TestCase.assertTrue("Failed to set disable Build Automatically.", description.isAutoBuilding()); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-        	ExceptionHandler.handle(e);
+            ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -381,7 +376,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             try {
                 workspace.setDescription(description);
             } catch (CoreException ce) {
-            	ExceptionHandler.handle(ce, "Failed to enable auto-build: "); //$NON-NLS-1$
+                ExceptionHandler.handle(ce, "Failed to enable auto-build: "); //$NON-NLS-1$
             }
         }
 
@@ -491,8 +486,8 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
                 markers = updatedMarkers.toArray(markers);
             }
         } catch (CoreException ce) {
-        	ExceptionHandler.handle(ce,"Error retrieving problem markers for project " //$NON-NLS-1$
-                          + project + ": "); //$NON-NLS-1$
+            ExceptionHandler.handle(ce, "Error retrieving problem markers for project " //$NON-NLS-1$
+                                    + project + ": "); //$NON-NLS-1$
         }
 
         return markers;
@@ -508,7 +503,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
         try {
             ui.click(new MenuItemLocator("&Edit/&Redo.*")); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-        	ExceptionHandler.handle(e);
+            ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -524,7 +519,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
         try {
             ui.click(new MenuItemLocator("&Edit/&Undo.*")); //$NON-NLS-1$
         } catch (WidgetSearchException e) {
-        	ExceptionHandler.handle(e);
+            ExceptionHandler.handle(e);
         }
 
         logExit2();
@@ -621,7 +616,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#listenForDialogSaveAllModifiedResources(com.windowtester.runtime.IUIContext)
      */
     public void listenForDialogSaveAllModifiedResources(IUIContext ui) {
-        //TO DO: Save All Modified Resources dialog is not
+        //TODO: Save All Modified Resources dialog is not
         //modal like it should be. The following is a workaround to the fact
         //that the short version of listenForDialog() checks modality.
         //This version does not.
@@ -702,7 +697,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             ui.wait(new ShellDisposedCondition("Open Perspective")); //$NON-NLS-1$
 
         } catch (WidgetSearchException e) {
-        	ExceptionHandler.handle(e);
+            ExceptionHandler.handle(e);
         }
 
         verifyPerspectiveOpen(ui, type, true);
@@ -715,6 +710,14 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
      *       org.wtc.eclipse.platform.helpers.IView)
      */
     public void openView(IUIContext ui, final IView view) {
+        openView(ui, view, 30000);
+    }
+
+    /**
+     * @see  org.wtc.eclipse.platform.helpers.IWorkbenchHelper#openView(com.windowtester.runtime.IUIContext,
+     *       org.wtc.eclipse.platform.helpers.IView, long)
+     */
+    public void openView(IUIContext ui, final IView view, long timeout) {
         TestCase.assertNotNull(ui);
         TestCase.assertNotNull(view);
 
@@ -742,7 +745,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
             });
 
         if (pie[0] != null) {
-        	ExceptionHandler.handle(pie[0]);
+            ExceptionHandler.handle(pie[0]);
         }
 
         if (shouldActivate[0]) {
@@ -752,10 +755,10 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
                 ui.click(new FilteredTreeItemLocator(view.getViewPath()));
                 clickOK(ui);
             } catch (WidgetSearchException e) {
-            	ExceptionHandler.handle(e);
+                ExceptionHandler.handle(e);
             }
 
-            verifyViewOpen(ui, view, true);
+            verifyViewOpen(ui, view, true, timeout);
         }
 
         logExit2();
@@ -929,7 +932,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
                 }
             }
         } catch (CoreException ce) {
-        	ExceptionHandler.handle(ce);
+            ExceptionHandler.handle(ce);
         }
 
         logExit2();
@@ -1022,7 +1025,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
                 }
             }
         } catch (CoreException ce) {
-        	ExceptionHandler.handle(ce);
+            ExceptionHandler.handle(ce);
         }
 
         if (shouldHaveMarkers) {
@@ -1039,7 +1042,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
     /**
      * Wait for the given perspective to be open/closed.
      *
-     * @since 3.8.0
+     * @since  3.8.0
      * @param  ui           - Driver for UI generated input
      * @param  perspective  - The perspective whose visibility is to be verified
      * @param  open         - True if the perspective is to be open for this condition to
@@ -1109,7 +1112,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
     /**
      * Wait for the given view to be open/closed.
      *
-     * @since 3.8.0
+     * @since  3.8.0
      * @param  ui    - Driver for UI generated input
      * @param  view  - The view whose visibility is to be verified
      * @param  open  - True if the view is to be open for this condition to be met; False
@@ -1118,6 +1121,24 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
     private void verifyViewOpen(IUIContext ui,
                                 final IView view,
                                 final boolean open) {
+        verifyViewOpen(ui, view, open, 30000);
+    }
+
+    /**
+     * Wait for the given view to be open/closed.
+     *
+     * @since  3.8.0
+     * @param  ui       - Driver for UI generated input
+     * @param  view     - The view whose visibility is to be verified
+     * @param  open     - True if the view is to be open for this condition to be met;
+     *                  False if the view is to be closed for this condition to be met
+     * @param  timeout  - The number of milliseconds to wait for the view to be open. The
+     *                  default is 30 seconds
+     */
+    private void verifyViewOpen(IUIContext ui,
+                                final IView view,
+                                final boolean open,
+                                long timeout) {
         TestCase.assertNotNull(ui);
         TestCase.assertNotNull(view);
 
@@ -1162,7 +1183,7 @@ public class WorkbenchHelperImpl extends HelperImplAdapter implements IWorkbench
 
                     return buffer.toString();
                 }
-            });
+            }, timeout);
 
         logExit2();
     }
