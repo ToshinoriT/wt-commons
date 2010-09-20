@@ -2,12 +2,11 @@
 
 = Introduction =
 
-[http://www.instantiations.com/windowtester/ WindowTester] is a commercial UI-testing tool available from [http://www.instantiations.com/index.html Instantiations].  Free licenses for open source committers are also [http://www.instantiations.com/company/opensource.html available]. 
+[http://code.google.com/webtoolkit/download.html WindowTester] is a free UI-testing tool available from [http://code.google.com/webtoolkit/overview.html Google].  
 
 = Resources =
 
 For more information, see these resources:
 
-  * [http://www.instantiations.com/windowtester/ Product Page] 
-  * [http://downloads.instantiations.com/WindowTesterDoc/integration/latest/docs/html/toc.html Product Documentation]
+  * [http://code.google.com/webtoolkit/tools/wintester/html/index.html Product Documentation]
   * [http://www.instantiations.com/forum/viewforum.php?f=5 Product Forum]
