@@ -8,7 +8,7 @@ package org.wtc.eclipse.platform.conditions;
 import abbot.tester.swt.TreeTester;
 import com.windowtester.runtime.condition.ICondition;
 import com.windowtester.runtime.util.StringComparator;
-import com.windowtester.tester.swt.TreeItemTester;
+import com.windowtester.runtime.swt.internal.abbot.TreeItemTester;
 import junit.framework.TestCase;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
