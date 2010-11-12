@@ -57,7 +57,7 @@ import com.windowtester.runtime.swt.locator.ButtonLocator;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
 import com.windowtester.runtime.swt.locator.NamedWidgetLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
-import com.windowtester.tester.swt.TreeItemTester;
+import com.windowtester.runtime.swt.internal.abbot.TreeItemTester;
 
 /**
  * Generic methods shared in Helper implementation subclasses.

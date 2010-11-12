@@ -11,7 +11,7 @@ import com.windowtester.runtime.locator.IItemLocator;
 import com.windowtester.runtime.locator.WidgetReference;
 import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
-import com.windowtester.tester.swt.TreeItemTester;
+import com.windowtester.runtime.swt.internal.abbot.TreeItemTester;
 import junit.framework.TestCase;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
