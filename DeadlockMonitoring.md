@@ -1,0 +1,1 @@
+The deadlock monitor plugin in the tools [tools repository](http://code.google.com/p/wt-commons/source/browse/#svn/trunk/tools) can be used to debug potential deadlock situations.  (Note: the deadlockmonitor must be enabled by turning on tracing for the deadlockmonitor plugin.)
